@@ -18,6 +18,12 @@ class ProdutoController extends Controller
         return view('produto/index',['produtos' => $registros]);
     }
 
+    public function desativados()
+    {
+        $registros = Produto::all();
+        return view('produto/desativados',['produtos' => $registros]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -139,6 +145,16 @@ class ProdutoController extends Controller
         $produto = Produto::find($id);
        
         $produto->item_ativo = 'nao';
+        $produto->update();
+
+        return redirect()->route('produto.index');
+    }
+
+    public function reativar($id)
+    {
+        $produto = Produto::find($id);
+       
+        $produto->item_ativo = 'sim';
         $produto->update();
 
         return redirect()->route('produto.index');
