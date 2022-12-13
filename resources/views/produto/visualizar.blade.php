@@ -3,7 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-<h1 class="m-0 text-dark">Produto adicionar</h1>
+<h1 class="m-0 text-dark">Produto Visualizar</h1>
 @stop
 
 @section('content')
@@ -15,11 +15,9 @@
                 <div class="input-field">
                     <div class="row">
                         <div class="col-12">
-                            <form action="{{route('produto.store')}}" method="POST" enctype="multipart/form-data">
-                                {{ csrf_field() }}
                                 @include('produto.form')
-
-                                <button class="btn btn-primary"> Salvar </button>
+                                <a class="btn btn-secondary"
+                                href="{{ route('produto.index') }}">Voltar</a>
                             </form>
                         </div>
                     </div>

@@ -3,7 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-<h1 class="m-0 text-dark">Produto adicionar</h1>
+<h1 class="m-0 text-dark">Produto editar</h1>
 @stop
 
 @section('content')
@@ -15,11 +15,13 @@
                 <div class="input-field">
                     <div class="row">
                         <div class="col-12">
-                            <form action="{{route('produto.store')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{route('produto.update', $produto->id)}}" method="POST" enctype="multipart/form-data">
                                 {{ csrf_field() }}
+                                <input type="hidden" name="_method" value="put">
+
                                 @include('produto.form')
 
-                                <button class="btn btn-primary"> Salvar </button>
+                                <button class="btn btn-primary"> Atualizar </button>
                             </form>
                         </div>
                     </div>
