@@ -321,7 +321,17 @@ return [
         ['header' => ''],
         [
             'text' => 'Produto',
-            'url'  => 'produto/adicionar',
+            'url'  => '#',
+            'submenu' => [
+                            [
+                                'text' => 'Listar',
+                                'url'  => 'produto/listar',
+                            ],
+                            [
+                                'text' => 'Adicionar',
+                                'url'  => 'produto/adicionar',
+                            ],
+                        ]
             // 'icon' => 'fas fa-fw fa-user',
         ],
         // [
