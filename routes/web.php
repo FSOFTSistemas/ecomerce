@@ -25,6 +25,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
     
 Route::middleware('auth')->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -35,16 +36,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/produto/deletar/{id}', [ProdutoController::class, 'destroy'])->name('produto.destroy');
     Route::get('/produto/editar/{id}', [ProdutoController::class, 'edit'])->name('produto.edit');
     Route::put('/produto/udpade/{id}', [ProdutoController::class, 'update'])->name('produto.update');
+    Route::get('/produto/desativados', [ProdutoController::class, 'desativados'])->name('produto.desativados');
+    Route::get('/produto/reativar/{id}', [ProdutoController::class, 'reativar'])->name('produto.reativa');
 });
 
 require __DIR__.'/auth.php';
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+// Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', function() {
-    return view('home');
-})->name('home')->middleware('auth');
+// Route::get('/home', function() {
+//     return view('home');
+// })->name('home')->middleware('auth');

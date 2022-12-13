@@ -328,6 +328,10 @@ return [
                                 'url'  => 'produto/listar',
                             ],
                             [
+                                'text' => 'Desativados',
+                                'url'  => 'produto/desativados',
+                            ],
+                            [
                                 'text' => 'Adicionar',
                                 'url'  => 'produto/adicionar',
                             ],
