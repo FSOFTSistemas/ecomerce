@@ -1,0 +1,17 @@
+.cartao{
+    width: 18rem;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+}
+
+.site{
+    justify-content: center;
+}
+
+.botao{
+    margin: 5px;
+}
+
+.corBotao{
+    color: white;
+}
