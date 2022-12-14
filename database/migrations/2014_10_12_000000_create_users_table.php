@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string('telefone');
             $table->string('cpf')->nullable();
             $table->string('rg')->nullable();
-            $table->foreign('endereco_id')->references('id')->on('enderecos')->nullable();;
-            $table->enum("tipo",["cliente","admin"]);
+            $table->foreignId('endereco_id')->constrained('enderecos');
+            $table->enum('tipo',["cliente","admin"]);
+            $table->foreignId('pedido_id')->constrained('pedidos');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
