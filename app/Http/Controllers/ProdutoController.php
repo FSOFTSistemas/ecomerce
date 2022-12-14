@@ -24,6 +24,12 @@ class ProdutoController extends Controller
         return view('produto/desativados',['produtos' => $registros]);
     }
 
+    public function welcome()
+    {
+        $registros = Produto::all();
+        return view('cliente/welcome',['produtos' => $registros]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
