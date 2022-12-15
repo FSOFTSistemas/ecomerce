@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('enderecos', function (Blueprint $table) {
             $table->id();
-            $table->string('rua');
-            $table->string('bairro');
-            $table->string('numero');
-            $table->string('cidade');
-            $table->string('estado');
-            $table->string('pais');
+            $table->string('rua')->nullable();
+            $table->string('bairro')->nullable();
+            $table->string('numero')->nullable();
+            $table->string('cidade')->nullable();
+            $table->string('estado')->nullable();
+            $table->string('pais')->nullable();
             $table->timestamps();
         });
     }

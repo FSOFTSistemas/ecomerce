@@ -27,7 +27,8 @@ class ProdutoController extends Controller
     public function welcome()
     {
         $registros = Produto::all();
-        return view('cliente/welcome',['produtos' => $registros]);
+        return view('cliente/index');
+        // return view('cliente/welcome',['produtos' => $registros]);
     }
 
     /**

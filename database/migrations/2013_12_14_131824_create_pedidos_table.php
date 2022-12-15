@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
-            $table->date('data');
-            $table->enum('stastus',['pendente','finalizado']);
-            $table->decimal('total');
-            $table->decimal('subtotal');
-            $table->decimal('desconto');
+            $table->date('data')->nullable();
+            $table->enum('stastus',['pendente','finalizado'])->nullable();
+            $table->decimal('total')->nullable();
+            $table->decimal('subtotal')->nullable();
+            $table->decimal('desconto')->nullable();
             $table->timestamps();
         });
     }
