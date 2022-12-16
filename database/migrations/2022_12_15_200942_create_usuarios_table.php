@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('telefone')->nullable();
             $table->string('cpf')->nullable();
             $table->string('rg')->nullable();
-            $table->foreignId('endereco_id')->constrained('enderecos');
-            $table->foreignId('pedido_id')->constrained('pedidos');
+            $table->foreignId('endereco_id')->constrained('enderecos')->nullable();
+            $table->foreignId('pedido_id')->constrained('pedidos')->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('senha');
             $table->timestamps();
