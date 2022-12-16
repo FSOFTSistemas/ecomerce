@@ -37,6 +37,7 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
+           // verificar email unico
         $dados = $request->all();
             $arrayEndereco = array();
             $arrayEndereco['rua'] = $dados['rua'];

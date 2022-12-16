@@ -14,7 +14,7 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        //
+        return view('cliente/product_summary');
     }
 
     /**
