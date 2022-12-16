@@ -63,7 +63,7 @@
                     <span class="icon-bar"></span>
                 </a>
                 <div class="navbar-inner">
-                    <a class="brand" href="#"><img src="themes/images/logo.png" alt="Bootsshop" /></a>
+                    <a class="brand" href="{{route('home')}}"><img src="themes/images/logo.png" alt="Bootsshop" /></a>
                     {{-- <form class="form-inline navbar-search" method="post" action="products.html" >
 		<input id="srchFld" class="srchTxt" type="text" />
 		  <select class="srchTxt">
@@ -88,7 +88,7 @@
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal"
                                         aria-hidden="true">×</button>
-                                    <h3>Login Block</h3>
+                                    <h3>Login batata</h3>
                                 </div>
                                 <div class="modal-body">
                                     <form class="form-horizontal loginFrm">

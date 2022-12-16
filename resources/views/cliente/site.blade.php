@@ -1,5 +1,5 @@
 @include('cliente.cabecalho')
-@include('cliente.carrossel')
+@yield('carrossel')
 <div id="mainBody">
     <div class="container">
         <div class="row">
