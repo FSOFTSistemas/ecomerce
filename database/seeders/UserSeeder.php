@@ -15,20 +15,20 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $dados = [
-            'tipo'=>"cliente",
-            'telefone'=>"81981479250",
-            'nome'=>"Guilherme",
-            'cpf'=>"",
-            'rg'=>"",
-            'email'=>"admin@mail.com",
-            'senha'=>bcrypt("12345678"),
-        ];
-        if(User::where('email','=',$dados['email'])->count()){
-            $usuario = User::where('email','=',$dados['email'])->first();
-            $usuario->updade($dados);
-        }else{
-            User::create($dados);
-        }
+        // $dados = [
+        //     'tipo'=>"cliente",
+        //     'telefone'=>"81981479250",
+        //     'nome'=>"Guilherme",
+        //     'cpf'=>"",
+        //     'rg'=>"",
+        //     'email'=>"admin@mail.com",
+        //     'senha'=>bcrypt("12345678"),
+        // ];
+        // if(User::where('email','=',$dados['email'])->count()){
+        //     $usuario = User::where('email','=',$dados['email'])->first();
+        //     $usuario->updade($dados);
+        // }else{
+        //     User::create($dados);
+        // }
     }
 }
