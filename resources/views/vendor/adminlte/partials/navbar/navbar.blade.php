@@ -24,11 +24,13 @@
 
         {{-- User menu link --}}
         @if(Auth::user())
-            @if(config('adminlte.usermenu_enabled'))
+            @include('adminlte::partials.navbar.menu-item-logout-link')
+            {{-- @if(config('adminlte.usermenu_enabled'))
                 @include('adminlte::partials.navbar.menu-item-dropdown-user-menu')
+                <div>BBBBBBBBBB</div>
             @else
                 @include('adminlte::partials.navbar.menu-item-logout-link')
-            @endif
+            @endif --}}
         @endif
 
         {{-- Right sidebar toggler link --}}
