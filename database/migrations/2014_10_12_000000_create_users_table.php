@@ -15,17 +15,15 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->enum('tipo',["cliente","admin"]);
-            $table->string('nome');
-            $table->string('telefone');
+            $table->enum('tipo',["cliente","admin"])->nullable();
+            $table->string('nome')->nullable();
+            $table->string('telefone')->nullable();
             $table->string('cpf')->nullable();
             $table->string('rg')->nullable();
-            // $table->foreignId('endereco_id')->constrained('enderecos');
-            // $table->foreignId('pedido_id')->constrained('pedidos');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->foreignId('endereco_id')->constrained('enderecos')->nullable();
+            $table->foreignId('pedido_id')->constrained('pedidos')->nullable();
+            $table->string('email')->unique()->nullable();
             $table->string('senha');
-            $table->rememberToken();
             $table->timestamps();
         });
     }
