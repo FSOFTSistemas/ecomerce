@@ -24,18 +24,16 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/', [ProdutoController::class, 'welcome'])->name('home');
-Route::get('/registrar', [UsuarioController::class, 'create'])->name('registrar');
-Route::post('/registrar', [UsuarioController::class, 'store'])->name('user.store');
-Route::get('/carrinho', [PedidoController::class, 'index'])->name('carrinho');
 Route::post('/entrar', [LoginController::class, 'entrar'])->name('login.entrar');
-
-
+Route::get('/registrar', [UserController::class, 'create'])->name('registrar');
+Route::post('/registrar', [UserController::class, 'store'])->name('user.store');
+Route::get('/sair', [LoginController::class, 'sair'])->name('user.sair');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
     
-Route::middleware('auth')->group(function () {
+Route::middleware('admin')->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home.auth');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -51,6 +49,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/produto/reativar/{id}', [ProdutoController::class, 'reativar'])->name('produto.reativa');
 });
 
+Route::middleware('cliente')->group(function () {
+    Route::get('/carrinho', [PedidoController::class, 'index'])->name('carrinho');
+});
+// Route::get('/teste',[LoginController::class, 'testeC'])->name('testec')->middleware('cliente');
+// Route::get('/testeA',[LoginController::class, 'testeA'])->name('testea')->middleware('admin');
 require __DIR__.'/auth.php';
 
 // Auth::routes();
