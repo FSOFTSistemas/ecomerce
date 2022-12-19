@@ -20,6 +20,7 @@ class Produto extends Model
         'tamanho',
         'foto',
         'promocao_ativa',
-        'item_ativo'
+        'item_ativo',
+        'item_destaque'
     ];
 }

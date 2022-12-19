@@ -100,16 +100,22 @@
 </div>
 
 <div class="row">
-    <div class="col-6">
+    <div class="col-4">
         <div class="custom-control custom-checkbox mb-3">
             <input type="checkbox" class="custom-control-input" name="item_ativo" id="item_ativo" {{ isset($produto->item_ativo) && $produto->item_ativo == 'sim' ? 'checked':'' }} value="true">
             <label class="custom-control-label" for="item_ativo">Item ativo</label>
         </div>
     </div>
-    <div class="col-6">
+    <div class="col-4">
         <div class="custom-control custom-checkbox mb-3">
             <input type="checkbox" class="custom-control-input" name="promocao_ativa" id="promocao_ativa" {{ isset($produto->promocao_ativa) && $produto->promocao_ativa == 'sim' ? 'checked' :''}} value="true">
             <label class="custom-control-label" for="promocao_ativa">Promoção ativa</label>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="custom-control custom-checkbox mb-3">
+            <input type="checkbox" class="custom-control-input" name="item_destaque" id="item_destaque" {{ isset($produto->item_destaque) && $produto->item_destaque == 'sim' ? 'checked' :''}} value="true">
+            <label class="custom-control-label" for="item_destaque">Item em Destaque</label>
         </div>
     </div>
 </div>

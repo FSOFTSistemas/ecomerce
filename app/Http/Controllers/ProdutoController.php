@@ -63,6 +63,12 @@ class ProdutoController extends Controller
             $dados['promocao_ativa'] = 'nao';
         }
 
+        if(isset($dados['item_destaque'])){
+            $dados['item_destaque'] = 'sim';
+        }else{
+            $dados['item_destaque'] = 'nao';
+        }
+
         if($request->hasFile('foto')){
             $imagem = $request->file('foto');
             $num =rand(1111,9999);

@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string("tamanho");
             $table->enum("item_ativo",["sim","nao"])->default('sim');
             $table->enum("promocao_ativa",["sim","nao"])->default('nao');
+            $table->enum("item_destaque",["sim","nao"])->default('nao');
             $table->timestamps();
         });
     }
