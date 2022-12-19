@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Endereco;
 use App\Models\Pedido;
-use app\Models\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -67,21 +67,43 @@ class UserController extends Controller
             }else{
                 User::create($dados);
             }*/
-            $arrayUser = array();
+            /*
+            'endereco_id',
+            'pedido_id',
+            'tipo',
+            'telefone',
+            'nome',
+            'cpf',
+            'rg',
+            'email',
+            'senha'
+            */
+            User::create([
+                'tipo' => 'cliente',
+                'endereco_id' => $endereco->id,
+                'pedido_id'=> $pedido->id,
+                'telefone'=> $dados['telefone'],
+                'nome' => $dados['nome'], 
+                'cpf'=> $dados['cpf'],
+                'rg'=> $dados['rg'],
+                'email'=> $dados['email'],
+                'senha'=> bcrypt($dados['senha'])
+            ]);
+            // $arrayUser = array();
             // $arrayUser['endereco_id'] = $endereco->id;
             // $arrayUser['pedido_id'] = $pedido->id;
-            $arrayUser['tipo'] = 'cliente';
-            $arrayUser['telefone'] = $dados['telefone'];
-            $arrayUser['nome'] = $dados['nome'];
-            $arrayUser['cpf'] = $dados['cpf'];
-            $arrayUser['rg'] = $dados['rg'];
-            $arrayUser['email'] = $dados['email'];
-            $arrayUser['senha'] = bcrypt($dados['senha']);
+            // $arrayUser['tipo'] = 'cliente';
+            // $arrayUser['telefone'] = $dados['telefone'];
+            // $arrayUser['nome'] = $dados['nome'];
+            // $arrayUser['cpf'] = $dados['cpf'];
+            // $arrayUser['rg'] = $dados['rg'];
+            // $arrayUser['email'] = $dados['email'];
+            // $arrayUser['senha'] = bcrypt($dados['senha']);
             
             // $arrayUser[''] = $dados[''];
             //dd($arrayUser);
             //User::create($arrayUser);
-            $user =  new User;
+            //$user =  new User;
             dd("FEITO");
         }
         dd("caiu fora");

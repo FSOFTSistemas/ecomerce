@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usuario;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -88,18 +89,38 @@ class LoginController extends Controller
     public function entrar(Request $request)
     {
         $dados = $request->all();
-        $usuario = Usuario::where('email', '=', $dados['email'])->first();
+        //dd($dados);
+        // dd(Auth::attempt(['email'=>$dados['email'],'senha'=> bcrypt($dados['password'])]));
+        // if(Auth::attempt(['email'=>$dados['email'],'senha'=>$dados['password']])){
+        //     return redirect()->route('home');
+        // }
+        $usuario = User::where('email', '=', $dados['email'])->first();
+        //dd($usuario);
         if ($usuario != null) {
+            
             if (Hash::check($dados['password'], $usuario->senha)) {
                 //logado
-                return redirect()->route('home');
+                Auth::login($usuario);
+                if(Auth::user()->tipo == "cliente"){
+                    return redirect()->route('home');
+                }else if(Auth::user()->tipo == "admin"){
+                    return redirect()->route('home.auth');
+                }
             }
         }
+
         return redirect()->route('login');
     }
     public function sair()
     {
         Auth::logout();
-        return redirect()->route('login');
+        return redirect()->route('home');
+    }
+
+    public function testeA(){
+        dd("OI admin");
+    }
+    public function testeC(){
+        dd("OI cliente");
     }
 }
