@@ -9,13 +9,106 @@
 @section('conteudo')
 <div class="span9">
     <div class="well well-small">
-        <h4>Featured Products <small class="pull-right">200+ featured products</small></h4>
+        <h4>Produtos em Destaque <small class="pull-right"></small></h4>
         <div class="row-fluid">
             <div id="featured" class="carousel slide">
                 <div class="carousel-inner">
+                    {{-- @for ($contador = 0; $contador < count($produtosDestaques); $contador = $contador+4)
+                    <div class="item active">
+                        <ul class="thumbnails">
+                            @if(isset($produtosDestaques[$contador]))
+                            <li class="span3">
+                                <div class="thumbnail">
+                                    <i class="tag"></i>
+                                    <a href="product_details.html"><img
+                                            src="{{$produtosDestaques[$contador]['foto']}}" alt=""></a>
+                                    <div class="caption">
+                                        <h5>{{$produtosDestaques[$contador]['nome'] }}</h5>
+                                        <h4><a class="btn" href="product_details.html">Ver</a>
+                                            <span class="pull-right">R${{$produtosDestaques[$contador]['preco_venda']}}</span></h4>
+                                    </div>
+                                </div>
+                            </li>
+                            @endif
+                            @if(isset($produtosDestaques[$contador+1]))
+                            <li class="span3">
+                                <div class="thumbnail">
+                                    <i class="tag"></i>
+                                    <a href="product_details.html"><img
+                                            src="{{$produtosDestaques[$contador+1]['foto']}}" alt=""></a>
+                                    <div class="caption">
+                                        <h5>{{$produtosDestaques[$contador+1]['nome'] }}</h5>
+                                        <h4><a class="btn" href="product_details.html">Ver</a>
+                                            <span class="pull-right">R${{$produtosDestaques[$contador+1]['preco_venda']}}</span></h4>
+                                    </div>
+                                </div>
+                            </li>
+                            @endif
+                            @if(isset($produtosDestaques[$contador+2]))
+                            <li class="span3">
+                                <div class="thumbnail">
+                                    <i class="tag"></i>
+                                    <a href="product_details.html"><img
+                                            src="{{$produtosDestaques[$contador+2]['foto']}}" alt=""></a>
+                                    <div class="caption">
+                                        <h5>{{$produtosDestaques[$contador+2]['nome'] }}</h5>
+                                        <h4><a class="btn" href="product_details.html">Ver</a>
+                                            <span class="pull-right">R${{$produtosDestaques[$contador+2]['preco_venda']}}</span></h4>
+                                    </div>
+                                </div>
+                            </li>  
+                            @endif
+                            @if(isset($produtosDestaques[$contador+3]))
+                            <li class="span3">
+                                <div class="thumbnail">
+                                    <i class="tag"></i>
+                                    <a href="product_details.html"><img
+                                            src="{{$produtosDestaques[$contador+3]['foto']}}" alt=""></a>
+                                    <div class="caption">
+                                        <h5>{{$produtosDestaques[$contador+3]['nome'] }}</h5>
+                                        <h4><a class="btn" href="product_details.html">Ver</a>
+                                            <span class="pull-right">R${{$produtosDestaques[$contador+3]['preco_venda']}}</span></h4>
+                                    </div>
+                                </div>
+                            </li>
+                            @endif
+                        </ul>
+                    </div>
+                    @endfor
                     <div class="item active">
                         <ul class="thumbnails">
                             <li class="span3">
+                                <div class="thumbnail">
+                                    <i class="tag"></i>
+                                    <a href="product_details.html"><img
+                                            src="{{$produtosDestaques[3]['foto']}}" alt=""></a>
+                                    <div class="caption">
+                                        <h5>{{$produtosDestaques[3]['nome'] }}</h5>
+                                        <h4><a class="btn" href="product_details.html">Ver</a>
+                                            <span class="pull-right">R${{$produtosDestaques[3]['preco_venda']}}</span></h4>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div> --}}
+                    <div class="item active">
+                        <ul class="thumbnails">
+                            @for ($contador = 0; $contador < 4; $contador++)
+                            @if (isset($produtosDestaques[$contador]))
+                            <li class="span3">
+                                <div class="thumbnail">
+                                    <a href="product_details.html"><img
+                                            src="{{$produtosDestaques[$contador]['foto']}}" alt=""></a>
+                                    <div class="caption">
+                                        <h5>{{$produtosDestaques[$contador]['nome']}}</h5>
+                                        <h4><a class="btn" href="product_details.html">Ver</a>
+                                            <span class="pull-right">{{$produtosDestaques[$contador]['preco_venda']}}</span></h4>
+                                    </div>
+                                </div>
+                            </li>
+                            @endif
+                            @endfor
+                            {{-- <li class="span3">
                                 <div class="thumbnail">
                                     <i class="tag"></i>
                                     <a href="product_details.html"><img
@@ -26,46 +119,22 @@
                                             <span class="pull-right">$222.00</span></h4>
                                     </div>
                                 </div>
-                            </li>
-                            <li class="span3">
+                            </li>   --}}
+                            {{-- <li class="span3">
                                 <div class="thumbnail">
                                     <i class="tag"></i>
                                     <a href="product_details.html"><img
-                                            src="themes/images/products/b2.jpg" alt=""></a>
+                                            src="themes/images/products/b1.jpg" alt=""></a>
                                     <div class="caption">
                                         <h5>Product name</h5>
                                         <h4><a class="btn" href="product_details.html">VIEW</a>
                                             <span class="pull-right">$222.00</span></h4>
                                     </div>
                                 </div>
-                            </li>
-                            <li class="span3">
-                                <div class="thumbnail">
-                                    <i class="tag"></i>
-                                    <a href="product_details.html"><img
-                                            src="themes/images/products/b3.jpg" alt=""></a>
-                                    <div class="caption">
-                                        <h5>Product name</h5>
-                                        <h4><a class="btn" href="product_details.html">VIEW</a>
-                                            <span class="pull-right">$222.00</span></h4>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="span3">
-                                <div class="thumbnail">
-                                    <i class="tag"></i>
-                                    <a href="product_details.html"><img
-                                            src="themes/images/products/b4.jpg" alt=""></a>
-                                    <div class="caption">
-                                        <h5>Product name</h5>
-                                        <h4><a class="btn" href="product_details.html">VIEW</a>
-                                            <span class="pull-right">$222.00</span></h4>
-                                    </div>
-                                </div>
-                            </li>
+                            </li>                             --}}
                         </ul>
                     </div>
-                    <div class="item">
+                    {{-- <div class="item">
                         <ul class="thumbnails">
                             <li class="span3">
                                 <div class="thumbnail">
@@ -79,43 +148,9 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="span3">
-                                <div class="thumbnail">
-                                    <i class="tag"></i>
-                                    <a href="product_details.html"><img
-                                            src="themes/images/products/6.jpg" alt=""></a>
-                                    <div class="caption">
-                                        <h5>Product name</h5>
-                                        <h4><a class="btn" href="product_details.html">VIEW</a>
-                                            <span class="pull-right">$222.00</span></h4>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="span3">
-                                <div class="thumbnail">
-                                    <a href="product_details.html"><img
-                                            src="themes/images/products/7.jpg" alt=""></a>
-                                    <div class="caption">
-                                        <h5>Product name</h5>
-                                        <h4><a class="btn" href="product_details.html">VIEW</a>
-                                            <span class="pull-right">$222.00</span></h4>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="span3">
-                                <div class="thumbnail">
-                                    <a href="product_details.html"><img
-                                            src="themes/images/products/8.jpg" alt=""></a>
-                                    <div class="caption">
-                                        <h5>Product name</h5>
-                                        <h4><a class="btn" href="product_details.html">VIEW</a>
-                                            <span class="pull-right">$222.00</span></h4>
-                                    </div>
-                                </div>
-                            </li>
                         </ul>
-                    </div>
-                    <div class="item">
+                    </div> --}}
+                    {{-- <div class="item">
                         <ul class="thumbnails">
                             <li class="span3">
                                 <div class="thumbnail">
@@ -128,90 +163,67 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="span3">
-                                <div class="thumbnail">
-                                    <a href="product_details.html"><img
-                                            src="themes/images/products/10.jpg" alt=""></a>
-                                    <div class="caption">
-                                        <h5>Product name</h5>
-                                        <h4><a class="btn" href="product_details.html">VIEW</a>
-                                            <span class="pull-right">$222.00</span></h4>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="span3">
-                                <div class="thumbnail">
-                                    <a href="product_details.html"><img
-                                            src="themes/images/products/11.jpg" alt=""></a>
-                                    <div class="caption">
-                                        <h5>Product name</h5>
-                                        <h4><a class="btn" href="product_details.html">VIEW</a>
-                                            <span class="pull-right">$222.00</span></h4>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="span3">
-                                <div class="thumbnail">
-                                    <a href="product_details.html"><img
-                                            src="themes/images/products/1.jpg" alt=""></a>
-                                    <div class="caption">
-                                        <h5>Product name</h5>
-                                        <h4><a class="btn" href="product_details.html">VIEW</a>
-                                            <span class="pull-right">$222.00</span></h4>
-                                    </div>
-                                </div>
-                            </li>
                         </ul>
-                    </div>
+                    </div> --}}
+                    @for ($contador = 4; $contador < count($produtosDestaques); $contador = $contador+4)
                     <div class="item">
                         <ul class="thumbnails">
+                            @if (isset($produtosDestaques[$contador]))
                             <li class="span3">
                                 <div class="thumbnail">
                                     <a href="product_details.html"><img
-                                            src="themes/images/products/2.jpg" alt=""></a>
+                                            src="{{$produtosDestaques[$contador]['foto']}}" alt=""></a>
                                     <div class="caption">
-                                        <h5>Product name</h5>
+                                        <h5>{{$produtosDestaques[$contador]['nome']}}</h5>
                                         <h4><a class="btn" href="product_details.html">VIEW</a>
-                                            <span class="pull-right">$222.00</span></h4>
+                                            <span class="pull-right">{{$produtosDestaques[$contador]['preco_venda']}}</span></h4>
                                     </div>
                                 </div>
                             </li>
+                            @endif
+                            @if (isset($produtosDestaques[$contador+1]))
                             <li class="span3">
                                 <div class="thumbnail">
                                     <a href="product_details.html"><img
-                                            src="themes/images/products/3.jpg" alt=""></a>
+                                            src="{{$produtosDestaques[$contador+1]['foto']}}" alt=""></a>
                                     <div class="caption">
-                                        <h5>Product name</h5>
+                                        <h5>{{$produtosDestaques[$contador+1]['nome']}}</h5>
                                         <h4><a class="btn" href="product_details.html">VIEW</a>
-                                            <span class="pull-right">$222.00</span></h4>
+                                            <span class="pull-right">{{$produtosDestaques[$contador+1]['preco_venda']}}</span></h4>
                                     </div>
                                 </div>
                             </li>
+                            @endif
+                            @if (isset($produtosDestaques[$contador+2]))
                             <li class="span3">
                                 <div class="thumbnail">
                                     <a href="product_details.html"><img
-                                            src="themes/images/products/4.jpg" alt=""></a>
+                                            src="{{$produtosDestaques[$contador+2]['foto']}}" alt=""></a>
                                     <div class="caption">
-                                        <h5>Product name</h5>
+                                        <h5>{{$produtosDestaques[$contador+2]['nome']}}</h5>
                                         <h4><a class="btn" href="product_details.html">VIEW</a>
-                                            <span class="pull-right">$222.00</span></h4>
+                                            <span class="pull-right">{{$produtosDestaques[$contador+2]['preco_venda']}}</span></h4>
                                     </div>
                                 </div>
                             </li>
+                            @endif
+                            @if (isset($produtosDestaques[$contador+3]))
                             <li class="span3">
                                 <div class="thumbnail">
                                     <a href="product_details.html"><img
-                                            src="themes/images/products/5.jpg" alt=""></a>
+                                            src="{{$produtosDestaques[$contador+3]['foto']}}" alt=""></a>
                                     <div class="caption">
-                                        <h5>Product name</h5>
+                                        <h5>{{$produtosDestaques[$contador+3]['nome']}}</h5>
                                         <h4><a class="btn" href="product_details.html">VIEW</a>
-                                            <span class="pull-right">$222.00</span></h4>
+                                            <span class="pull-right">{{$produtosDestaques[$contador+3]['preco_venda']}}</span></h4>
                                     </div>
                                 </div>
                             </li>
+                            @endif
                         </ul>
                     </div>
-                </div>
+                    @endfor
+                </div> 
                 <a class="left carousel-control" href="#featured" data-slide="prev">‹</a>
                 <a class="right carousel-control" href="#featured" data-slide="next">›</a>
             </div>
