@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 
@@ -15,19 +16,22 @@ class ProdutoController extends Controller
     public function index()
     {
         $registros = Produto::all();
-        return view('produto/index',['produtos' => $registros]);
+        $categorias = Categoria::where('status', '=', 'ativo')->get(); //talvez remover essa linha
+        return view('produto/index', ['produtos' => $registros, 'categorias' => $categorias]);
     }
 
     public function desativados()
     {
         $registros = Produto::all();
-        return view('produto/desativados',['produtos' => $registros]);
+        return view('produto/desativados', ['produtos' => $registros]);
     }
 
     public function welcome()
     {
-        $registros = Produto::all();
-        return view('cliente/index',['produtos' => $registros]);
+        $registros = Produto::where('item_ativo', '=', 'sim')->get();
+        $registosDestaque = Produto::where('item_destaque', '=', 'sim')->where('item_ativo', '=', 'sim')->get();
+        // dd($registosDestaque);
+        return view('cliente/index', ['produtos' => $registros, 'produtosDestaques' => $registosDestaque]);
         // return view('cliente/welcome',['produtos' => $registros]);
     }
 
@@ -38,7 +42,8 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        return view('produto/adicionar');
+        $categorias = Categoria::where('status', '=', 'ativo')->get();
+        return view('produto/adicionar', ['categorias' => $categorias]);
     }
 
     /**
@@ -49,39 +54,48 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
+
+        //pegar a categoria também
         $dados = $request->all();
+        //dd($dados);
+        if ($dados['categoria'] != "Selecione uma categoria") {
 
-        if(isset($dados['item_ativo'])){
-            $dados['item_ativo'] = 'sim';
+            if (isset($dados['item_ativo'])) {
+                $dados['item_ativo'] = 'sim';
+            } else {
+                $dados['item_ativo'] = 'nao';
+            }
+
+            if (isset($dados['promocao_ativa'])) {
+                $dados['promocao_ativa'] = 'sim';
+            } else {
+                $dados['promocao_ativa'] = 'nao';
+            }
+
+            if (isset($dados['item_destaque'])) {
+                $dados['item_destaque'] = 'sim';
+            } else {
+                $dados['item_destaque'] = 'nao';
+            }
+
+            if ($request->hasFile('foto')) {
+                $imagem = $request->file('foto');
+                $num = rand(1111, 9999);
+                $dir = "img/produtos";
+                $ext = $imagem->guessClientExtension();
+                $nomeImagem = "imagem_" . $num . "." . $ext;
+                $imagem->move($dir, $nomeImagem);
+                $dados['foto'] = $dir . "/" . $nomeImagem;
+            }
+
+            Produto::create($dados);
+
+            return redirect()->route('produto.index');
         }else{
-            $dados['item_ativo'] = 'nao';
+            $categorias = Categoria::where('status', '=', 'ativo')->get();
+            // dd($dados);
+            return view('produto/adicionar', ['produto'=>$dados,'categorias' => $categorias]);
         }
-
-        if(isset($dados['promocao_ativa'])){
-            $dados['promocao_ativa'] = 'sim';
-        }else{
-            $dados['promocao_ativa'] = 'nao';
-        }
-
-        if(isset($dados['item_destaque'])){
-            $dados['item_destaque'] = 'sim';
-        }else{
-            $dados['item_destaque'] = 'nao';
-        }
-
-        if($request->hasFile('foto')){
-            $imagem = $request->file('foto');
-            $num =rand(1111,9999);
-            $dir = "img/produtos";
-            $ext = $imagem->guessClientExtension();
-            $nomeImagem = "imagem_".$num.".".$ext;
-            $imagem->move($dir,$nomeImagem);
-            $dados['foto'] = $dir."/".$nomeImagem;
-        }
-
-        Produto::create($dados);
-
-        return redirect()->route('home');
     }
 
     /**
@@ -93,7 +107,7 @@ class ProdutoController extends Controller
     public function show(Produto $produto, $id)
     {
         $produto = Produto::find($id);
-        return view('produto/visualizar',['produto'=>$produto]);
+        return view('produto/visualizar', ['produto' => $produto]);
     }
 
     /**
@@ -105,7 +119,7 @@ class ProdutoController extends Controller
     public function edit(Produto $produto,  $id)
     {
         $produto = Produto::find($id);
-        return view('produto/editar',['produto'=>$produto]);
+        return view('produto/editar', ['produto' => $produto]);
     }
 
     /**
@@ -120,26 +134,32 @@ class ProdutoController extends Controller
 
         $dados = $request->all();
 
-        if(isset($dados['item_ativo'])){
+        if (isset($dados['item_ativo'])) {
             $dados['item_ativo'] = 'sim';
-        }else{
+        } else {
             $dados['item_ativo'] = 'nao';
         }
 
-        if(isset($dados['promocao_ativa'])){
+        if (isset($dados['promocao_ativa'])) {
             $dados['promocao_ativa'] = 'sim';
-        }else{
+        } else {
             $dados['promocao_ativa'] = 'nao';
         }
 
-        if($request->hasFile('foto')){
+        if (isset($dados['item_destaque'])) {
+            $dados['item_destaque'] = 'sim';
+        } else {
+            $dados['item_destaque'] = 'nao';
+        }
+
+        if ($request->hasFile('foto')) {
             $imagem = $request->file('foto');
-            $num =rand(1111,9999);
+            $num = rand(1111, 9999);
             $dir = "img/produtos";
             $ext = $imagem->guessClientExtension();
-            $nomeImagem = "imagem_".$num.".".$ext;
-            $imagem->move($dir,$nomeImagem);
-            $dados['foto'] = $dir."/".$nomeImagem;
+            $nomeImagem = "imagem_" . $num . "." . $ext;
+            $imagem->move($dir, $nomeImagem);
+            $dados['foto'] = $dir . "/" . $nomeImagem;
         }
 
         Produto::find($id)->update($dados);
@@ -156,7 +176,7 @@ class ProdutoController extends Controller
     public function destroy($id)
     {
         $produto = Produto::find($id);
-       
+
         $produto->item_ativo = 'nao';
         $produto->update();
 
@@ -166,7 +186,7 @@ class ProdutoController extends Controller
     public function reativar($id)
     {
         $produto = Produto::find($id);
-       
+
         $produto->item_ativo = 'sim';
         $produto->update();
 
