@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string("referencia")->nullable();
             $table->string("codigo_de_barras")->nullable();
             $table->string("tamanho");
+            $table->foreignId('categoria_id')->constrained('categorias');
             $table->enum("item_ativo",["sim","nao"])->default('sim');
             $table->enum("promocao_ativa",["sim","nao"])->default('nao');
             $table->enum("item_destaque",["sim","nao"])->default('nao');

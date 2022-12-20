@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PedidoController;
@@ -47,6 +48,20 @@ Route::middleware('admin')->group(function () {
     Route::put('/produto/udpade/{id}', [ProdutoController::class, 'update'])->name('produto.update');
     Route::get('/produto/desativados', [ProdutoController::class, 'desativados'])->name('produto.desativados');
     Route::get('/produto/reativar/{id}', [ProdutoController::class, 'reativar'])->name('produto.reativa');
+
+    Route::get('/categoria/adicionar', [CategoriaController::class, 'create'])->name('categoria.create');
+    Route::get('/categoria/listar', [CategoriaController::class, 'index'])->name('categoria.index');
+    Route::get('/categoria/desativados', [CategoriaController::class, 'desativados'])->name('categoria.desativados');
+    Route::get('/categoria/visualizar/{id}', [CategoriaController::class, 'show'])->name('categoria.show');
+    Route::get('/categoria/deletar/{id}', [CategoriaController::class, 'destroy'])->name('categoria.destroy');
+    Route::put('/categoria/udpade/{id}', [CategoriaController::class, 'update'])->name('categoria.update');
+    Route::get('/categoria/editar/{id}', [CategoriaController::class, 'edit'])->name('categoria.edit');
+    Route::post('/categoria/salvar', [CategoriaController::class, 'store'])->name('categoria.store');
+    Route::get('/categoria/reativar/{id}', [CategoriaController::class, 'reativar'])->name('categoria.reativa');
+
+
+
+
 });
 
 Route::middleware('cliente')->group(function () {

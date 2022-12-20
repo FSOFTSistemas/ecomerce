@@ -338,6 +338,24 @@ return [
                         ]
             // 'icon' => 'fas fa-fw fa-user',
         ],
+        [
+            'text' => 'Categoria',
+            'url'  => '#',
+            'submenu' => [
+                            [
+                                'text' => 'Listar',
+                                'url'  => 'categoria/listar',
+                            ],
+                            [
+                                'text' => 'Desativados',
+                                'url'  => 'categoria/desativados',
+                            ],
+                            [
+                                'text' => 'Adicionar',
+                                'url'  => 'categoria/adicionar',
+                            ],
+                        ]
+        ]
         // [
         //     'text' => 'change_password',
         //     'url'  => 'admin/settings',
