@@ -1,8 +1,19 @@
                 <!-- Sidebar ================================================== -->
                 <div id="sidebar" class="span3">
-                    <div class="well well-small"><a id="myCart" href="{{ route('carrinho') }}"><img
-                                src="themes/images/ico-cart.png" alt="cart">3 Items in your cart <span
-                                class="badge badge-warning pull-right">$155.00</span></a></div>
+                    @if (Auth::check())
+                        <div class="well well-small">
+                            <a id="myCart" href="{{route('carrinho')}}">
+                                <img src="themes/images/ico-cart.png" alt="cart">3 Items in your cart
+                                <span class="badge badge-warning pull-right">$155.00</span>
+                            </a>
+                        </div>
+                    @else
+                        <div class="well well-small">
+                            <a id="myCart" href="" onclick="avisoParaLogar()">
+                                <img src="themes/images/ico-cart.png" alt="cart">Carrinho
+                            </a>
+                        </div>
+                    @endif
                     <ul id="sideManu" class="nav nav-tabs nav-stacked">
                         <li class="subMenu open"><a> ELECTRONICS [230]</a>
                             <ul>
@@ -58,13 +69,14 @@
                         @foreach ($produtos as $produto)
                             @if ($produto->promocao_ativa == 'sim')
                                 <div class="thumbnail">
-                                    <img src="{{$produto['foto']}}"
-                                        alt="Bootshop panasonoc New camera" />
+                                    <img src="{{ $produto['foto'] }}" alt="Bootshop panasonoc New camera" />
                                     <div class="caption">
-                                        <h5>{{$produto['nome']}}</h5>
+                                        <h5>{{ $produto['nome'] }}</h5>
                                         <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i
-                                                    class="icon-zoom-in"></i></a> <a class="btn" href="#">Adicionar <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary"
-                                                href="#">R${{$produto['preco_promocao']}}</a></h4>
+                                                    class="icon-zoom-in"></i></a> <a class="btn"
+                                                href="#">Adicionar <i class="icon-shopping-cart"></i></a> <a
+                                                class="btn btn-primary"
+                                                href="#">R${{ $produto['preco_promocao'] }}</a></h4>
                                     </div>
                                 </div><br />
                             @endif
@@ -93,3 +105,9 @@
 
                 </div>
                 <!-- Sidebar end=============================================== -->
+
+                <script>
+                    function avisoParaLogar() {
+                      alert("Por favor, faça login! Aperte no botão Entrar");
+                    }
+                    </script>
