@@ -104,11 +104,8 @@ class UserController extends Controller
             //dd($arrayUser);
             //User::create($arrayUser);
             //$user =  new User;
-            dd("FEITO");
         }
-        dd("caiu fora");
         return redirect()->route('home');
-        dd($request);
         //
     }
 
