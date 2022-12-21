@@ -8,6 +8,7 @@
 
 @section('conteudo')
 <div class="span9">
+    @if(isset($produtosDestaques[0]))
     <div class="well well-small">
         <h4>Produtos em Destaque <small class="pull-right"></small></h4>
         <div class="row-fluid">
@@ -229,7 +230,8 @@
             </div>
         </div>
     </div>
-    <h4>Latest Products </h4>
+    @endif
+    <h4>Produtos </h4>
     <ul class="thumbnails">
         {{-- <li class="span3">
             <div class="thumbnail">
@@ -259,7 +261,7 @@
                         {{$produto['descricao']}}
                     </p>
                     <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i
-                                class="icon-zoom-in"></i></a> <a class="btn" href="#">Adicionar
+                                class="icon-zoom-in"></i></a> <a class="btn" href="{{route('carrinho.adicionar',$produto->id)}}">Adicionar
                             <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary"
                             href="#"> R$ {{$produto['preco_venda']}}</a></h4>
                 </div>
