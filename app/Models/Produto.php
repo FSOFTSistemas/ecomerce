@@ -21,6 +21,7 @@ class Produto extends Model
         'foto',
         'promocao_ativa',
         'item_ativo',
-        'item_destaque'
+        'item_destaque',
+        'categoria_id'
     ];
 }

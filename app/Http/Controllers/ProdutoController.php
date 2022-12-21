@@ -55,10 +55,8 @@ class ProdutoController extends Controller
     public function store(Request $request)
     {
 
-        //pegar a categoria também
         $dados = $request->all();
-        //dd($dados);
-        if ($dados['categoria'] != "Selecione uma categoria") {
+        if ($dados['categoria_id'] != "Selecione uma categoria") {
 
             if (isset($dados['item_ativo'])) {
                 $dados['item_ativo'] = 'sim';
@@ -93,8 +91,17 @@ class ProdutoController extends Controller
             return redirect()->route('produto.index');
         }else{
             $categorias = Categoria::where('status', '=', 'ativo')->get();
-            // dd($dados);
-            return view('produto/adicionar', ['produto'=>$dados,'categorias' => $categorias]);
+            $produto = new Produto();
+            $produto->nome = $dados['nome'];
+            $produto->estoque = $dados['estoque'];
+            $produto->referencia = $dados['referencia'];
+            $produto->codigo_de_barras = $dados['codigo_de_barras'];
+            $produto->preco_venda = $dados['preco_venda'];
+            $produto->preco_promocao = $dados['preco_promocao'];
+            $produto->tamanho = $dados['tamanho'];
+            $produto->descricao = $dados['descricao'];
+            //dd($produto);
+            return view('produto/adicionar', ['produto'=>$produto,'categorias' => $categorias]);
         }
     }
 
@@ -107,7 +114,8 @@ class ProdutoController extends Controller
     public function show(Produto $produto, $id)
     {
         $produto = Produto::find($id);
-        return view('produto/visualizar', ['produto' => $produto]);
+        $categorias = Categoria::where('status', '=', 'ativo')->get();
+        return view('produto/visualizar', ['produto' => $produto , 'categorias' => $categorias]);
     }
 
     /**
@@ -119,7 +127,8 @@ class ProdutoController extends Controller
     public function edit(Produto $produto,  $id)
     {
         $produto = Produto::find($id);
-        return view('produto/editar', ['produto' => $produto]);
+        $categorias = Categoria::where('status', '=', 'ativo')->get();
+        return view('produto/editar', ['produto' => $produto, 'categorias' => $categorias]);
     }
 
     /**

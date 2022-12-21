@@ -86,12 +86,24 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="">Categoria</span>
             </div>
-            <select name="categoria" class="custom-select">
-                <option selected>Selecione uma categoria</option>
-                @foreach ($categorias as $categoria)
-                    <option value="{{$categoria->id}}">{{$categoria->descricao}}</option>
-                @endforeach
-            </select>
+            @if (isset($produto->categoria_id))
+                <select name="categoria_id" class="custom-select">
+                    @foreach ($categorias as $categoria)
+                        @if ($categoria->id == $produto->categoria_id)
+                            <option selected>{{$categoria->descricao}}</option>
+                        @else
+                            <option value="{{$categoria->id}}">{{$categoria->descricao}}</option>
+                        @endif
+                    @endforeach
+                </select>
+            @else
+                <select name="categoria_id" class="custom-select">
+                    <option selected>Selecione uma categoria</option>
+                    @foreach ($categorias as $categoria)
+                        <option value="{{$categoria->id}}">{{$categoria->descricao}}</option>
+                    @endforeach
+                </select>
+            @endif
         </div>
     </div>
 </div>
