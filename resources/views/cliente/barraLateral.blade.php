@@ -3,8 +3,7 @@
                     @if (Auth::check())
                         <div class="well well-small">
                             <a id="myCart" href="{{route('carrinho')}}">
-                                <img src="themes/images/ico-cart.png" alt="cart">3 Items in your cart
-                                <span class="badge badge-warning pull-right">$155.00</span>
+                                <img src="themes/images/ico-cart.png" alt="cart">Carrinho
                             </a>
                         </div>
                     @else
