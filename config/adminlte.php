@@ -338,6 +338,7 @@ return [
                         ]
             // 'icon' => 'fas fa-fw fa-user',
         ],
+        ['header'=>''],
         [
             'text' => 'Categoria',
             'url'  => '#',
@@ -355,7 +356,22 @@ return [
                                 'url'  => 'categoria/adicionar',
                             ],
                         ]
-        ]
+                        ],
+        ['header'=>''],
+        [
+            'text' => 'Pedidos',
+            'url'  => '#',
+            'submenu' => [
+                            [
+                                'text' => 'Abertos',
+                                'url'  => 'pedido/abertos',
+                            ],
+                            [
+                                'text' => 'Finalizados',
+                                'url'  => 'pedido/finalizados',
+                            ]
+                        ]
+                        ]
         // [
         //     'text' => 'change_password',
         //     'url'  => 'admin/settings',
