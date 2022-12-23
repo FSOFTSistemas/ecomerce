@@ -17,7 +17,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $pedido = Pedido::create();
         $endereco = Endereco::create();
         $dados = [
             'tipo'=>"admin",
@@ -26,7 +25,6 @@ class UserSeeder extends Seeder
             'cpf'=>"",
             'rg'=>"",
             'endereco_id'=> $endereco->id,
-            'pedido_id'=>$pedido->id,
             'email'=>"admin@mail.com",
             'senha'=>bcrypt("123456789"),
         ];

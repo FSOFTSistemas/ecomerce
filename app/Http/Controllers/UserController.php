@@ -54,8 +54,7 @@ class UserController extends Controller
             // $arrayPedido['subtotal'] = 0;
             // $arrayPedido['desconto'] = 0;
             // $pedido = Pedido::create($arrayPedido);
-            $pedido = Pedido::create();
-
+           
             /*$dados = [
                 'name'=>"Admin",
                 'email'=>"admin@mail.com",
@@ -78,10 +77,9 @@ class UserController extends Controller
             'email',
             'senha'
             */
-            User::create([
+            $user = User::create([
                 'tipo' => 'cliente',
                 'endereco_id' => $endereco->id,
-                'pedido_id'=> $pedido->id,
                 'telefone'=> $dados['telefone'],
                 'nome' => $dados['nome'], 
                 'cpf'=> $dados['cpf'],
@@ -89,6 +87,11 @@ class UserController extends Controller
                 'email'=> $dados['email'],
                 'senha'=> bcrypt($dados['senha'])
             ]);
+            // dd($user);
+            $pedido = new Pedido();
+            $pedido->status = "pendente";
+            $pedido->user_id = $user->id;
+            $pedido->save();
             // $arrayUser = array();
             // $arrayUser['endereco_id'] = $endereco->id;
             // $arrayUser['pedido_id'] = $pedido->id;

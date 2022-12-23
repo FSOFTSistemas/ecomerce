@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->date('data')->nullable();
             $table->enum('stastus',['pendente','finalizado'])->nullable();
+            $table->foreignId('user_id')->constrained('users')->nullable();
             $table->decimal('total')->nullable();
             $table->decimal('subtotal')->nullable();
             $table->decimal('desconto')->nullable();
