@@ -6,6 +6,7 @@ use App\Models\ItemPedido;
 use App\Models\Pedido;
 use App\Models\Produto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Ui\Presets\React;
 
@@ -18,7 +19,31 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        return view('cliente/product_summary');
+        $usuario = Auth::user();
+        $pedido = Pedido::where('user_id','=',$usuario->id)->where('stastus','=','pendente')->first();
+        $itemPedidos = ItemPedido::where('pedido_id','=',$pedido->id)->get();
+        $itens = array();
+        $totalPreco = 0;
+        $totalDesconto = 0;
+        for ($i = 0; $i < count($itemPedidos); $i++) {
+            $produto = Produto::where('id','=',$itemPedidos[$i]['produto_id'])->first();
+            $itens[$i]['produto_id'] = $produto['id'];
+            $itens[$i]['produto_id'] = $produto['id'];
+            $itens[$i]['nome'] = $produto['nome'];
+            $itens[$i]['descricao'] = $produto['descricao'];
+            $itens[$i]['foto'] = $produto['foto'];
+            if($produto['promocao_ativa'] == 'sim'){
+                $itens[$i]['preco'] = $produto['preco_promocao'];
+            }else{
+                $itens[$i]['preco'] = $produto['preco_venda'];
+            }
+            $itens[$i]['total'] = $itemPedidos[$i]['total'];
+            $itens[$i]['desconto'] = $itemPedidos[$i]['desconto'];
+            $itens[$i]['quantidade'] = $itemPedidos[$i]['quatidade'];
+            $totalPreco = $totalPreco + $itemPedidos[$i]['total'];
+            $totalDesconto = $totalDesconto + $itemPedidos[$i]['desconto'];
+        }
+        return view('cliente/product_summary',['itens' => $itens,'pedido' => $pedido,'totalPreco' => $totalPreco, 'totalDesconto' => $totalDesconto]);
     }
 
     /**
@@ -96,7 +121,7 @@ class PedidoController extends Controller
     public function adicionar($id)
     {
         $usuario = Auth::user();
-        $pedido = Pedido::find($usuario->pedido_id);
+        $pedido = Pedido::where('user_id','=',$usuario->id)->where('stastus','=','pendente')->first();
         $produto = Produto::find($id);
         $itemPedidoId = 0;
         $produtoExiste = 0; // 0 - produto não existe ainda | 1 - produto já existe no pedido, apenas adicionar a quantidade
@@ -123,15 +148,82 @@ class PedidoController extends Controller
             $itemPedido->total = $itemPedido->subtotal;
         
             $itemPedido->save();
-            return redirect()->route('home');
         }else{
             $itemPedido = ItemPedido::find($itemPedidoId);
             $itemPedido->quatidade = $itemPedido->quatidade + 1;
-            $itemPedido->subtotal = $itemPedido->subtotal * $itemPedido->quatidade;
-            $itemPedido->desconto = $itemPedido->desconto * $itemPedido->quatidade;
+            if($produto->promocao_ativa == 'sim'){
+                $itemPedido->subtotal = $produto->preco_promocao * $itemPedido->quatidade;
+                $itemPedido->desconto = ($produto->preco_venda - $produto->preco_promocao) * $itemPedido->quatidade;
+            }else{
+                $itemPedido->subtotal = $produto->preco_venda * $itemPedido->quatidade;
+                $itemPedido->desconto = 0;
+            }
             $itemPedido->total = $itemPedido->subtotal;
             $itemPedido->update();
-            return redirect()->route('home');
         }
+        return redirect()->route('carrinho');
     }
+    public function remover($id)
+    {
+        $usuario = Auth::user();
+        $pedido = Pedido::where('user_id','=',$usuario->id)->where('stastus','=','pendente')->first();
+        $produto = Produto::find($id);
+        $itemPedidoId = 0;
+        $itensPedidos = ItemPedido::where('pedido_id','=',$pedido->id)->get();
+        foreach($itensPedidos as $item){
+            if($item->produto_id == $produto->id){
+                $itemPedidoId = $item->id;
+            }
+        }
+
+        
+        $itemPedido = ItemPedido::find($itemPedidoId);
+        ItemPedido::find($itemPedido->id)->delete();
+
+        return redirect()->route('carrinho');
+    }
+
+    public function diminuir($id)
+    {
+        $usuario = Auth::user();
+        $pedido = Pedido::where('user_id','=',$usuario->id)->where('stastus','=','pendente')->first();
+        $produto = Produto::find($id);
+        $itemPedidoId = 0;
+        $itensPedidos = ItemPedido::where('pedido_id','=',$pedido->id)->get();
+        foreach($itensPedidos as $item){
+            if($item->produto_id == $produto->id){
+                $itemPedidoId = $item->id;
+            }
+        }
+        
+        $itemPedido = ItemPedido::find($itemPedidoId);
+        $itemPedido->quatidade = $itemPedido->quatidade - 1;
+        if($produto->promocao_ativa == 'sim'){
+            $itemPedido->subtotal = $produto->preco_promocao * $itemPedido->quatidade;
+            $itemPedido->desconto = ($produto->preco_venda - $produto->preco_promocao) * $itemPedido->quatidade;
+        }else{
+            $itemPedido->subtotal = $produto->preco_venda * $itemPedido->quatidade;
+            $itemPedido->desconto = 0;
+        }
+        $itemPedido->total = $itemPedido->subtotal;
+        $itemPedido->update();
+        if( $itemPedido->quatidade == 0){
+            $this->remover($id);
+        }
+        return redirect()->route('carrinho');
+    }
+    public function finalizar($id)
+    {
+        $pedido = Pedido::find($id);
+        $pedido->stastus = "finalizado";
+        $pedido->update();
+
+        $newPedido = new Pedido();
+        $newPedido->stastus = "pendente";
+        $newPedido->user_id = Auth::user()->id;
+        $newPedido->save();
+
+        return redirect()->route('home');
+    }
+
 }

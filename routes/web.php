@@ -67,6 +67,9 @@ Route::middleware('admin')->group(function () {
 Route::middleware('cliente')->group(function () {
     Route::get('/carrinho', [PedidoController::class, 'index'])->name('carrinho');
     Route::get('/carrinho/adicionar/{id}', [PedidoController::class, 'adicionar'])->name('carrinho.adicionar');
+    Route::get('/carrinho/diminuir/{id}', [PedidoController::class, 'diminuir'])->name('carrinho.diminuir');
+    Route::get('/carrinho/remover/{id}', [PedidoController::class, 'remover'])->name('carrinho.remover');
+    Route::get('/carrinho/finalizar/{id}', [PedidoController::class, 'finalizar'])->name('carrinho.finalizar');
 });
 // Route::get('/teste',[LoginController::class, 'testeC'])->name('testec')->middleware('cliente');
 // Route::get('/testeA',[LoginController::class, 'testeA'])->name('testea')->middleware('admin');
