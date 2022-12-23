@@ -59,8 +59,8 @@ Route::middleware('admin')->group(function () {
     Route::post('/categoria/salvar', [CategoriaController::class, 'store'])->name('categoria.store');
     Route::get('/categoria/reativar/{id}', [CategoriaController::class, 'reativar'])->name('categoria.reativa');
 
-
-
+    Route::get('/pedido/abertos', [PedidoController::class, 'pedidosAbertos'])->name('pedido.abertos');
+    Route::get('/pedido/finalizados', [PedidoController::class, 'pedidosFinalizados'])->name('pedido.finalizados');
 
 });
 

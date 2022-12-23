@@ -226,4 +226,15 @@ class PedidoController extends Controller
         return redirect()->route('home');
     }
 
+    public function pedidosAbertos()
+    {
+        $pedidos = Pedido::where('stastus','=','finalizado')->get();
+        return view('pedido/index',['pedidos'=>$pedidos]);
+    }
+
+    public function pedidosFinalizados()
+    {
+        dd("pedidosFinalizados");
+    }
+
 }
