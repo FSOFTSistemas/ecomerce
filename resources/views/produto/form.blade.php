@@ -90,7 +90,7 @@
                 <select name="categoria_id" class="custom-select">
                     @foreach ($categorias as $categoria)
                         @if ($categoria->id == $produto->categoria_id)
-                            <option name="categoria_id" selected>{{$categoria->descricao}}</option>
+                            <option name="categoria_id" value="{{$categoria->id}}" selected>{{$categoria->descricao}}</option>
                         @else
                             <option name="categoria_id" value="{{$categoria->id}}">{{$categoria->descricao}}</option>
                         @endif
