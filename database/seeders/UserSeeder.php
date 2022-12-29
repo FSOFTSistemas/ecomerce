@@ -34,5 +34,27 @@ class UserSeeder extends Seeder
         }else{
             User::create($dados);
         }
+
+        $endereco = Endereco::create();
+        $dados = [
+            'tipo'=>"cliente",
+            'telefone'=>"",
+            'nome'=>"breno",
+            'cpf'=>"",
+            'rg'=>"",
+            'endereco_id'=> $endereco->id,
+            'email'=>"breno@mail.com",
+            'senha'=>bcrypt("123456789"),
+        ];
+        if(User::where('email','=',$dados['email'])->count()){
+            $usuario = User::where('email','=',$dados['email'])->first();
+            $usuario->updade($dados);
+        }else{
+            $user = User::create($dados);
+            $pedido = new Pedido();
+            $pedido->status = "pendente";
+            $pedido->user_id = $user->id;
+            $pedido->save();
+        }
     }
 }
