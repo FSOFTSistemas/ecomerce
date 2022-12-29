@@ -20,7 +20,7 @@ class PedidoController extends Controller
     public function index()
     {
         $usuario = Auth::user();
-        $pedido = Pedido::where('user_id','=',$usuario->id)->where('stastus','=','pendente')->first();
+        $pedido = Pedido::where('user_id','=',$usuario->id)->where('status','=','pendente')->first();
         $itemPedidos = ItemPedido::where('pedido_id','=',$pedido->id)->get();
         $itens = array();
         $totalPreco = 0;
@@ -121,7 +121,7 @@ class PedidoController extends Controller
     public function adicionar($id)
     {
         $usuario = Auth::user();
-        $pedido = Pedido::where('user_id','=',$usuario->id)->where('stastus','=','pendente')->first();
+        $pedido = Pedido::where('user_id','=',$usuario->id)->where('status','=','pendente')->first();
         $produto = Produto::find($id);
         $itemPedidoId = 0;
         $produtoExiste = 0; // 0 - produto não existe ainda | 1 - produto já existe no pedido, apenas adicionar a quantidade
@@ -166,7 +166,7 @@ class PedidoController extends Controller
     public function remover($id)
     {
         $usuario = Auth::user();
-        $pedido = Pedido::where('user_id','=',$usuario->id)->where('stastus','=','pendente')->first();
+        $pedido = Pedido::where('user_id','=',$usuario->id)->where('status','=','pendente')->first();
         $produto = Produto::find($id);
         $itemPedidoId = 0;
         $itensPedidos = ItemPedido::where('pedido_id','=',$pedido->id)->get();
@@ -186,7 +186,7 @@ class PedidoController extends Controller
     public function diminuir($id)
     {
         $usuario = Auth::user();
-        $pedido = Pedido::where('user_id','=',$usuario->id)->where('stastus','=','pendente')->first();
+        $pedido = Pedido::where('user_id','=',$usuario->id)->where('status','=','pendente')->first();
         $produto = Produto::find($id);
         $itemPedidoId = 0;
         $itensPedidos = ItemPedido::where('pedido_id','=',$pedido->id)->get();
@@ -212,7 +212,7 @@ class PedidoController extends Controller
         }
         return redirect()->route('carrinho');
     }
-    public function finalizar($id)
+    public function concluir($id)
     {
         $pedido = Pedido::find($id);
         $itensPedidos = ItemPedido::where('pedido_id','=',$pedido->id)->get();
@@ -225,11 +225,11 @@ class PedidoController extends Controller
         $pedido->subtotal = $subtotal;
         $pedido->desconto = $desconto;
         $pedido->total = $subtotal-$desconto;
-        $pedido->stastus = "finalizado";
+        $pedido->status = "aberto";
         $pedido->update();
 
         $newPedido = new Pedido();
-        $newPedido->stastus = "pendente";
+        $newPedido->status = "pendente";
         $newPedido->user_id = Auth::user()->id;
         $newPedido->save();
 
@@ -238,13 +238,14 @@ class PedidoController extends Controller
 
     public function pedidosAbertos()
     {
-        $pedidos = Pedido::where('stastus','=','finalizado')->get();
+        $pedidos = Pedido::where('status','=','aberto')->get();
         return view('pedido/index',['pedidos'=>$pedidos]);
     }
 
     public function pedidosFinalizados()
     {
-        dd("pedidosFinalizados");
+        $pedidos = Pedido::where('status','=','finalizado')->get();
+        return view('pedido/index',['pedidos'=>$pedidos]);
     }
 
 }
