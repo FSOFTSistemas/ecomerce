@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
             $table->date('data')->nullable();
-            $table->enum('stastus',['pendente','finalizado'])->nullable();
+            $table->enum('status',['pendente','aberto','finalizado'])->nullable();
             $table->foreignId('user_id')->constrained('users')->nullable();
             $table->decimal('total')->nullable();
             $table->decimal('subtotal')->nullable();
