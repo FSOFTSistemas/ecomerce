@@ -248,4 +248,23 @@ class PedidoController extends Controller
         return view('pedido/index',['pedidos'=>$pedidos]);
     }
 
+    public function visualizarItens($id)
+    {
+        $pedido = Pedido::find($id);
+        $itensPedidos = ItemPedido::where('pedido_id','=',$pedido->id)->get();
+        $produtos = array();
+        for ($i=0; $i < count($itensPedidos); $i++) { 
+            $produtos[] = Produto::find($itensPedidos[$i]->produto_id);
+        }
+        // dd($produtos[0]->nome);
+        return view('pedido/listarProdutoDoPedido',['produtos'=>$produtos]);
+    }
+
+    public function finalizar($id)
+    {
+        $pedido = Pedido::find($id);
+        $pedido->status = "finalizado";
+        $pedido->update();
+        return redirect()->route("pedido.abertos");
+    }
 }

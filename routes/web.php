@@ -61,6 +61,8 @@ Route::middleware('admin')->group(function () {
 
     Route::get('/pedido/abertos', [PedidoController::class, 'pedidosAbertos'])->name('pedido.abertos');
     Route::get('/pedido/finalizados', [PedidoController::class, 'pedidosFinalizados'])->name('pedido.finalizados');
+    Route::get('/pedido/visualizar/{id}', [PedidoController::class, 'visualizarItens'])->name('pedido.visualizar');
+    Route::get('/pedido/finalizar/{id}', [PedidoController::class, 'finalizar'])->name('pedido.finalizar');
 
 });
 

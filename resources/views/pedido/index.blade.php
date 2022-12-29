@@ -3,7 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Listar Produtos</h1>
+    <h1 class="m-0 text-dark">Listar Pedidos</h1>
 @stop
 
 @section('content')
@@ -15,29 +15,28 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Nome</th>
-                                    <th>Descrição</th>
-                                    <th>Preço</th>
-                                    <th>Ação</th>
+                                    <th>User_id</th>
+                                    <th>Subtotal</th>
+                                    <th>Desconto</th>
+                                    <th>Total</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($produtos as $produto)
-                                @if($produto->item_ativo == $status)
+                                @foreach ($pedidos as $pedido)
                                     <tr>
-                                        <td>{{ $produto->nome }}</td>
-                                        <td>{{ $produto->descricao }}</td>
-                                        <td>{{ $produto->preco_venda }}</td>
+                                        <td>{{ $pedido->user_id }}</td>
+                                        <td>{{ $pedido->subtotal }}</td>
+                                        <td>{{ $pedido->desconto }}</td>
+                                        <td>{{ $pedido->total }}</td>
                                         <td>
                                             <a class="btn btn-success"
-                                                href="{{ route('produto.show', $produto->id) }}">Visualizar</a>
-                                            <a class="btn btn-warning"
-                                                href="{{ route('produto.edit', $produto->id) }}">Editar</a>
-                                            <a class="btn btn-danger"
-                                                href="{{ route('produto.destroy', $produto->id) }}">Deletar</a>
+                                                href="{{ route('pedido.visualizar', $pedido->id) }}">Visualizar itens</a>
+                                                @if ($pedido->status == "aberto")
+                                                <a class="btn btn-warning"
+                                                href="{{ route('pedido.finalizar', $pedido->id) }}">Finalizar</a>
+                                                @endif
                                         </td>
                                     </tr>
-                                    @endif
                                 @endforeach
                             </tbody>
                         </table>
