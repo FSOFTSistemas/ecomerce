@@ -215,6 +215,16 @@ class PedidoController extends Controller
     public function finalizar($id)
     {
         $pedido = Pedido::find($id);
+        $itensPedidos = ItemPedido::where('pedido_id','=',$pedido->id)->get();
+        $subtotal = 0;
+        $desconto = 0;
+        foreach ($itensPedidos as $item) {
+            $subtotal = $subtotal + $item['subtotal'];
+            $desconto = $desconto + $item['desconto'];
+        }
+        $pedido->subtotal = $subtotal;
+        $pedido->desconto = $desconto;
+        $pedido->total = $subtotal-$desconto;
         $pedido->stastus = "finalizado";
         $pedido->update();
 
