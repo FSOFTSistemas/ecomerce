@@ -98,6 +98,6 @@
 	</div>
 	</div>
 </div>
-<span id="themesBtn"></span>
+{{-- <span id="themesBtn"></span> --}}
 </body>
 </html>
