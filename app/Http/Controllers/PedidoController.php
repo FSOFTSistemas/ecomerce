@@ -252,12 +252,21 @@ class PedidoController extends Controller
     {
         $pedido = Pedido::find($id);
         $itensPedidos = ItemPedido::where('pedido_id','=',$pedido->id)->get();
+        $aux = array();
         $produtos = array();
         for ($i=0; $i < count($itensPedidos); $i++) { 
-            $produtos[] = Produto::find($itensPedidos[$i]->produto_id);
+            $aux["fotoProduto"] = Produto::find($itensPedidos[$i]->produto_id)->foto;
+            $aux["nomeProduto"] = Produto::find($itensPedidos[$i]->produto_id)->nome;
+            $aux["idProduto"] = Produto::find($itensPedidos[$i]->produto_id)->id;
+            $aux["descricaoProduto"] = Produto::find($itensPedidos[$i]->produto_id)->descricao;
+            $aux["precoProduto"] = Produto::find($itensPedidos[$i]->produto_id)->preco_venda;
+            $aux["quantidadeProduto"] = $itensPedidos[$i]->quatidade;
+            $aux["precoTotalProduto"] = $itensPedidos[$i]->total;
+            
+            $produtos[] = $aux;
         }
-        // dd($produtos[0]->nome);
-        return view('pedido/listarProdutoDoPedido',['produtos'=>$produtos]);
+
+        return view('pedido/listarProdutoDoPedido',['produtos'=>$produtos,'pedido'=>$pedido]);
     }
 
     public function finalizar($id)

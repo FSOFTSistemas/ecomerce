@@ -11,54 +11,37 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
+                    <div class="card-group cartoes">
+                    
                     @foreach ($produtos as $produto)
-                    <div class="card-group">
-                        <div class="card">
-                          <img class="card-img-top" src=".../100px180/" alt="Card image cap">
+                    
+                        <div class="card cartao">
+                          <img class="card-img-top" src="{{ asset($produto['fotoProduto']) }}"  alt="Card image cap">
                           <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <h5 class="card-title">{{ $produto['nomeProduto'] }}</h5>
+                            <p class="card-text">{{ $produto['descricaoProduto'] }}</p>
+                            <p class="card-text">Quantidade: {{ $produto['quantidadeProduto'] }} | Valor: {{ $produto['precoTotalProduto']}}</p>
+                            <p class="card-text"><small class="text-muted"><a class="btn btn-success"
+                                href="{{ route('produto.show', $produto['idProduto']) }}">Visualizar</a></small></p>
                           </div>
                         </div>
-                        <div class="card">
-                          <img class="card-img-top" src=".../100px180/" alt="Card image cap">
-                          <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                          </div>
-                        </div>
-                        <div class="card">
-                          <img class="card-img-top" src="{{ $produto['foto'] }}" alt="Card image cap">
-                          <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                          </div>
-                        </div>
-                      </div>
-                        <li class="span3">
-                            <div class="thumbnail">
-                                <img src="{{ $produto['foto'] }}" alt="" />
-                                <div class="caption">
-                                    <h5>{{ $produto['nome'] }}</h5>
-                                    <p>
-                                        {{ $produto['descricao'] }}
-                                    </p>
-                                    <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i
-                                                class="icon-zoom-in"></i></a> <a class="btn"
-                                            href="{{ route('carrinho.adicionar', $produto->id) }}">Adicionar
-                                            <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary"
-                                            href="#"> R$ {{ $produto['preco_venda'] }}</a></h4>
-                                </div>
-                            </div>
-                        </li>
+                    
                     @endforeach
+                    </div>
+                    @if ($pedido->status == "aberto")
+                <div class="row fim-linha">
+                   
+                    <a class="btn btn-warning" href="{{ route('pedido.finalizar', $pedido->id) }}">Finalizar pedido</a>
+                        
                 </div>
+                @endif
+                </div>
+                
             </div>
+            
         </div>
     </div>
+   
 @endsection
 
 {{-- @extends('../cliente.site')
