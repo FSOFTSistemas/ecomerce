@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\Produto;
 use Illuminate\Http\Request;
+use App\Http\Controllers\CategoriaController;
 
 class ProdutoController extends Controller
 {
@@ -30,8 +31,9 @@ class ProdutoController extends Controller
     {
         $registros = Produto::where('item_ativo', '=', 'sim')->get();
         $registosDestaque = Produto::where('item_destaque', '=', 'sim')->where('item_ativo', '=', 'sim')->get();
+        $categorias = Categoria::all();
         // dd($registosDestaque);
-        return view('cliente/index', ['produtos' => $registros, 'produtosDestaques' => $registosDestaque]);
+        return view('cliente/index', ['produtos' => $registros, 'produtosDestaques' => $registosDestaque, 'categorias' => $categorias]);
         // return view('cliente/welcome',['produtos' => $registros]);
     }
 
@@ -200,5 +202,13 @@ class ProdutoController extends Controller
         $produto->update();
 
         return redirect()->route('produto.index');
+    }
+
+    public function categoriaHome($id)
+    {
+        $registros = Produto::where('item_ativo', '=', 'sim')->where('categoria_id', '=', $id)->get();
+        $registosDestaque = Produto::where('item_destaque', '=', 'sim')->where('item_ativo', '=', 'sim')->get();
+        $categorias = Categoria::all();
+        return view('cliente/index', ['produtos' => $registros, 'produtosDestaques' => $registosDestaque, 'categorias' => $categorias]);
     }
 }
