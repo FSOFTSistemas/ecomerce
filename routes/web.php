@@ -73,7 +73,7 @@ Route::middleware('cliente')->group(function () {
     Route::get('/carrinho/diminuir/{id}', [PedidoController::class, 'diminuir'])->name('carrinho.diminuir');
     Route::get('/carrinho/remover/{id}', [PedidoController::class, 'remover'])->name('carrinho.remover');
     Route::get('/carrinho/concluir/{id}', [PedidoController::class, 'concluir'])->name('carrinho.concluir');
-    Route::get('/pedido/visualizar/{id}', [PedidoController::class, 'visualizarItensCliente'])->name('pedido.cliente.visualizar');
+    Route::get('/pedidos/visualizar/{id}', [PedidoController::class, 'visualizarItensCliente'])->name('pedido.cliente.visualizar');
     Route::get('/pedido/historico', [PedidoController::class, 'historico'])->name('pedido.historico');  
 });
 // Route::get('/teste',[LoginController::class, 'testeC'])->name('testec')->middleware('cliente');
