@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/', [ProdutoController::class, 'welcome'])->name('home');
+Route::get('/categoria/{id}', [ProdutoController::class, 'categoriaHome'])->name('home.categoria');
 Route::post('/entrar', [LoginController::class, 'entrar'])->name('login.entrar');
 Route::get('/registrar', [UserController::class, 'create'])->name('registrar');
 Route::post('/registrar', [UserController::class, 'store'])->name('user.store');
@@ -72,6 +73,8 @@ Route::middleware('cliente')->group(function () {
     Route::get('/carrinho/diminuir/{id}', [PedidoController::class, 'diminuir'])->name('carrinho.diminuir');
     Route::get('/carrinho/remover/{id}', [PedidoController::class, 'remover'])->name('carrinho.remover');
     Route::get('/carrinho/concluir/{id}', [PedidoController::class, 'concluir'])->name('carrinho.concluir');
+    Route::get('/pedido/visualizar/{id}', [PedidoController::class, 'visualizarItensCliente'])->name('pedido.cliente.visualizar');
+    Route::get('/pedido/historico', [PedidoController::class, 'historico'])->name('pedido.historico');  
 });
 // Route::get('/teste',[LoginController::class, 'testeC'])->name('testec')->middleware('cliente');
 // Route::get('/testeA',[LoginController::class, 'testeA'])->name('testea')->middleware('admin');
