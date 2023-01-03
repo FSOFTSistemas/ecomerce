@@ -3,17 +3,24 @@
                     @if (Auth::check())
                         <div class="well well-small">
                             <a id="myCart" href="{{route('carrinho')}}">
-                                <img src="themes/images/ico-cart.png" alt="cart">Carrinho
+                                <img src="{{ asset('themes/images/ico-cart.png') }}" alt="cart">Carrinho
                             </a>
                         </div>
                     @else
                         <div class="well well-small">
                             <a id="myCart" href="" onclick="avisoParaLogar()">
-                                <img src="themes/images/ico-cart.png" alt="cart">Carrinho
+                                <img src="{{ asset('themes/images/ico-cart.png') }}" alt="cart">Carrinho
                             </a>
                         </div>
                     @endif
+                    @if( isset($categorias) )
                     <ul id="sideManu" class="nav nav-tabs nav-stacked">
+                        @foreach ($categorias as $categoria)
+                        <li><a href="{{ route('home.categoria',$categoria->id) }}">{{ strtoupper($categoria->descricao)}}</a></li>
+                        @endforeach
+                    </ul>
+                    @endif
+                    {{-- <ul id="sideManu" class="nav nav-tabs nav-stacked">
                         <li class="subMenu open"><a> ELECTRONICS [230]</a>
                             <ul>
                                 <li><a class="active" href="products.html"><i class="icon-chevron-right"></i>Cameras
@@ -62,7 +69,7 @@
                         <li><a href="products.html">HEALTH & BEAUTY [18]</a></li>
                         <li><a href="products.html">SPORTS & LEISURE [58]</a></li>
                         <li><a href="products.html">BOOKS & ENTERTAINMENTS [14]</a></li>
-                    </ul>
+                    </ul> --}}
                     <br />
                     @if (isset($produtos))
                         @foreach ($produtos as $produto)
