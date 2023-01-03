@@ -17,11 +17,15 @@
  <script src="themes/js/less.js" type="text/javascript"></script> -->
 
     <!-- Bootstrap style -->
-    <link id="callCss" rel="stylesheet" href="themes/bootshop/bootstrap.min.css" media="screen" />
-    <link href="themes/css/base.css" rel="stylesheet" media="screen" />
+    <link href="{{URL::asset('themes/bootshop/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{URL::asset('themes/css/base.css')}}" rel="stylesheet" type="text/css">
+    {{-- <link id="callCss" rel="stylesheet" href="themes/bootshop/bootstrap.min.css" media="screen" />
+    <link href="themes/css/base.css" rel="stylesheet" media="screen" /> --}}
     <!-- Bootstrap style responsive -->
-    <link href="themes/css/bootstrap-responsive.min.css" rel="stylesheet" />
-    <link href="themes/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="{{URL::asset('themes/css/bootstrap-responsive.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{URL::asset('themes/css/font-awesome.css')}}" rel="stylesheet" type="text/css">
+    {{-- <link href="themes/css/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="themes/css/font-awesome.css" rel="stylesheet" type="text/css"> --}}
     <!-- Google-code-prettify -->
     <link href="themes/js/google-code-prettify/prettify.css" rel="stylesheet" />
     <!-- fav and touch icons -->
