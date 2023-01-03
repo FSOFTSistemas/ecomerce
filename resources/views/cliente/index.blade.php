@@ -99,7 +99,7 @@
                             <li class="span3">
                                 <div class="thumbnail">
                                     <a href="product_details.html"><img
-                                            src="{{$produtosDestaques[$contador]['foto']}}" alt=""></a>
+                                            src="{{ asset($produtosDestaques[$contador]['foto']) }}" alt=""></a>
                                     <div class="caption">
                                         <h5>{{$produtosDestaques[$contador]['nome']}}</h5>
                                         <h4><a class="btn" href="product_details.html">Ver</a>
@@ -173,7 +173,7 @@
                             <li class="span3">
                                 <div class="thumbnail">
                                     <a href="product_details.html"><img
-                                            src="{{$produtosDestaques[$contador]['foto']}}" alt=""></a>
+                                            src="{{ asset($produtosDestaques[$contador]['foto']) }}" alt=""></a>
                                     <div class="caption">
                                         <h5>{{$produtosDestaques[$contador]['nome']}}</h5>
                                         <h4><a class="btn" href="product_details.html">VIEW</a>
@@ -186,7 +186,7 @@
                             <li class="span3">
                                 <div class="thumbnail">
                                     <a href="product_details.html"><img
-                                            src="{{$produtosDestaques[$contador+1]['foto']}}" alt=""></a>
+                                            src="{{ asset($produtosDestaques[$contador+1]['foto']) }}" alt=""></a>
                                     <div class="caption">
                                         <h5>{{$produtosDestaques[$contador+1]['nome']}}</h5>
                                         <h4><a class="btn" href="product_details.html">VIEW</a>
@@ -199,7 +199,7 @@
                             <li class="span3">
                                 <div class="thumbnail">
                                     <a href="product_details.html"><img
-                                            src="{{$produtosDestaques[$contador+2]['foto']}}" alt=""></a>
+                                            src="{{ asset($produtosDestaques[$contador+2]['foto']) }}" alt=""></a>
                                     <div class="caption">
                                         <h5>{{$produtosDestaques[$contador+2]['nome']}}</h5>
                                         <h4><a class="btn" href="product_details.html">VIEW</a>
@@ -212,7 +212,7 @@
                             <li class="span3">
                                 <div class="thumbnail">
                                     <a href="product_details.html"><img
-                                            src="{{$produtosDestaques[$contador+3]['foto']}}" alt=""></a>
+                                            src="{{ asset($produtosDestaques[$contador+3]['foto']) }}" alt=""></a>
                                     <div class="caption">
                                         <h5>{{$produtosDestaques[$contador+3]['nome']}}</h5>
                                         <h4><a class="btn" href="product_details.html">VIEW</a>
@@ -253,7 +253,7 @@
         @foreach ($produtos as $produto)
         <li class="span3">
             <div class="thumbnail">
-                <a href="product_details.html"><img src="{{$produto['foto']}}"
+                <a href="product_details.html"><img src="{{ asset($produto['foto']) }}"
                         alt="" /></a>
                 <div class="caption">
                     <h5>{{$produto['nome']}}</h5>

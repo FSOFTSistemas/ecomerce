@@ -28,9 +28,9 @@
 			 </div>
 			<div id="socialMedia" class="span3 pull-right">
 				<h5>SOCIAL MEDIA </h5>
-				<a href="#"><img width="60" height="60" src="themes/images/facebook.png" title="facebook" alt="facebook"/></a>
-				<a href="#"><img width="60" height="60" src="themes/images/twitter.png" title="twitter" alt="twitter"/></a>
-				<a href="#"><img width="60" height="60" src="themes/images/youtube.png" title="youtube" alt="youtube"/></a>
+				<a href="#"><img width="60" height="60" src= "{{ asset('themes/images/facebook.png') }}" title="facebook" alt="facebook"/></a>
+				<a href="#"><img width="60" height="60" src="{{ asset('themes/images/twitter.png') }}" title="twitter" alt="twitter"/></a>
+				<a href="#"><img width="60" height="60" src="{{ asset('themes/images/youtube.png') }}" title="youtube" alt="youtube"/></a>
 			 </div> 
 		 </div>
 		<p class="pull-right">&copy; Bootshop</p>
@@ -48,7 +48,7 @@
 <div id="secectionBox">
 <link rel="stylesheet" href="themes/switch/themeswitch.css" type="text/css" media="screen" />
 <script src="themes/switch/theamswitcher.js" type="text/javascript" charset="utf-8"></script>
-	<div id="themeContainer">
+	{{-- <div id="themeContainer">
 	<div id="hideme" class="themeTitle">Style Selector</div>
 	<div class="themeName">Oregional Skin</div>
 	<div class="images style">
@@ -97,7 +97,7 @@
 		 
 	</div>
 	</div>
-</div>
+</div> --}}
 {{-- <span id="themesBtn"></span> --}}
 </body>
 </html>
