@@ -276,4 +276,39 @@ class PedidoController extends Controller
         $pedido->update();
         return redirect()->route("pedido.abertos");
     }
+
+    public function historico()
+    {
+        $usuario = Auth::user();
+        $pedidos = Pedido::where('user_id','=',$usuario->id)->where('status','!=','pendente')->get();
+        
+        return view('cliente/pedido_historico',['pedidos' => $pedidos]);
+    }
+
+    public function visualizarItensCliente($id)
+    {
+        $pedido = Pedido::find($id);
+        $itensPedidos = ItemPedido::where('pedido_id','=',$pedido->id)->get();
+        $aux = array();
+        $produtos = array();
+        $totalPreco = 0;
+        $totalDesconto = 0;
+        for ($i=0; $i < count($itensPedidos); $i++) { 
+            $aux["fotoProduto"] = Produto::find($itensPedidos[$i]->produto_id)->foto;
+            $aux["nomeProduto"] = Produto::find($itensPedidos[$i]->produto_id)->nome;
+            $aux["idProduto"] = Produto::find($itensPedidos[$i]->produto_id)->id;
+            $aux["descricaoProduto"] = Produto::find($itensPedidos[$i]->produto_id)->descricao;
+            $aux["precoProduto"] = Produto::find($itensPedidos[$i]->produto_id)->preco_venda;
+            $aux["quantidadeProduto"] = $itensPedidos[$i]->quatidade;
+            $aux["precoTotalProduto"] = $itensPedidos[$i]->total;
+            $aux["descontoProduto"] = $itensPedidos[$i]->desconto;
+
+            $totalPreco = $totalPreco + $itensPedidos[$i]->total;
+            $totalDesconto = $totalDesconto + $itensPedidos[$i]->desconto;
+            
+            $produtos[] = $aux;
+        }
+        return view('cliente/visualizarPedido',['produtosPedidos'=>$produtos,'pedido'=>$pedido,'totalPreco' => $totalPreco, 'totalDesconto' => $totalDesconto]);
+    }
+
 }
