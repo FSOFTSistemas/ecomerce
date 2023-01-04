@@ -98,7 +98,7 @@
                             @if (isset($produtosDestaques[$contador]))
                             <li class="span3">
                                 <div class="thumbnail">
-                                    <a href="product_details.html"><img
+                                    <a href="{{route('carrinho.adicionar',$produtosDestaques[$contador]['id'])}}"><img
                                             src="{{ asset($produtosDestaques[$contador]['foto']) }}" alt=""></a>
                                     <div class="caption">
                                         <h5>{{$produtosDestaques[$contador]['nome']}}</h5>
@@ -172,7 +172,7 @@
                             @if (isset($produtosDestaques[$contador]))
                             <li class="span3">
                                 <div class="thumbnail">
-                                    <a href="product_details.html"><img
+                                    <a href="{{route('carrinho.adicionar',$produtosDestaques[$contador]['id'])}}"><img
                                             src="{{ asset($produtosDestaques[$contador]['foto']) }}" alt=""></a>
                                     <div class="caption">
                                         <h5>{{$produtosDestaques[$contador]['nome']}}</h5>
@@ -185,7 +185,7 @@
                             @if (isset($produtosDestaques[$contador+1]))
                             <li class="span3">
                                 <div class="thumbnail">
-                                    <a href="product_details.html"><img
+                                    <a href="{{route('carrinho.adicionar',$produtosDestaques[$contador+1]['id'])}}"><img
                                             src="{{ asset($produtosDestaques[$contador+1]['foto']) }}" alt=""></a>
                                     <div class="caption">
                                         <h5>{{$produtosDestaques[$contador+1]['nome']}}</h5>
@@ -198,7 +198,7 @@
                             @if (isset($produtosDestaques[$contador+2]))
                             <li class="span3">
                                 <div class="thumbnail">
-                                    <a href="product_details.html"><img
+                                    <a href="{{route('carrinho.adicionar',$produtosDestaques[$contador+2]['id'])}}"><img
                                             src="{{ asset($produtosDestaques[$contador+2]['foto']) }}" alt=""></a>
                                     <div class="caption">
                                         <h5>{{$produtosDestaques[$contador+2]['nome']}}</h5>
@@ -211,7 +211,7 @@
                             @if (isset($produtosDestaques[$contador+3]))
                             <li class="span3">
                                 <div class="thumbnail">
-                                    <a href="product_details.html"><img
+                                    <a href="{{route('carrinho.adicionar',$produtosDestaques[$contador+3]['id'])}}"><img
                                             src="{{ asset($produtosDestaques[$contador+3]['foto']) }}" alt=""></a>
                                     <div class="caption">
                                         <h5>{{$produtosDestaques[$contador+3]['nome']}}</h5>
@@ -253,14 +253,14 @@
         @foreach ($produtos as $produto)
         <li class="span3">
             <div class="thumbnail">
-                <a href="product_details.html"><img src="{{ asset($produto['foto']) }}"
+                <a href="#"><img src="{{ asset($produto['foto']) }}"
                         alt="" /></a>
                 <div class="caption">
                     <h5>{{$produto['nome']}}</h5>
                     <p>
                         {{$produto['descricao']}}
                     </p>
-                    <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i
+                    <h4 style="text-align:center"><a class="btn" href="#"> <i
                                 class="icon-zoom-in"></i></a> <a class="btn" href="{{route('carrinho.adicionar',$produto->id)}}">Adicionar
                             <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary"
                             href="#"> R$ {{$produto['preco_venda']}}</a></h4>
