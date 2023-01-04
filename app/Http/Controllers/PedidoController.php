@@ -139,13 +139,13 @@ class PedidoController extends Controller
             $itemPedido->produto_id = $produto->id;
             $itemPedido->quatidade = 1;
             if($produto->promocao_ativa == 'sim'){
-                $itemPedido->subtotal = $produto->preco_promocao;
                 $itemPedido->desconto = ($produto->preco_venda - $produto->preco_promocao);
             }else{
-                $itemPedido->subtotal = $produto->preco_venda;
                 $itemPedido->desconto = 0;
             }
-            $itemPedido->total = $itemPedido->subtotal;
+            $itemPedido->subtotal = $produto->preco_venda;
+
+            $itemPedido->total = $itemPedido->subtotal - $itemPedido->desconto;
         
             $itemPedido->save();
         }else{
