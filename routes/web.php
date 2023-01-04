@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/', [ProdutoController::class, 'welcome'])->name('home');
-Route::get('/categoria/{id}', [ProdutoController::class, 'categoriaHome'])->name('home.categoria');
+Route::get('/categorias/{id}', [ProdutoController::class, 'categoriaHome'])->name('home.categoria');
 Route::post('/entrar', [LoginController::class, 'entrar'])->name('login.entrar');
 Route::get('/registrar', [UserController::class, 'create'])->name('registrar');
 Route::post('/registrar', [UserController::class, 'store'])->name('user.store');
