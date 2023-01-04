@@ -42,7 +42,7 @@
 
 <body>
     <div id="header">
-        <div class="container">
+        <div class="container" style="width: 100%">
             {{-- <div id="welcomeLine" class="row">
 	<div class="span6">Welcome!<strong> User</strong></div>
 	<div class="span6">
@@ -80,6 +80,11 @@
 		</select> 
 		  <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
     </form> --}}
+                    <ul class="nav pull-left">
+                        <li class=""><a href="{{ route('home') }}">Home</a></li>
+                        <li class=""><a href="#destaque">Destaques</a></li>
+                        <li class=""><a href="#produtos">Produtos</a></li>
+                    </ul>
                     <ul id="topMenu" class="nav pull-right">
                         {{-- <li class=""><a href="special_offer.html">Specials Offer</a></li>
 	 <li class=""><a href="normal.html">Delivery</a></li> --}}

@@ -199,7 +199,7 @@ a:hover {
 }
 
 .row {
-    margin-left: -20px;
+    /* margin-left: -20px; */
     *zoom: 1
 }
 
@@ -216,8 +216,8 @@ a:hover {
 
 [class*="span"] {
     float: left;
-    min-height: 1px;
-    margin-left: 20px
+    /* min-height: 1px;
+    margin-left: 20px */
 }
 
 .container,
@@ -240,7 +240,7 @@ a:hover {
 }
 
 .span9 {
-    width: 700px
+    width: 80%
 }
 
 .span8 {
@@ -264,7 +264,7 @@ a:hover {
 }
 
 .span3 {
-    width: 220px
+    width: 20%
 }
 
 .span2 {
