@@ -98,11 +98,11 @@
                             @if (isset($produtosDestaques[$contador]))
                             <li class="span3">
                                 <div class="thumbnail">
-                                    <a href="{{route('carrinho.adicionar',$produtosDestaques[$contador]['id'])}}"><img
+                                    <a href="#"><img
                                             src="{{ asset($produtosDestaques[$contador]['foto']) }}" alt=""></a>
                                     <div class="caption">
                                         <h5>{{$produtosDestaques[$contador]['nome']}}</h5>
-                                        <h4><a class="btn" href="product_details.html">Ver</a>
+                                        <h4><a class="btn" href="{{route('carrinho.adicionar',$produtosDestaques[$contador]['id'])}}">Adicionar</a>
                                             <span class="pull-right">{{$produtosDestaques[$contador]['preco_venda']}}</span></h4>
                                     </div>
                                 </div>
@@ -172,11 +172,11 @@
                             @if (isset($produtosDestaques[$contador]))
                             <li class="span3">
                                 <div class="thumbnail">
-                                    <a href="{{route('carrinho.adicionar',$produtosDestaques[$contador]['id'])}}"><img
+                                    <a href="#"><img
                                             src="{{ asset($produtosDestaques[$contador]['foto']) }}" alt=""></a>
                                     <div class="caption">
                                         <h5>{{$produtosDestaques[$contador]['nome']}}</h5>
-                                        <h4><a class="btn" href="product_details.html">VIEW</a>
+                                        <h4><a class="btn" href="{{route('carrinho.adicionar',$produtosDestaques[$contador]['id'])}}">VIEW</a>
                                             <span class="pull-right">{{$produtosDestaques[$contador]['preco_venda']}}</span></h4>
                                     </div>
                                 </div>
@@ -185,11 +185,11 @@
                             @if (isset($produtosDestaques[$contador+1]))
                             <li class="span3">
                                 <div class="thumbnail">
-                                    <a href="{{route('carrinho.adicionar',$produtosDestaques[$contador+1]['id'])}}"><img
+                                    <a href="#"><img
                                             src="{{ asset($produtosDestaques[$contador+1]['foto']) }}" alt=""></a>
                                     <div class="caption">
                                         <h5>{{$produtosDestaques[$contador+1]['nome']}}</h5>
-                                        <h4><a class="btn" href="product_details.html">VIEW</a>
+                                        <h4><a class="btn" href="{{route('carrinho.adicionar',$produtosDestaques[$contador+1]['id'])}}">Adicionar</a>
                                             <span class="pull-right">{{$produtosDestaques[$contador+1]['preco_venda']}}</span></h4>
                                     </div>
                                 </div>
@@ -198,11 +198,11 @@
                             @if (isset($produtosDestaques[$contador+2]))
                             <li class="span3">
                                 <div class="thumbnail">
-                                    <a href="{{route('carrinho.adicionar',$produtosDestaques[$contador+2]['id'])}}"><img
+                                    <a href="#"><img
                                             src="{{ asset($produtosDestaques[$contador+2]['foto']) }}" alt=""></a>
                                     <div class="caption">
                                         <h5>{{$produtosDestaques[$contador+2]['nome']}}</h5>
-                                        <h4><a class="btn" href="product_details.html">VIEW</a>
+                                        <h4><a class="btn" href="{{route('carrinho.adicionar',$produtosDestaques[$contador+2]['id'])}}">Adicionar</a>
                                             <span class="pull-right">{{$produtosDestaques[$contador+2]['preco_venda']}}</span></h4>
                                     </div>
                                 </div>
@@ -211,11 +211,11 @@
                             @if (isset($produtosDestaques[$contador+3]))
                             <li class="span3">
                                 <div class="thumbnail">
-                                    <a href="{{route('carrinho.adicionar',$produtosDestaques[$contador+3]['id'])}}"><img
+                                    <a href="#"><img
                                             src="{{ asset($produtosDestaques[$contador+3]['foto']) }}" alt=""></a>
                                     <div class="caption">
                                         <h5>{{$produtosDestaques[$contador+3]['nome']}}</h5>
-                                        <h4><a class="btn" href="product_details.html">VIEW</a>
+                                        <h4><a class="btn" href="{{route('carrinho.adicionar',$produtosDestaques[$contador+3]['id'])}}">Adicionar</a>
                                             <span class="pull-right">{{$produtosDestaques[$contador+3]['preco_venda']}}</span></h4>
                                     </div>
                                 </div>
