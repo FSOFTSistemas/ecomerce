@@ -7,10 +7,10 @@
 @endsection
 
 @section('conteudo')
-<div class="span9">
+<div class="span9" style="padding-inline: 1%">
     @if(isset($produtosDestaques[0]))
     <div class="well well-small">
-        <h4>Produtos em Destaque <small class="pull-right"></small></h4>
+        <h4>Produtos em Destaque <a name="destaque" ></a> <small class="pull-right"></small></h4>
         <div class="row-fluid">
             <div id="featured" class="carousel slide">
                 <div class="carousel-inner">
@@ -231,7 +231,7 @@
         </div>
     </div>
     @endif
-    <h4>Produtos </h4>
+    <h4>Produtos<a name="produtos" ></a></h4>
     <ul class="thumbnails">
         {{-- <li class="span3">
             <div class="thumbnail">

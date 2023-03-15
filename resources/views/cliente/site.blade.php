@@ -1,7 +1,7 @@
 @include('cliente.cabecalho')
-{{-- @yield('carrossel') --}}
+@yield('carrossel')
 <div id="mainBody">
-    <div class="container">
+    <div class="container" style="width: 90%; justify-items: center; ">
         <div class="row">
 
             @include('cliente.barraLateral')
