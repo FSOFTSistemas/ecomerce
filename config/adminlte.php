@@ -371,6 +371,21 @@ return [
                                 'url'  => 'pedido/finalizados',
                             ]
                         ]
+                            ],
+        ['header'=>''],
+        [
+            'text' => 'Usuarios',
+            'url'  => '#',
+            'submenu' => [
+                            [
+                                'text' => 'Clientes',
+                                'url'  => 'usuarios/cliente',
+                            ],
+                            [
+                                'text' => 'Admin',
+                                'url'  => 'usuarios/admin',
+                            ]
+                        ]
                         ]
         // [
         //     'text' => 'change_password',
