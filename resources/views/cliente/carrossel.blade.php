@@ -2,8 +2,8 @@
 	<div id="myCarousel" class="carousel slide">
 		<div class="carousel-inner">
 		  <div class="item active">
-		  <div class="container">
-			<a href="#"><img src="img/produtos/imagem_3441.jpg" width="480px" alt="special offers"/></a>
+		  <div class="">
+			<a href="#"><img src="img/produtos/imagem_4523.jpg" width="100%" height="500px" style="display: inline-block" alt="special offers"/></a>
 			<div class="carousel-caption">
 				  <h4>Second Thumbnail label</h4>
 				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
@@ -11,8 +11,8 @@
 		  </div>
 		  </div>
 		  <div class="item">
-			<div class="container">
-			  <a href="#"><img src="img/produtos/imagem_5883.jpg" width="480px" alt="special offers"/></a>
+			<div class="">
+			  <a href="#"><img src="img/produtos/imagem_4523.jpg" width="100%" height="500px" alt="special offers"/></a>
 			  <div class="carousel-caption">
 					<h4>Second Thumbnail label</h4>
 					<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>

@@ -122,10 +122,17 @@ class PedidoController extends Controller
     {
         $usuario = Auth::user();
         $pedido = Pedido::where('user_id','=',$usuario->id)->where('status','=','pendente')->first();
+        if(!$pedido){
+            
+            $pedido = Pedido::create('default value');
+            dd($pedido);
+        }else{
         $produto = Produto::find($id);
+        
         $itemPedidoId = 0;
         $produtoExiste = 0; // 0 - produto não existe ainda | 1 - produto já existe no pedido, apenas adicionar a quantidade
         $itensPedidos = ItemPedido::where('pedido_id','=',$pedido->id)->get();
+        
         foreach($itensPedidos as $item){
             if($item->produto_id == $produto->id){
                 $produtoExiste = 1;
@@ -162,6 +169,7 @@ class PedidoController extends Controller
             $itemPedido->update();
         }
         return redirect()->route('carrinho');
+    }
     }
     public function remover($id)
     {
