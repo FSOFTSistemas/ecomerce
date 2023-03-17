@@ -3,7 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-<h1 class="m-0 text-dark">Produto adicionar</h1>
+<h1 class="m-0 text-dark">Adicionar Categoria</h1>
 @stop
 
 @section('content')

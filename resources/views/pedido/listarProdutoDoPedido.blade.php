@@ -4,6 +4,8 @@
 
 @section('content_header')
     <h1 class="m-0 text-dark">Itens do Pedido</h1>
+    <br>
+    <a href="/pedido/abertos"><button class="btn btn-secondary">Voltar</button></a>
 @stop
 
 @section('content')
@@ -12,9 +14,9 @@
             <div class="card">
                 <div class="card-body">
                     <div class="card-group cartoes">
-                    
+
                     @foreach ($produtos as $produto)
-                    
+
                         <div class="card cartao">
                           <img class="card-img-top" src="{{ asset($produto['fotoProduto']) }}"  alt="Card image cap">
                           <div class="card-body">
@@ -25,23 +27,23 @@
                                 href="{{ route('produto.show', $produto['idProduto']) }}">Visualizar</a></small></p>
                           </div>
                         </div>
-                    
+
                     @endforeach
                     </div>
                     @if ($pedido->status == "aberto")
                 <div class="row fim-linha">
-                   
+
                     <a class="btn btn-warning" href="{{ route('pedido.finalizar', $pedido->id) }}">Finalizar pedido</a>
-                        
+
                 </div>
                 @endif
                 </div>
-                
+
             </div>
-            
+
         </div>
     </div>
-   
+
 @endsection
 
 {{-- @extends('../cliente.site')
