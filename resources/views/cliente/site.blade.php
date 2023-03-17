@@ -4,7 +4,7 @@
     <div class="container" style="width: 90%; justify-items: center; ">
         <div class="row">
 
-            @include('cliente.barraLateral')
+            
 
             @yield('conteudo')
 

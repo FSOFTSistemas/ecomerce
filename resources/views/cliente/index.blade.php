@@ -8,26 +8,31 @@
 
 @section('conteudo')
 
-    <div class="span9" style="padding-inline: 1%">
-
-        <div class="teste">
+    <div class="span9" style="padding-inline: 1%; width: 100%; text-align: center">
+        <div class="categorias row" style="padding: 20px;">
             <h4>Categorias</h4>
             @if (isset($categorias))
-                <ul id="sideManu" class="nav nav-tabs nav-stacked">
+                <ul style="list-style-type: none;margin: 0;padding: 0;verflow: hidden; display: inline-block; " id="sideManu"
+                    class="nav nav-tabs nav-stacked">
                     @foreach ($categorias as $categoria)
-                        <li><a
+                        <li style="float: left; padding: 5px;"><a
+                                style="display: block; text-align: center; padding: 10px; text-decoration: none;"
+
                                 href="{{ route('home.categoria', $categoria->id) }}">{{ strtoupper($categoria->descricao) }}</a>
                         </li>
                     @endforeach
                 </ul>
             @endif
         </div>
+
         @if (isset($produtosDestaques[0]))
             <div class="well well-small">
                 <h4>Produtos em Destaque <a name="destaque"></a> <small class="pull-right"></small></h4>
                 <div class="row-fluid">
                     <div id="featured" class="carousel slide">
-                        <div class="carousel-inner">
+
+                        <div class="carousel-inner" style="margin: 0">
+
                             {{-- @for ($contador = 0; $contador < count($produtosDestaques); $contador = $contador + 4)
                     <div class="item active">
                         <ul class="thumbnails">
@@ -115,12 +120,16 @@
                                                     <a href="#"><img
                                                             src="{{ asset($produtosDestaques[$contador]['foto']) }}"
                                                             alt=""></a>
-                                                    <div class="caption">
+
+                                                    <div class="caption" style="text-align: center">
                                                         <h5>{{ $produtosDestaques[$contador]['nome'] }}</h5>
-                                                        <h4><a class="btn"
-                                                                href="{{ route('carrinho.adicionar', $produtosDestaques[$contador]['id']) }}">Adicionar</a>
-                                                            <span
-                                                                class="pull-right">{{ $produtosDestaques[$contador]['preco_venda'] }}</span>
+                                                        <h4>
+                                                            <span style="margin-right: 20px"
+                                                                class="">R${{ $produtosDestaques[$contador]['preco_venda'] }}</span>
+                                                            <a class="btn"
+                                                                href="{{ route('carrinho.adicionar', $produtosDestaques[$contador]['id']) }}">Adicionar
+                                                            </a>
+
                                                         </h4>
                                                     </div>
                                                 </div>
@@ -193,12 +202,16 @@
                                                     <a href="#"><img
                                                             src="{{ asset($produtosDestaques[$contador]['foto']) }}"
                                                             alt=""></a>
-                                                    <div class="caption">
+
+                                                    <div class="caption" style="text-align: center">
                                                         <h5>{{ $produtosDestaques[$contador]['nome'] }}</h5>
-                                                        <h4><a class="btn"
-                                                                href="{{ route('carrinho.adicionar', $produtosDestaques[$contador]['id']) }}">VIEW</a>
-                                                            <span
-                                                                class="pull-right">{{ $produtosDestaques[$contador]['preco_venda'] }}</span>
+                                                        <h4>
+                                                            <span style="margin-right: 20px"
+                                                                class="">R${{ $produtosDestaques[$contador]['preco_venda'] }}</span>
+                                                            <a class="btn"
+                                                                href="{{ route('carrinho.adicionar', $produtosDestaques[$contador]['id']) }}">Adicionar</a>
+
+
                                                         </h4>
                                                     </div>
                                                 </div>
@@ -210,12 +223,15 @@
                                                     <a href="#"><img
                                                             src="{{ asset($produtosDestaques[$contador + 1]['foto']) }}"
                                                             alt=""></a>
-                                                    <div class="caption">
+
+                                                    <div class="caption" style="text-align: center">
                                                         <h5>{{ $produtosDestaques[$contador + 1]['nome'] }}</h5>
-                                                        <h4><a class="btn"
+                                                        <h4>
+                                                            <span style="margin-right: 20px"
+                                                                class="">R${{ $produtosDestaques[$contador + 1]['preco_venda'] }}</span>
+                                                            <a class="btn"
                                                                 href="{{ route('carrinho.adicionar', $produtosDestaques[$contador + 1]['id']) }}">Adicionar</a>
-                                                            <span
-                                                                class="pull-right">{{ $produtosDestaques[$contador + 1]['preco_venda'] }}</span>
+
                                                         </h4>
                                                     </div>
                                                 </div>
@@ -227,12 +243,15 @@
                                                     <a href="#"><img
                                                             src="{{ asset($produtosDestaques[$contador + 2]['foto']) }}"
                                                             alt=""></a>
-                                                    <div class="caption">
+
+                                                    <div class="caption" style="text-align: center">
                                                         <h5>{{ $produtosDestaques[$contador + 2]['nome'] }}</h5>
-                                                        <h4><a class="btn"
+                                                        <h4>
+                                                            <span style="margin-right: 20px"
+                                                                class="">R${{ $produtosDestaques[$contador + 2]['preco_venda'] }}</span>
+                                                            <a class="btn"
                                                                 href="{{ route('carrinho.adicionar', $produtosDestaques[$contador + 2]['id']) }}">Adicionar</a>
-                                                            <span
-                                                                class="pull-right">{{ $produtosDestaques[$contador + 2]['preco_venda'] }}</span>
+
                                                         </h4>
                                                     </div>
                                                 </div>
@@ -244,12 +263,15 @@
                                                     <a href="#"><img
                                                             src="{{ asset($produtosDestaques[$contador + 3]['foto']) }}"
                                                             alt=""></a>
-                                                    <div class="caption">
+
+                                                    <div class="caption" style="text-align: center">
                                                         <h5>{{ $produtosDestaques[$contador + 3]['nome'] }}</h5>
-                                                        <h4><a class="btn"
+                                                        <h4>
+                                                            <span style="margin-right: 20px"
+                                                                class="">R${{ $produtosDestaques[$contador + 3]['preco_venda'] }}</span>
+                                                            <a class="btn"
                                                                 href="{{ route('carrinho.adicionar', $produtosDestaques[$contador + 3]['id']) }}">Adicionar</a>
-                                                            <span
-                                                                class="pull-right">{{ $produtosDestaques[$contador + 3]['preco_venda'] }}</span>
+
                                                         </h4>
                                                     </div>
                                                 </div>
@@ -259,14 +281,14 @@
                                 </div>
                             @endfor
                         </div>
-                        <a class="left carousel-control" href="#featured" data-slide="prev">‹</a>
+
+                        <a class="left carousel-control" href="#featured" data-slide="prev" style="">‹</a>
+
                         <a class="right carousel-control" href="#featured" data-slide="next">›</a>
                     </div>
                 </div>
             </div>
         @endif
-
-
 
         <h4>Produtos<a name="produtos"></a></h4>
         <ul class="thumbnails">
@@ -299,8 +321,9 @@
                             <h4 style="text-align:center"><a class="btn" href="#"> <i class="icon-zoom-in"></i></a>
                                 <a class="btn" href="{{ route('carrinho.adicionar', $produto->id) }}">Adicionar
                                     <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#"> R$
-                                    {{ $produto['preco_venda'] }}</a>
-                            </h4>
+
+                                    {{ $produto['preco_venda'] }}</a></h4>
+
                         </div>
                     </div>
                 </li>
