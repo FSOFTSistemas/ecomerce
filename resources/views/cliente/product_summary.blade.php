@@ -144,7 +144,7 @@
 
         <a href="{{route('home')}}" class="btn btn-large"><i class="icon-arrow-left"></i> Continue comprando
         </a>
-        <a href="{{route('carrinho.concluir',$pedido->id)}}" class="btn btn-large pull-right">Concluir <i class="icon-arrow-right"></i></a>
+        <a href="{{route('carrinho.concluir',$pedido->id)}}" class="btn btn-large pull-right"> <i class="icon-arrow-right"></i></a>
 
     </div>
 @endsection

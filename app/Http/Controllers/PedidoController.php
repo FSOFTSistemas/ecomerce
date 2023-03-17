@@ -122,11 +122,7 @@ class PedidoController extends Controller
     {
         $usuario = Auth::user();
         $pedido = Pedido::where('user_id','=',$usuario->id)->where('status','=','pendente')->first();
-        if(!$pedido){
-            
-            $pedido = Pedido::create('default value');
-            dd($pedido);
-        }else{
+       
         $produto = Produto::find($id);
         
         $itemPedidoId = 0;
@@ -167,7 +163,7 @@ class PedidoController extends Controller
             }
             $itemPedido->total = $itemPedido->subtotal;
             $itemPedido->update();
-        }
+        
         return redirect()->route('carrinho');
     }
     }
@@ -183,8 +179,6 @@ class PedidoController extends Controller
                 $itemPedidoId = $item->id;
             }
         }
-
-        
         $itemPedido = ItemPedido::find($itemPedidoId);
         ItemPedido::find($itemPedido->id)->delete();
 

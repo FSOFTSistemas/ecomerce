@@ -120,6 +120,13 @@ class ProdutoController extends Controller
         return view('produto/visualizar', ['produto' => $produto , 'categorias' => $categorias]);
     }
 
+    public function showCliente($id)
+    {
+        $produto = Produto::find($id);
+        // $categorias = Categoria::where('status', '=', 'ativo')->get();
+        return view('cliente.visualizarProduto', ['produto' => $produto]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

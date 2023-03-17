@@ -64,7 +64,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/pedido/finalizados', [PedidoController::class, 'pedidosFinalizados'])->name('pedido.finalizados');
     Route::get('/pedido/visualizar/{id}', [PedidoController::class, 'visualizarItens'])->name('pedido.visualizar');
     Route::get('/pedido/finalizar/{id}', [PedidoController::class, 'finalizar'])->name('pedido.finalizar');
-
+    
 });
 
 Route::middleware('cliente')->group(function () {
@@ -75,6 +75,7 @@ Route::middleware('cliente')->group(function () {
     Route::get('/carrinho/concluir/{id}', [PedidoController::class, 'concluir'])->name('carrinho.concluir');
     Route::get('/pedidos/visualizar/{id}', [PedidoController::class, 'visualizarItensCliente'])->name('pedido.cliente.visualizar');
     Route::get('/pedido/historico', [PedidoController::class, 'historico'])->name('pedido.historico');  
+    Route::get('/produtos/visualizar/{id}', [ProdutoController::class, 'showCliente'])->name('produtos.cliente.show');
 });
 // Route::get('/teste',[LoginController::class, 'testeC'])->name('testec')->middleware('cliente');
 // Route::get('/testeA',[LoginController::class, 'testeA'])->name('testea')->middleware('admin');
