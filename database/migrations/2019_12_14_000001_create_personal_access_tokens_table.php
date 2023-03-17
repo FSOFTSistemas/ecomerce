@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('tokenable',250);
 
             $table->string('name');
-            $table->string('token')->unique();
+            $table->string('token', 250)->unique();
+
             $table->text('abilities')->nullable();
             $table->timestamp('last_used_at')->nullable();
             $table->timestamp('expires_at')->nullable();
