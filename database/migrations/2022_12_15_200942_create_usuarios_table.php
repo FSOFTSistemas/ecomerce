@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('rg')->nullable();
             $table->foreignId('endereco_id')->constrained('enderecos')->nullable();
             $table->foreignId('pedido_id')->constrained('pedidos')->nullable();
-            $table->string('email')->unique()->nullable();
+            $table->string('email', 250)->unique()->nullable();
             $table->string('senha');
             $table->timestamps();
         });
