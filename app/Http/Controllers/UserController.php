@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Endereco;
 use App\Models\Pedido;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -16,7 +18,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $servico = new UserController();
+        $clientes = $servico->cliente();
+        return view('usuarios.usercliente', ['cliente' => $clientes]);
     }
 
     /**
@@ -54,7 +58,7 @@ class UserController extends Controller
             // $arrayPedido['subtotal'] = 0;
             // $arrayPedido['desconto'] = 0;
             // $pedido = Pedido::create($arrayPedido);
-           
+
             /*$dados = [
                 'name'=>"Admin",
                 'email'=>"admin@mail.com",
@@ -81,7 +85,7 @@ class UserController extends Controller
                 'tipo' => 'cliente',
                 'endereco_id' => $endereco->id,
                 'telefone'=> $dados['telefone'],
-                'nome' => $dados['nome'], 
+                'nome' => $dados['nome'],
                 'cpf'=> $dados['cpf'],
                 'rg'=> $dados['rg'],
                 'email'=> $dados['email'],
@@ -102,7 +106,7 @@ class UserController extends Controller
             // $arrayUser['rg'] = $dados['rg'];
             // $arrayUser['email'] = $dados['email'];
             // $arrayUser['senha'] = bcrypt($dados['senha']);
-            
+
             // $arrayUser[''] = $dados[''];
             //dd($arrayUser);
             //User::create($arrayUser);
@@ -118,9 +122,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $servico = new UserController();
+        $admin = $servico->admin();
+        return view('usuarios.useradmin', ['admin' => $admin]);
     }
 
     /**
@@ -131,7 +137,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findorfail($id);
+        $endereco = Endereco::findorfail($id);
+
+        return view('usuarios.editar', ['user' => $user, 'end' => $endereco]);
+
     }
 
     /**
@@ -143,8 +153,20 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $dados = $request->all();
+        User::find($id)->update($dados);
+        Endereco::find($id)->update($dados);
+
+        return redirect()->route('home.auth');
     }
+
+
+    // public function delete($id)
+    // {
+    //     $user = User::findorfail($id);
+    //     return view('usuarios.delete', ['user' => $user]);
+    // }
+
 
     /**
      * Remove the specified resource from storage.
@@ -154,6 +176,36 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $user = User::findorfail($id);
+            $user->delete();
+
+            // Toastr()->success('Usuário deletado', "Sucesso");
+            return redirect()->route('home.auth');
+        } catch (Exception $e) {
+            // Toastr()->error('Não foi possível deletar Usuário');
+            return redirect()->route('home.auth');
+        }
+    }
+
+    public function cliente(){
+
+        $clientes = DB::table('users')
+        ->select('users.*')
+        ->where('users.tipo', '=', 'cliente')
+        ->get();
+
+        return $clientes;
+    }
+
+    public function admin(){
+
+        $admin = DB::table('users')
+        ->select('users.*')
+        ->where('users.tipo', '=', 'admin')
+        ->get();
+
+        // dd($admin);
+        return $admin;
     }
 }

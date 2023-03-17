@@ -34,12 +34,15 @@ Route::get('/sair', [LoginController::class, 'sair'])->name('user.sair');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-    
+
 Route::middleware('admin')->group(function () {
+    //Home
     Route::get('/home', [HomeController::class, 'index'])->name('home.auth');
+    //Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    //Produtos
     Route::get('/produto/adicionar', [ProdutoController::class, 'create'])->name('produto.create');
     Route::post('/produto/salvar', [ProdutoController::class, 'store'])->name('produto.store');
     Route::get('/produto/listar', [ProdutoController::class, 'index'])->name('produto.index');
@@ -49,7 +52,7 @@ Route::middleware('admin')->group(function () {
     Route::put('/produto/udpade/{id}', [ProdutoController::class, 'update'])->name('produto.update');
     Route::get('/produto/desativados', [ProdutoController::class, 'desativados'])->name('produto.desativados');
     Route::get('/produto/reativar/{id}', [ProdutoController::class, 'reativar'])->name('produto.reativa');
-
+    //Categorias
     Route::get('/categoria/adicionar', [CategoriaController::class, 'create'])->name('categoria.create');
     Route::get('/categoria/listar', [CategoriaController::class, 'index'])->name('categoria.index');
     Route::get('/categoria/desativados', [CategoriaController::class, 'desativados'])->name('categoria.desativados');
@@ -59,11 +62,19 @@ Route::middleware('admin')->group(function () {
     Route::get('/categoria/editar/{id}', [CategoriaController::class, 'edit'])->name('categoria.edit');
     Route::post('/categoria/salvar', [CategoriaController::class, 'store'])->name('categoria.store');
     Route::get('/categoria/reativar/{id}', [CategoriaController::class, 'reativar'])->name('categoria.reativa');
-
+    //Pedidos
     Route::get('/pedido/abertos', [PedidoController::class, 'pedidosAbertos'])->name('pedido.abertos');
     Route::get('/pedido/finalizados', [PedidoController::class, 'pedidosFinalizados'])->name('pedido.finalizados');
     Route::get('/pedido/visualizar/{id}', [PedidoController::class, 'visualizarItens'])->name('pedido.visualizar');
     Route::get('/pedido/finalizar/{id}', [PedidoController::class, 'finalizar'])->name('pedido.finalizar');
+    //Relatorios
+    Route::get('/relatorio/venda', [RelatorioController::class, 'index'])->name('relatorio.venda');
+    //Usuários
+    Route::get('/usuarios/cliente', [UserController::class, 'index'])->name('user.cliente');
+    Route::get('/usuarios/admin', [UserController::class, 'show'])->name('user.admin');
+    Route::get('/usuarios/editar/{id}', [UserController::class, 'edit'])->name('user.edit');
+    Route::put('/usuarios/update/{idu}/{ide}', [UserController::class, 'update'])->name('user.update');
+    Route::get('/usuarios/deletar/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 
 });
 
@@ -74,7 +85,7 @@ Route::middleware('cliente')->group(function () {
     Route::get('/carrinho/remover/{id}', [PedidoController::class, 'remover'])->name('carrinho.remover');
     Route::get('/carrinho/concluir/{id}', [PedidoController::class, 'concluir'])->name('carrinho.concluir');
     Route::get('/pedidos/visualizar/{id}', [PedidoController::class, 'visualizarItensCliente'])->name('pedido.cliente.visualizar');
-    Route::get('/pedido/historico', [PedidoController::class, 'historico'])->name('pedido.historico');  
+    Route::get('/pedido/historico', [PedidoController::class, 'historico'])->name('pedido.historico');
 });
 // Route::get('/teste',[LoginController::class, 'testeC'])->name('testec')->middleware('cliente');
 // Route::get('/testeA',[LoginController::class, 'testeA'])->name('testea')->middleware('admin');

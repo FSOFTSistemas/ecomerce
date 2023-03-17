@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'Relatorios')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Listar Categorias Desativadas</h1>
+    <h1 class="m-0 text-dark">Relatórios</h1>
 @stop
 
 @section('content')
@@ -21,19 +21,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($categorias as $categoria)
-                                @if($categoria->status == "inativo")
+                                {{-- @foreach ($categorias as $categoria)
+                                @if($categoria->status == "ativo")
                                     <tr>
                                         <td>{{ $categoria->descricao }}</td>
                                         <td>{{ $categoria->status }}</td>
                                         <td>
-                                            <button class="btn">
-                                            <a href="{{ route('categoria.reativa', $categoria->id) }}"><i class="fas fa-undo-alt"></i></a>
-                                            </button>
+                                            <a class="btn btn-warning"
+                                                href="{{ route('categoria.edit', $categoria->id) }}">Editar</a>
+                                            <a class="btn btn-danger"
+                                                href="{{ route('categoria.destroy', $categoria->id) }}">Deletar</a>
                                         </td>
                                     </tr>
                                 @endif
-                                @endforeach
+                                @endforeach --}}
                             </tbody>
                         </table>
                     </div>
