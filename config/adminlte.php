@@ -12,9 +12,9 @@ return [
     | For detailed instructions you can look the title section here:
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
-    */
+     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'FTNET Gráficos',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -28,7 +28,7 @@ return [
     | For detailed instructions you can look the favicon section here:
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
-    */
+     */
 
     'use_ico_only' => false,
     'use_full_favicon' => false,
@@ -45,7 +45,7 @@ return [
     | For detailed instructions you can look the google fonts section here:
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
-    */
+     */
 
     'google_fonts' => [
         'allowed' => true,
@@ -61,9 +61,9 @@ return [
     | For detailed instructions you can look the logo section here:
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
-    */
+     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>FTNET</b>Gráficos',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -81,7 +81,7 @@ return [
     | For detailed instructions you can look the auth logo section here:
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
-    */
+     */
 
     'auth_logo' => [
         'enabled' => false,
@@ -104,7 +104,7 @@ return [
     | For detailed instructions you can look the preloader section here:
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
-    */
+     */
 
     'preloader' => [
         'enabled' => true,
@@ -127,7 +127,7 @@ return [
     | For detailed instructions you can look the user menu section here:
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
-    */
+     */
 
     'usermenu_enabled' => true,
     'usermenu_header' => false,
@@ -146,7 +146,7 @@ return [
     | For detailed instructions you can look the layout section here:
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
     |
-    */
+     */
 
     'layout_topnav' => null,
     'layout_boxed' => null,
@@ -165,7 +165,7 @@ return [
     | For detailed instructions you can look the auth classes section here:
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
     |
-    */
+     */
 
     'classes_auth_card' => 'card-outline card-primary',
     'classes_auth_header' => '',
@@ -184,7 +184,7 @@ return [
     | For detailed instructions you can look the admin panel classes here:
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
     |
-    */
+     */
 
     'classes_body' => '',
     'classes_brand' => '',
@@ -208,7 +208,7 @@ return [
     | For detailed instructions you can look the sidebar section here:
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
     |
-    */
+     */
 
     'sidebar_mini' => 'lg',
     'sidebar_collapse' => false,
@@ -230,7 +230,7 @@ return [
     | For detailed instructions you can look the right sidebar section here:
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
     |
-    */
+     */
 
     'right_sidebar' => false,
     'right_sidebar_icon' => 'fas fa-cogs',
@@ -250,7 +250,7 @@ return [
     | For detailed instructions you can look the urls section here:
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
-    */
+     */
 
     'use_route_url' => false,
     'dashboard_url' => 'home',
@@ -271,7 +271,7 @@ return [
     | For detailed instructions you can look the laravel mix section here:
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Other-Configuration
     |
-    */
+     */
 
     'enabled_laravel_mix' => false,
     'laravel_mix_css_path' => 'css/app.css',
@@ -287,7 +287,7 @@ return [
     | For detailed instructions you can look here:
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Menu-Configuration
     |
-    */
+     */
 
     'menu' => [
         // Navbar items:
@@ -297,7 +297,7 @@ return [
         //     'topnav_right' => true,
         // ],
         [
-            'type'         => 'fullscreen-widget',
+            'type' => 'fullscreen-widget',
             'topnav_right' => true,
         ],
 
@@ -308,8 +308,8 @@ return [
         // ],
         [
             'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'url' => 'admin/blog',
+            'can' => 'manage-blog',
         ],
         // [
         //     'text'        => 'pages',
@@ -320,73 +320,156 @@ return [
         // ],
         ['header' => ''],
         [
-            'text' => 'Produto',
-            'url'  => '#',
-            'submenu' => [
-                            [
-                                'text' => 'Listar',
-                                'url'  => 'produto/listar',
-                            ],
-                            [
-                                'text' => 'Desativados',
-                                'url'  => 'produto/desativados',
-                            ],
-                            [
-                                'text' => 'Adicionar',
-                                'url'  => 'produto/adicionar',
-                            ],
-                        ]
-            // 'icon' => 'fas fa-fw fa-user',
+            'text' => 'Home',
+            'url'  => 'home/',
+            'icon'        => 'fa fa-home',
+            'label_color' => 'success',
         ],
-        ['header'=>''],
+
+        ['header' => ''],
         [
             'text' => 'Categoria',
-            'url'  => '#',
+            'url' => '#',
+            'icon'        => 'fas fa-list-ul',
+            'label_color' => 'success',
             'submenu' => [
-                            [
-                                'text' => 'Listar',
-                                'url'  => 'categoria/listar',
-                            ],
-                            [
-                                'text' => 'Desativados',
-                                'url'  => 'categoria/desativados',
-                            ],
-                            [
-                                'text' => 'Adicionar',
-                                'url'  => 'categoria/adicionar',
-                            ],
-                        ]
-                        ],
-        ['header'=>''],
+                [
+                    'text' => 'Listar',
+                    'url' => 'categoria/listar',
+                    'icon'        => 'fa fa-list-ul',
+                    'label_color' => 'success',
+                ],
+                [
+                    'text' => 'Desativados',
+                    'url' => 'categoria/desativados',
+                    'icon'        => 'fas fa-ban',
+                    'label_color' => 'success',
+                ],
+                [
+                    'text' => 'Adicionar',
+                    'url' => 'categoria/adicionar',
+                    'icon'        => 'fas fa-plus',
+                    'label_color' => 'success',
+                ],
+            ],
+        ],
+
+        ['header' => ''],
+        [
+            'text' => 'Produto',
+            'url' => '#',
+            'icon'        => 'fas fa-box',
+            'label_color' => 'success',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'url' => 'produto/listar',
+                    'icon'        => 'fa fa-list-ul',
+                    'label_color' => 'success',
+                ],
+                [
+                    'text' => 'Desativados',
+                    'url' => 'produto/desativados',
+                    'icon'        => 'fas fa-ban',
+                    'label_color' => 'success',
+                ],
+                [
+                    'text' => 'Adicionar',
+                    'url' => 'produto/adicionar',
+                    'icon'        => 'fas fa-plus',
+                    'label_color' => 'success',
+                ],
+            ],
+            // 'icon' => 'fas fa-fw fa-user',
+        ],
+
+        ['header' => ''],
         [
             'text' => 'Pedidos',
-            'url'  => '#',
+            'url' => '#',
+            'icon'        => 'fas fa-bags-shopping',
+            'label_color' => 'success',
             'submenu' => [
-                            [
-                                'text' => 'Abertos',
-                                'url'  => 'pedido/abertos',
-                            ],
-                            [
-                                'text' => 'Finalizados',
-                                'url'  => 'pedido/finalizados',
-                            ]
-                        ]
-                            ],
-        ['header'=>''],
+                [
+                    'text' => 'Abertos',
+                    'url' => 'pedido/abertos',
+                    'icon'        => 'fas fa-shopping-bag',
+                    'label_color' => 'success',
+                ],
+                [
+                    'text' => 'Finalizados',
+                    'url' => 'pedido/finalizados',
+                    'icon'        => 'fas fa-box-check',
+                    'label_color' => 'success',
+                ],
+            ],
+        ],
+
+        ['header' => ''],
         [
             'text' => 'Usuarios',
-            'url'  => '#',
+            'url' => '#',
+            'icon'        => 'fas fa-user',
+            'label_color' => 'success',
             'submenu' => [
-                            [
-                                'text' => 'Clientes',
-                                'url'  => 'usuarios/cliente',
-                            ],
-                            [
-                                'text' => 'Admin',
-                                'url'  => 'usuarios/admin',
-                            ]
-                        ]
-                        ]
+                [
+                    'text' => 'Clientes',
+                    'url' => 'usuarios/cliente',
+                    'icon'        => 'fas fa-user-tag',
+                    'label_color' => 'success',
+                ],
+                [
+                    'text' => 'Admin',
+                    'url' => 'usuarios/admin',
+                    'icon'        => 'fas fa-user-cog',
+                    'label_color' => 'success',
+                ],
+            ],
+        ],
+
+        ['header' => ''],
+        [
+            'text' => 'Configurações',
+            'url'  => '#',
+            'icon'        => 'fas fa-cog',
+            'label_color' => 'success',
+            'submenu' => [
+                [
+                    'text' => 'Banner',
+                    'url' => 'empresa/banner',
+                    'icon'        => 'fa fa-list-ul',
+                    'label_color' => 'success',
+                ],
+                [
+                    'text' => 'Empresa',
+                    'url' => 'empresa/novo',
+                    'icon'        => 'fa fa-list-ul',
+                    'label_color' => 'success',
+                ],
+            ],
+        ],
+
+        ['header' => ''],
+        [
+            'text' => 'Relatorios',
+            'url'  => '#',
+            'icon'        => 'fa fa-home',
+            'label_color' => 'success',
+            'submenu' => [
+                [
+                    'text' => 'Vendas',
+                    'url' => 'relatorio/venda',
+                    'icon'        => 'fas fa-shopping-cart',
+                    'label_color' => 'success',
+                ],
+                [
+                    'text' => 'Pedidos',
+                    'url' => 'relatorio/pedidos',
+                    'icon'        => 'fas fa-shopping-bag',
+                    'label_color' => 'success',
+                ],
+            ],
+        ],
         // [
         //     'text' => 'change_password',
         //     'url'  => 'admin/settings',
@@ -458,7 +541,7 @@ return [
     | For detailed instructions you can look the menu filters section here:
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Menu-Configuration
     |
-    */
+     */
 
     'filters' => [
         JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
@@ -480,7 +563,7 @@ return [
     | For detailed instructions you can look the plugins section here:
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Plugins-Configuration
     |
-    */
+     */
 
     'plugins' => [
         'Datatables' => [
@@ -566,7 +649,7 @@ return [
     | For detailed instructions you can look the iframe mode section here:
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/IFrame-Mode-Configuration
     |
-    */
+     */
 
     'iframe' => [
         'default_tab' => [
@@ -598,7 +681,7 @@ return [
     | For detailed instructions you can look the livewire here:
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Other-Configuration
     |
-    */
+     */
 
     'livewire' => false,
 ];

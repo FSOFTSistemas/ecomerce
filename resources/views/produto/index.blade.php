@@ -12,7 +12,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <table>
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Nome</th>
@@ -27,14 +27,21 @@
                                     <tr>
                                         <td>{{ $produto->nome }}</td>
                                         <td>{{ $produto->descricao }}</td>
-                                        <td>{{ $produto->preco_venda }}</td>
+                                        <td> R$ {{ number_format( $produto->preco_venda, 2) }}</td>
                                         <td>
-                                            <a class="btn btn-success"
-                                                href="{{ route('produto.show', $produto->id) }}">Visualizar</a>
-                                            <a class="btn btn-warning"
-                                                href="{{ route('produto.edit', $produto->id) }}">Editar</a>
-                                            <a class="btn btn-danger"
-                                                href="{{ route('produto.destroy', $produto->id) }}">Deletar</a>
+
+                                            <button class="btn">
+                                                <a href="{{ route('produto.show', $produto->id) }}"><i class="fas fa-eye"></i></a>
+                                            </button>
+
+                                            <button class="btn">
+                                                <a href="{{ route('produto.edit', $produto->id) }}"><i class="fas fa-pen"></i></a>
+                                            </button>
+
+                                            <button class="btn">
+                                                <a href="{{ route('produto.destroy', $produto->id) }}"><i class="fas fa-trash-alt"></i></a>
+                                            </button>
+
                                         </td>
                                     </tr>
                                     @endif
