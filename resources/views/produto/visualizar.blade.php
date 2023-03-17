@@ -17,7 +17,7 @@
                                 @include('produto.form')
                                 {{-- <a class="btn btn-secondary"
                                 href="{{ route('produto.index') }}">Voltar</a> --}}
-                                {{-- onclick="location.href = document.referrer;" // usada para voltar para a pagina anterior 
+                                {{-- onclick="location.href = document.referrer;" // usada para voltar para a pagina anterior
                                 de forma generica --}}
                                 <button class="btn btn-secondary" onclick="location.href = document.referrer;">Voltar</button>
                             </form>
