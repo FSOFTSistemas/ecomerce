@@ -5,16 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pedido extends Model
+class Banner extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'data',
-        'status',
-        'total',
-        'subtotal',
-        'desconto',
-        'user_id'
+        'foto'
     ];
+
 }

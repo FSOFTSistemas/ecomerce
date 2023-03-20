@@ -141,7 +141,6 @@ class UserController extends Controller
         $endereco = Endereco::findorfail($id);
 
         return view('usuarios.editar', ['user' => $user, 'end' => $endereco]);
-
     }
 
     /**
