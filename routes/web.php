@@ -65,10 +65,12 @@ Route::middleware('admin')->group(function () {
     Route::post('/categoria/salvar', [CategoriaController::class, 'store'])->middleware('auth')->name('categoria.store');
     Route::get('/categoria/reativar/{id}', [CategoriaController::class, 'reativar'])->middleware('auth')->name('categoria.reativa');
     //Pedidos
+
     Route::get('/pedido/abertos', [PedidoController::class, 'pedidosAbertos'])->middleware('auth')->name('pedido.abertos');
     Route::get('/pedido/finalizados', [PedidoController::class, 'pedidosFinalizados'])->middleware('auth')->name('pedido.finalizados');
     Route::get('/pedido/visualizar/{id}', [PedidoController::class, 'visualizarItens'])->middleware('auth')->name('pedido.visualizar');
     Route::get('/pedido/finalizar/{id}', [PedidoController::class, 'finalizar'])->middleware('auth')->name('pedido.finalizar');
+    
     //Relatorios
     Route::get('/relatorio/venda', [RelatorioController::class, 'index'])->middleware('auth')->name('relatorio.venda');
     //Usuários
@@ -88,9 +90,11 @@ Route::middleware('admin')->group(function () {
     Route::put('/empresa/senha/update/{id}', [ConfiguracoesController::class, 'update'])->middleware('auth')->name('senha.update');
     Route::post('/empresa/config/criar', [ConfiguracoesController::class, 'criar'])->middleware('auth')->name('criar.config');
 
+
 });
 
 Route::middleware('cliente')->group(function () {
+
     Route::get('/carrinho', [PedidoController::class, 'index'])->middleware('auth')->name('carrinho');
     Route::get('/carrinho/adicionar/{id}', [PedidoController::class, 'adicionar'])->middleware('auth')->name('carrinho.adicionar');
     Route::get('/carrinho/diminuir/{id}', [PedidoController::class, 'diminuir'])->middleware('auth')->name('carrinho.diminuir');
@@ -98,6 +102,9 @@ Route::middleware('cliente')->group(function () {
     Route::get('/carrinho/concluir/{id}', [PedidoController::class, 'concluir'])->middleware('auth')->name('carrinho.concluir');
     Route::get('/pedidos/visualizar/{id}', [PedidoController::class, 'visualizarItensCliente'])->middleware('auth')->name('pedido.cliente.visualizar');
     Route::get('/pedido/historico', [PedidoController::class, 'historico'])->middleware('auth')->name('pedido.historico');
+
+    Route::get('/produtos/visualizar/{id}', [ProdutoController::class, 'showCliente'])->name('produtos.cliente.show');
+
 });
 // Route::get('/teste',[LoginController::class, 'testeC'])->name('testec')->middleware('cliente');
 // Route::get('/testeA',[LoginController::class, 'testeA'])->name('testea')->middleware('admin');
