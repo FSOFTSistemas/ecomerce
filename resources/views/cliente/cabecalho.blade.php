@@ -41,8 +41,8 @@
 </head>
 
 <body>
-    <div id="header">
-        <div class="container" style="width: 100%">
+    <div id="header" style="height: 100%">
+        <div class="container" style="width: 100%;">
             {{-- <div id="welcomeLine" class="row">
 	<div class="span6">Welcome!<strong> User</strong></div>
 	<div class="span6">
@@ -60,13 +60,13 @@
 
 
             <!-- Navbar ================================================== -->
-            <div id="logoArea" class="navbar">
+            <div id="logoArea" class="navbar" style="margin: 0">
                 <a id="smallScreen" data-target="#topMenu" data-toggle="collapse" class="btn btn-navbar">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <div class="navbar-inner">
+                <div class="navbar-inner" style="height: 100%">
                     <a class="brand" href="{{route('home')}}"><img src="{{ asset('themes/images/logo.png') }}" alt="Bootsshop" /></a>
                     {{-- <form class="form-inline navbar-search" method="post" action="products.html" >
 		<input id="srchFld" class="srchTxt" type="text" />
@@ -88,6 +88,24 @@
                     <ul id="topMenu" class="nav pull-right">
                         {{-- <li class=""><a href="special_offer.html">Specials Offer</a></li>
 	 <li class=""><a href="normal.html">Delivery</a></li> --}}
+                @if (Auth::check())
+                        <li class="">
+                            <a id="myCart" href="{{route('carrinho')}}">
+                                <i class="fa-thin fa-cart-shopping"></i>
+                                <p style="font-size: 20px">🛒</p>
+                            </a>
+                        </li>
+                            
+                        
+                    @else
+                        <li>
+                            <a id="myCart" href="" onclick="avisoParaLogar()">
+                                <i class="fa-regular fa-cart-shopping"></i>
+                            </a>
+                        </li>
+                            
+                      
+                    @endif
                         @if(Auth::check())
                         <li class=""><a href="{{ route('user.sair') }}">Sair</a></li>
                         @else
