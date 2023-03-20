@@ -336,7 +336,7 @@ return [
                 [
                     'text' => 'Listar',
                     'url' => 'categoria/listar',
-                    'icon'        => 'fa fa-list-ul',
+                    'icon'        => 'fas fa-list-ol',
                     'label_color' => 'success',
                 ],
                 [
@@ -364,7 +364,7 @@ return [
                 [
                     'text' => 'Listar',
                     'url' => 'produto/listar',
-                    'icon'        => 'fa fa-list-ul',
+                    'icon'        => 'fas fa-list-ol',
                     'label_color' => 'success',
                 ],
                 [
@@ -387,7 +387,7 @@ return [
         [
             'text' => 'Pedidos',
             'url' => '#',
-            'icon'        => 'fas fa-bags-shopping',
+            'icon'        => 'fas fa-store',
             'label_color' => 'success',
             'submenu' => [
                 [
@@ -399,7 +399,7 @@ return [
                 [
                     'text' => 'Finalizados',
                     'url' => 'pedido/finalizados',
-                    'icon'        => 'fas fa-box-check',
+                    'icon'        => 'fas fa-shopping-bag',
                     'label_color' => 'success',
                 ],
             ],
@@ -437,13 +437,25 @@ return [
                 [
                     'text' => 'Banner',
                     'url' => 'empresa/banner',
-                    'icon'        => 'fa fa-list-ul',
+                    'icon'        => 'fas fa-images',
                     'label_color' => 'success',
                 ],
                 [
                     'text' => 'Empresa',
                     'url' => 'empresa/novo',
-                    'icon'        => 'fa fa-list-ul',
+                    'icon'        => 'fas fa-building',
+                    'label_color' => 'success',
+                ],
+                [
+                    'text' => 'Editar senha',
+                    'url' => 'empresa/senha/editar',
+                    'icon'        => 'fas fa-images',
+                    'label_color' => 'success',
+                ],
+                [
+                    'text' => 'Novo Adm',
+                    'url' => 'empresa/adm/criar',
+                    'icon'        => 'fas fa-images',
                     'label_color' => 'success',
                 ],
             ],
@@ -453,7 +465,7 @@ return [
         [
             'text' => 'Relatorios',
             'url'  => '#',
-            'icon'        => 'fa fa-home',
+            'icon'        => 'fas fa-file-alt',
             'label_color' => 'success',
             'submenu' => [
                 [

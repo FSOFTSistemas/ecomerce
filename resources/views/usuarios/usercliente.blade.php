@@ -4,6 +4,7 @@
 
 @section('content_header')
     <h1 class="m-0 text-dark">Clientes</h1>
+    <hr>
 @stop
 
 @section('content')
@@ -40,11 +41,11 @@
                                     </button> --}}
 
                                     <button class="btn">
-                                        <a href="{{ route('user.edit', $clt->id) }}"><i class="fas fa-pen"></i></a>
+                                        <a href="{{ route('user.edit', ['id' => $clt->id]) }}"><i class="fas fa-pen"></i></a>
                                     </button>
 
                                     <button class="btn">
-                                        <a href="{{ route('user.destroy', $clt->id) }}"><i class="fas fa-trash-alt"></i></a>
+                                        <a href="{{ route('user.destroy', ['id' => $clt->id]) }}"><i class="fas fa-trash-alt"></i></a>
                                     </button>
 
                                 </td>

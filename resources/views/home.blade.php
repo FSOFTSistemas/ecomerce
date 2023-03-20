@@ -4,6 +4,7 @@
 
 @section('content_header')
     <h1 class="m-0 text-dark">Dashboard</h1>
+    <hr>
     <link rel="stylesheet" href="{{asset('site/bootstrap.js')}}">
 @stop
 
