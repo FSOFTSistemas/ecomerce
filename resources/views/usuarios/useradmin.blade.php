@@ -3,13 +3,24 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Adiministradores</h1>
+
+        <h1 class="m-0 text-dark">Administradores</h1>
+        <hr>
 @stop
 
 @section('content')
     <div class="row">
         <div class="col-12">
             <div class="card">
+                <div class="col" style="text-align: left">
+
+                    {{-- <a href="{{ route('user.update', $adm->id) }}">
+                        <button class="btn btn-success">
+                            Cadastrar
+                        </button>
+                    </a> --}}
+
+                </div>
                 <div class="card-body">
                     <div class="row">
                         <table class="table table-striped">
@@ -33,16 +44,13 @@
                                 <td>{{ $adm->cpf }}</td>
                                 <td>{{ $adm->telefone }}</td>
                                 <td>
-                                    {{-- <button class="btn">
-                                        <a href="{{ route('produto.show', $produto->id) }}"><i class="fas fa-eye"></i></a>
-                                    </button> --}}
 
                                     <button class="btn">
-                                        <a href="{{ route('user.edit', $adm->id) }}"><i class="fas fa-pen"></i></a>
+                                        <a href="{{ route('user.edit', ['id' => $adm->id]) }}"><i class="fas fa-pen"></i></a>
                                     </button>
 
                                     <button class="btn">
-                                        <a href="{{ route('user.destroy', $adm->id) }}"><i class="fas fa-trash-alt"></i></a>
+                                        <a href="{{ route('user.destroy', ['id' => $adm->id]) }}"><i class="fas fa-trash-alt"></i></a>
                                     </button>
 
                                 </td>
