@@ -3,7 +3,8 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Listar Produtos</h1>
+    <h1 class="m-0 text-dark">Listar Categorias</h1>
+    <hr>
 @stop
 
 @section('content')
@@ -12,7 +13,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <table>
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Descrição</th>
@@ -27,10 +28,15 @@
                                         <td>{{ $categoria->descricao }}</td>
                                         <td>{{ $categoria->status }}</td>
                                         <td>
-                                            <a class="btn btn-warning"
-                                                href="{{ route('categoria.edit', $categoria->id) }}">Editar</a>
-                                            <a class="btn btn-danger"
-                                                href="{{ route('categoria.destroy', $categoria->id) }}">Deletar</a>
+
+                                            <button class="btn">
+                                            <a href="{{ route('categoria.edit', $categoria->id) }}"><i class="fas fa-pen"></i></a>
+                                            </button>
+
+                                            <button class="btn">
+                                            <a href="{{ route('categoria.destroy', $categoria->id) }}"><i class="fas fa-trash-alt"></i></a>
+                                            </button>
+
                                         </td>
                                     </tr>
                                 @endif

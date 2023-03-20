@@ -4,6 +4,7 @@
 
 @section('content_header')
     <h1 class="m-0 text-dark">Listar Produtos Desativados</h1>
+    <hr>
 @stop
 
 @section('content')
@@ -12,7 +13,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <table>
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Nome</th>
@@ -27,12 +28,17 @@
                                     <tr>
                                         <td>{{ $produto->nome }}</td>
                                         <td>{{ $produto->descricao }}</td>
-                                        <td>{{ $produto->preco_venda }}</td>
+                                        <td> R$ {{ number_format($produto->preco_venda) }}</td>
                                         <td>
-                                            <a class="btn btn-success"
-                                                href="{{ route('produto.show', $produto->id) }}">Visualizar</a>
-                                            <a class="btn btn-danger"
-                                                href="{{ route('produto.reativa', $produto->id) }}">Reativar</a>
+
+                                            <button class="btn">
+                                            <a href="{{ route('produto.show', $produto->id) }}"><i class="fas fa-eye"></i></a>
+                                            </button>
+
+                                            <button class="btn">
+                                            <a href="{{ route('produto.reativa', $produto->id) }}"><i class="fas fa-undo-alt"></i></a>
+                                            </button>
+
                                         </td>
                                     </tr>
                                     @endif

@@ -20,8 +20,9 @@ class PedidoController extends Controller
     public function index()
     {
         $usuario = Auth::user();
-        $pedido = Pedido::where('user_id','=',$usuario->id)->where('status','=','pendente')->first();
-        $itemPedidos = ItemPedido::where('pedido_id','=',$pedido->id)->get();
+        $pedido = Pedido::where('user_id','=',$usuario->id)->where('status','=','aberto')->first();
+        if($pedido){
+            $itemPedidos = ItemPedido::where('pedido_id','=',$pedido->id)->get();
         $itens = array();
         $totalPreco = 0;
         $totalDesconto = 0;
@@ -44,6 +45,11 @@ class PedidoController extends Controller
             $totalDesconto = $totalDesconto + $itemPedidos[$i]['desconto'];
         }
         return view('cliente/product_summary',['itens' => $itens,'pedido' => $pedido,'totalPreco' => $totalPreco, 'totalDesconto' => $totalDesconto]);
+    
+        }
+        else{
+            return redirect()->route('home');
+        }
     }
 
     /**
@@ -118,55 +124,46 @@ class PedidoController extends Controller
 
     }
 
-    public function adicionar($id)
+    public function adicionar(Request $request)
     {
         $usuario = Auth::user();
-        $pedido = Pedido::where('user_id','=',$usuario->id)->where('status','=','pendente')->first();
-        $produto = Produto::find($id);
-        $itemPedidoId = 0;
-        $produtoExiste = 0; // 0 - produto não existe ainda | 1 - produto já existe no pedido, apenas adicionar a quantidade
-        $itensPedidos = ItemPedido::where('pedido_id','=',$pedido->id)->get();
-        foreach($itensPedidos as $item){
-            if($item->produto_id == $produto->id){
-                $produtoExiste = 1;
-                $itemPedidoId = $item->id;
-            }
-        }
-        if($produtoExiste == 0){
-           
-            $itemPedido = new ItemPedido();
-            $itemPedido->pedido_id = $pedido->id;
-            $itemPedido->produto_id = $produto->id;
-            $itemPedido->quatidade = 1;
-            if($produto->promocao_ativa == 'sim'){
-                $itemPedido->desconto = ($produto->preco_venda - $produto->preco_promocao);
-            }else{
-                $itemPedido->desconto = 0;
-            }
-            $itemPedido->subtotal = $produto->preco_venda;
+        $produto = Produto::findOrFail($request->id);
 
-            $itemPedido->total = $itemPedido->subtotal - $itemPedido->desconto;
-        
-            $itemPedido->save();
-        }else{
-            $itemPedido = ItemPedido::find($itemPedidoId);
-            $itemPedido->quatidade = $itemPedido->quatidade + 1;
-            if($produto->promocao_ativa == 'sim'){
-                $itemPedido->subtotal = $produto->preco_promocao * $itemPedido->quatidade;
-                $itemPedido->desconto = ($produto->preco_venda - $produto->preco_promocao) * $itemPedido->quatidade;
-            }else{
-                $itemPedido->subtotal = $produto->preco_venda * $itemPedido->quatidade;
-                $itemPedido->desconto = 0;
-            }
-            $itemPedido->total = $itemPedido->subtotal;
-            $itemPedido->update();
+        $pedidoAberto = Pedido::where('status','=','aberto')->get();
+        $pedido = '';
+        if(count($pedidoAberto)>0){
+            $itemProduto = ItemPedido::create([
+                'pedido_id' => $pedidoAberto[0]->id,
+                'produto_id' => $produto->id,
+                'quatidade' => $request->qtde,
+                'subtotal' => $produto->preco_venda,
+                'desconto' => 0,
+                'total' => ($produto->preco_venda * $request->qtde)
+            ]); 
+            $pedido = $pedidoAberto[0];
+        }
+        else{
+            $pedidoNovo = Pedido::create([
+                'user_id' => $usuario->id,
+                'status' => 'aberto',
+                'data' => date('Y-m-d')
+            ]);
+            $itemProduto = ItemPedido::create([
+                'pedido_id' => $pedidoNovo->id,
+                'produto_id' => $produto->id,
+                'quatidade' => $request->qtde,
+                'subtotal' => $produto->preco_venda,
+                'desconto' => 0,
+                'total' => ($produto->preco_venda * $request->qtde)
+            ]); 
+            $pedido = $pedidoNovo;
         }
         return redirect()->route('carrinho');
     }
     public function remover($id)
     {
         $usuario = Auth::user();
-        $pedido = Pedido::where('user_id','=',$usuario->id)->where('status','=','pendente')->first();
+        $pedido = Pedido::where('user_id','=',$usuario->id)->where('status','=','aberto')->first();
         $produto = Produto::find($id);
         $itemPedidoId = 0;
         $itensPedidos = ItemPedido::where('pedido_id','=',$pedido->id)->get();
@@ -175,8 +172,6 @@ class PedidoController extends Controller
                 $itemPedidoId = $item->id;
             }
         }
-
-        
         $itemPedido = ItemPedido::find($itemPedidoId);
         ItemPedido::find($itemPedido->id)->delete();
 
@@ -186,7 +181,7 @@ class PedidoController extends Controller
     public function diminuir($id)
     {
         $usuario = Auth::user();
-        $pedido = Pedido::where('user_id','=',$usuario->id)->where('status','=','pendente')->first();
+        $pedido = Pedido::where('user_id','=',$usuario->id)->where('status','=','aberto')->first();
         $produto = Produto::find($id);
         $itemPedidoId = 0;
         $itensPedidos = ItemPedido::where('pedido_id','=',$pedido->id)->get();
@@ -219,19 +214,15 @@ class PedidoController extends Controller
         $subtotal = 0;
         $desconto = 0;
         foreach ($itensPedidos as $item) {
-            $subtotal = $subtotal + $item['subtotal'];
+            $subtotal = $subtotal + $item['total'];
             $desconto = $desconto + $item['desconto'];
         }
         $pedido->subtotal = $subtotal;
         $pedido->desconto = $desconto;
         $pedido->total = $subtotal-$desconto;
-        $pedido->status = "aberto";
+        $pedido->status = "pendente";
         $pedido->update();
 
-        $newPedido = new Pedido();
-        $newPedido->status = "pendente";
-        $newPedido->user_id = Auth::user()->id;
-        $newPedido->save();
 
         return redirect()->route('home');
     }
@@ -280,7 +271,7 @@ class PedidoController extends Controller
     public function historico()
     {
         $usuario = Auth::user();
-        $pedidos = Pedido::where('user_id','=',$usuario->id)->where('status','!=','pendente')->get();
+        $pedidos = Pedido::where('user_id','=',$usuario->id)->where('status','!=','aberto')->get();
         
         return view('cliente/pedido_historico',['pedidos' => $pedidos]);
     }

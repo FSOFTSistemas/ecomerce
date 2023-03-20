@@ -3,7 +3,8 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Listar Produtos Desativados</h1>
+    <h1 class="m-0 text-dark">Listar Categorias Desativadas</h1>
+    <hr>
 @stop
 
 @section('content')
@@ -12,7 +13,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <table>
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Descrição</th>
@@ -27,8 +28,9 @@
                                         <td>{{ $categoria->descricao }}</td>
                                         <td>{{ $categoria->status }}</td>
                                         <td>
-                                            <a class="btn btn-danger"
-                                                href="{{ route('categoria.reativa', $categoria->id) }}">Reativar</a>
+                                            <button class="btn">
+                                            <a href="{{ route('categoria.reativa', $categoria->id) }}"><i class="fas fa-undo-alt"></i></a>
+                                            </button>
                                         </td>
                                     </tr>
                                 @endif
