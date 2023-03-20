@@ -4,6 +4,7 @@
 
 @section('content_header')
     <h1 class="m-0 text-dark">Itens do Pedido</h1>
+    <hr>
     <br>
     <a href="/pedido/abertos"><button class="btn btn-secondary">Voltar</button></a>
 @stop

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Endereco;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EnderecoController extends Controller
 {
@@ -82,4 +83,5 @@ class EnderecoController extends Controller
     {
         //
     }
+
 }
