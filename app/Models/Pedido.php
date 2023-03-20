@@ -14,6 +14,7 @@ class Pedido extends Model
         'status',
         'total',
         'subtotal',
-        'desconto'
+        'desconto',
+        'user_id'
     ];
 }

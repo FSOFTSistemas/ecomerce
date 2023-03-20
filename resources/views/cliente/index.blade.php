@@ -126,9 +126,12 @@
                                                         <h4>
                                                             <span style="margin-right: 20px"
                                                                 class="">R${{ $produtosDestaques[$contador]['preco_venda'] }}</span>
-                                                            <a class="btn"
+                                                            {{-- <a class="btn"
                                                                 href="{{ route('carrinho.adicionar', $produtosDestaques[$contador]['id']) }}">Adicionar
-                                                            </a>
+
+                                                            </a> --}}
+                                                            
+
 
                                                         </h4>
                                                     </div>
@@ -208,8 +211,8 @@
                                                         <h4>
                                                             <span style="margin-right: 20px"
                                                                 class="">R${{ $produtosDestaques[$contador]['preco_venda'] }}</span>
-                                                            <a class="btn"
-                                                                href="{{ route('carrinho.adicionar', $produtosDestaques[$contador]['id']) }}">Adicionar</a>
+                                                            {{-- <a class="btn"
+                                                                href="{{ route('carrinho.adicionar', $produtosDestaques[$contador]['id']) }}">Adicionar</a> --}}
 
 
                                                         </h4>
@@ -229,8 +232,8 @@
                                                         <h4>
                                                             <span style="margin-right: 20px"
                                                                 class="">R${{ $produtosDestaques[$contador + 1]['preco_venda'] }}</span>
-                                                            <a class="btn"
-                                                                href="{{ route('carrinho.adicionar', $produtosDestaques[$contador + 1]['id']) }}">Adicionar</a>
+                                                            {{-- <a class="btn"
+                                                                href="{{ route('carrinho.adicionar', $produtosDestaques[$contador + 1]['id']) }}">Adicionar</a> --}}
 
                                                         </h4>
                                                     </div>
@@ -249,8 +252,8 @@
                                                         <h4>
                                                             <span style="margin-right: 20px"
                                                                 class="">R${{ $produtosDestaques[$contador + 2]['preco_venda'] }}</span>
-                                                            <a class="btn"
-                                                                href="{{ route('carrinho.adicionar', $produtosDestaques[$contador + 2]['id']) }}">Adicionar</a>
+                                                            {{-- <a class="btn"
+                                                                href="{{ route('carrinho.adicionar', $produtosDestaques[$contador + 2]['id']) }}">Adicionar</a> --}}
 
                                                         </h4>
                                                     </div>
@@ -269,8 +272,8 @@
                                                         <h4>
                                                             <span style="margin-right: 20px"
                                                                 class="">R${{ $produtosDestaques[$contador + 3]['preco_venda'] }}</span>
-                                                            <a class="btn"
-                                                                href="{{ route('carrinho.adicionar', $produtosDestaques[$contador + 3]['id']) }}">Adicionar</a>
+                                                            {{-- <a class="btn"
+                                                                href="{{ route('carrinho.adicionar', $produtosDestaques[$contador + 3]['id']) }}">Adicionar</a> --}}
 
                                                         </h4>
                                                     </div>
@@ -318,12 +321,15 @@
                             <p>
                                 {{ $produto['descricao'] }}
                             </p>
-                            <h4 style="text-align:center"><a class="btn" href="#"> <i class="icon-zoom-in"></i></a>
-                                <a class="btn" href="{{ route('carrinho.adicionar', $produto->id) }}">Adicionar
+                            <h4 style="text-align:center"><a class="btn" href="/produtos/visualizar/{{$produto->id}}"> <i class="icon-zoom-in"></i></a>
+                                {{-- <a class="btn" href="{{ route('carrinho.adicionar', $produto->id) }}">Adicionar
                                     <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#"> R$
 
-                                    {{ $produto['preco_venda'] }}</a></h4>
+                                    {{ $produto['preco_venda'] }}</a> --}}
+                                </h4>
 
+
+   
                         </div>
                     </div>
                 </li>
