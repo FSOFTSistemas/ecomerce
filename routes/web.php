@@ -33,6 +33,7 @@ Route::get('/registrar', [UserController::class, 'create'])->name('registrar');
 Route::post('/registrar', [UserController::class, 'store'])->name('user.store');
 Route::get('/sair', [LoginController::class, 'sair'])->name('user.sair');
 
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->middleware('auth')->name('dashboard');
@@ -65,6 +66,7 @@ Route::middleware('admin')->group(function () {
     Route::post('/categoria/salvar', [CategoriaController::class, 'store'])->middleware('auth')->name('categoria.store');
     Route::get('/categoria/reativar/{id}', [CategoriaController::class, 'reativar'])->middleware('auth')->name('categoria.reativa');
     //Pedidos
+
     Route::get('/pedido/abertos', [PedidoController::class, 'pedidosAbertos'])->middleware('auth')->name('pedido.abertos');
     Route::get('/pedido/finalizados', [PedidoController::class, 'pedidosFinalizados'])->middleware('auth')->name('pedido.finalizados');
     Route::get('/pedido/visualizar/{id}', [PedidoController::class, 'visualizarItens'])->middleware('auth')->name('pedido.visualizar');
@@ -88,6 +90,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/empresa/senha/editar', [ConfiguracoesController::class, 'edit'])->middleware('auth')->name('senha.edit');
     Route::put('/empresa/senha/update/{id}', [ConfiguracoesController::class, 'update'])->middleware('auth')->name('senha.update');
     Route::post('/empresa/config/criar', [ConfiguracoesController::class, 'criar'])->middleware('auth')->name('criar.config');
+
 
 });
 

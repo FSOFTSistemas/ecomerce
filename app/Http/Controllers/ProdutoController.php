@@ -126,7 +126,6 @@ class ProdutoController extends Controller
     {
         $usuario = Auth::user();
         $produto = Produto::find($id);
-
         // $categorias = Categoria::where('status', '=', 'ativo')->get();
         return view('cliente.visualizarProduto', ['produto' => $produto]);
     }
