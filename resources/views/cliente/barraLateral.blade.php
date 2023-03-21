@@ -79,8 +79,10 @@
                                     <div class="caption">
                                         <h5>{{ $produto['nome'] }}</h5>
                                         <h4 style="text-align:center"><a class="btn" href="#"> <i
-                                                    class="icon-zoom-in"></i></a> <a class="btn"
-                                                href="{{route('carrinho.adicionar',$produto->id)}}">Adicionar <i class="icon-shopping-cart"></i></a> <a
+                                                    class="icon-zoom-in"></i></a>
+                                                     {{-- <a class="btn"
+                                                href="{{route('carrinho.adicionar',$produto->id)}}">Adicionar <i class="icon-shopping-cart"></i></a> --}}
+                                                 <a
                                                 class="btn btn-primary"
                                                 href="#">R${{ $produto['preco_promocao'] }}</a></h4>
                                     </div>

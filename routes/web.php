@@ -26,12 +26,12 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', [ProdutoController::class, 'welcome'])->middleware('auth')->name('home');
-Route::get('/categorias/{id}', [ProdutoController::class, 'categoriaHome'])->middleware('auth')->name('home.categoria');
-Route::post('/entrar', [LoginController::class, 'entrar'])->middleware('auth')->name('login.entrar');
-Route::get('/registrar', [UserController::class, 'create'])->middleware('auth')->name('registrar');
-Route::post('/registrar', [UserController::class, 'store'])->middleware('auth')->name('user.store');
-Route::get('/sair', [LoginController::class, 'sair'])->middleware('auth')->name('user.sair');
+Route::get('/', [ProdutoController::class, 'welcome'])->name('home');
+Route::get('/categorias/{id}', [ProdutoController::class, 'categoriaHome'])->name('home.categoria');
+Route::post('/entrar', [LoginController::class, 'entrar'])->name('login.entrar');
+Route::get('/registrar', [UserController::class, 'create'])->name('registrar');
+Route::post('/registrar', [UserController::class, 'store'])->name('user.store');
+Route::get('/sair', [LoginController::class, 'sair'])->name('user.sair');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -69,6 +69,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/pedido/finalizados', [PedidoController::class, 'pedidosFinalizados'])->middleware('auth')->name('pedido.finalizados');
     Route::get('/pedido/visualizar/{id}', [PedidoController::class, 'visualizarItens'])->middleware('auth')->name('pedido.visualizar');
     Route::get('/pedido/finalizar/{id}', [PedidoController::class, 'finalizar'])->middleware('auth')->name('pedido.finalizar');
+
     //Relatorios
     Route::get('/relatorio/venda', [RelatorioController::class, 'index'])->middleware('auth')->name('relatorio.venda');
     //Usuários
@@ -91,6 +92,7 @@ Route::middleware('admin')->group(function () {
 });
 
 Route::middleware('cliente')->group(function () {
+
     Route::get('/carrinho', [PedidoController::class, 'index'])->middleware('auth')->name('carrinho');
     Route::get('/carrinho/adicionar/{id}', [PedidoController::class, 'adicionar'])->middleware('auth')->name('carrinho.adicionar');
     Route::get('/carrinho/diminuir/{id}', [PedidoController::class, 'diminuir'])->middleware('auth')->name('carrinho.diminuir');
@@ -98,6 +100,9 @@ Route::middleware('cliente')->group(function () {
     Route::get('/carrinho/concluir/{id}', [PedidoController::class, 'concluir'])->middleware('auth')->name('carrinho.concluir');
     Route::get('/pedidos/visualizar/{id}', [PedidoController::class, 'visualizarItensCliente'])->middleware('auth')->name('pedido.cliente.visualizar');
     Route::get('/pedido/historico', [PedidoController::class, 'historico'])->middleware('auth')->name('pedido.historico');
+
+    Route::get('/produtos/visualizar/{id}', [ProdutoController::class, 'showCliente'])->name('produtos.cliente.show');
+
 });
 // Route::get('/teste',[LoginController::class, 'testeC'])->name('testec')->middleware('cliente');
 // Route::get('/testeA',[LoginController::class, 'testeA'])->name('testea')->middleware('admin');

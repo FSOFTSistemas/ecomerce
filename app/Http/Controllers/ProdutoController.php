@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\Pedido;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CategoriaController;
+use Illuminate\Support\Facades\Auth;
 
 class ProdutoController extends Controller
 {
@@ -118,6 +120,15 @@ class ProdutoController extends Controller
         $produto = Produto::find($id);
         $categorias = Categoria::where('status', '=', 'ativo')->get();
         return view('produto/visualizar', ['produto' => $produto , 'categorias' => $categorias]);
+    }
+
+    public function showCliente($id)
+    {
+        $usuario = Auth::user();
+        $produto = Produto::find($id);
+
+        // $categorias = Categoria::where('status', '=', 'ativo')->get();
+        return view('cliente.visualizarProduto', ['produto' => $produto]);
     }
 
     /**
