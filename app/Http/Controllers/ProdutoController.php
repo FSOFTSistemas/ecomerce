@@ -132,10 +132,12 @@ class ProdutoController extends Controller
     {
         $usuario = Auth::user();
         $produto = Produto::find($id);
+
         $foto1 = 'data:image/jpeg;base64,' . $produto->foto1;
         $foto2 = 'data:image/jpeg;base64,' . $produto->foto2;
         $foto3 = 'data:image/jpeg;base64,' . $produto->foto3;
         
+
         // $categorias = Categoria::where('status', '=', 'ativo')->get();
         return view('cliente.visualizarProduto', ['produto' => $produto, 'foto1' => $foto1, 'foto2' => $foto2, 'foto3' => $foto3]);
     }

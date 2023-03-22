@@ -32,7 +32,11 @@ Route::post('/entrar', [LoginController::class, 'entrar'])->name('login.entrar')
 Route::get('/registrar', [UserController::class, 'create'])->name('registrar');
 Route::post('/registrar', [UserController::class, 'store'])->name('user.store');
 Route::get('/sair', [LoginController::class, 'sair'])->name('user.sair');
+
 Route::get('/produtos/visualizar/{id}', [ProdutoController::class, 'showCliente'])->name('produtos.cliente.show');
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -71,7 +75,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/pedido/finalizados', [PedidoController::class, 'pedidosFinalizados'])->middleware('auth')->name('pedido.finalizados');
     Route::get('/pedido/visualizar/{id}', [PedidoController::class, 'visualizarItens'])->middleware('auth')->name('pedido.visualizar');
     Route::get('/pedido/finalizar/{id}', [PedidoController::class, 'finalizar'])->middleware('auth')->name('pedido.finalizar');
-    
+
     //Relatorios
     Route::get('/relatorio/venda', [RelatorioController::class, 'index'])->middleware('auth')->name('relatorio.venda');
     //Usuários
