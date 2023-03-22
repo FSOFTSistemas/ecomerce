@@ -470,7 +470,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Vendas',
-                    'url' => 'relatorio/venda',
+                    'url' => 'relatorio/vendas',
                     'icon'        => 'fas fa-shopping-cart',
                     'label_color' => 'success',
                 ],

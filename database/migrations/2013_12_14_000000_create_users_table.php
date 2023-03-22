@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -25,6 +26,11 @@ return new class extends Migration
             $table->string('senha');
             $table->timestamps();
         });
+
+        DB::table('users')->insert([
+            ['tipo' => 'admin', 'nome' => 'admin', 'endereco_id' => 1 ,'email' => 'adm@gmail.com', 'senha' => '$2y$10$jWP5W9GdlhM3dQE9QKt0Hu2ohKuFfgFiBX8WO6hbu5JLzcRuwMT1W', 'created_at' => date('y-m-d h:m:s'), 'updated_at' => date('y-m-d h:m:s')],
+        ]);
+
     }
 
     /**
@@ -36,5 +42,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('users');
     }
-  
+
 };

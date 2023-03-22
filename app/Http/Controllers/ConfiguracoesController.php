@@ -144,12 +144,12 @@ class ConfiguracoesController extends Controller
             $arrayConfig['tx_id'] = $dados['tx_id'];
             $config = Configuracoes::create($arrayConfig);
 
-            return view('empresa.create');
+            return redirect()->route('empresa.main');
 
         } else {
             Configuracoes::find($cfg[0]->id)->update($dados);
 
-            return view('empresa.create');
+            return redirect()->route('empresa.main');
         }
 
     }
