@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string("nome");
             $table->string("descricao");
-            $table->string("foto")->nullable();
+            $table->binary("foto1")->nullable();
+            $table->binary("foto2")->nullable();
+            $table->binary("foto3")->nullable();
             $table->double("preco_venda");
             $table->double("preco_promocao");
             $table->integer("estoque");

@@ -445,7 +445,7 @@
                 @foreach ($produtos as $produto)
                     @if ($produto->item_ativo == 'sim')
                         <div class="card cartao">
-                            <img class="card-img-top" src="{{ asset($produto->foto) }}" alt="Card image cap">
+                            <img class="card-img-top" src="{{ asset($produto->foto1) }}" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $produto->nome }}</h5>
                                 <p class="card-text">{{ $produto->descricao }}</p>

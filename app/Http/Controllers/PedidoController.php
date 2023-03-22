@@ -32,7 +32,7 @@ class PedidoController extends Controller
             $itens[$i]['produto_id'] = $produto['id'];
             $itens[$i]['nome'] = $produto['nome'];
             $itens[$i]['descricao'] = $produto['descricao'];
-            $itens[$i]['foto'] = $produto['foto'];
+            $itens[$i]['foto1'] = $produto['foto1'];
             if($produto['promocao_ativa'] == 'sim'){
                 $itens[$i]['preco'] = $produto['preco_promocao'];
             }else{
@@ -246,7 +246,7 @@ class PedidoController extends Controller
         $aux = array();
         $produtos = array();
         for ($i=0; $i < count($itensPedidos); $i++) { 
-            $aux["fotoProduto"] = Produto::find($itensPedidos[$i]->produto_id)->foto;
+            $aux["fotoProduto"] = Produto::find($itensPedidos[$i]->produto_id)->foto1;
             $aux["nomeProduto"] = Produto::find($itensPedidos[$i]->produto_id)->nome;
             $aux["idProduto"] = Produto::find($itensPedidos[$i]->produto_id)->id;
             $aux["descricaoProduto"] = Produto::find($itensPedidos[$i]->produto_id)->descricao;
@@ -285,7 +285,7 @@ class PedidoController extends Controller
         $totalPreco = 0;
         $totalDesconto = 0;
         for ($i=0; $i < count($itensPedidos); $i++) { 
-            $aux["fotoProduto"] = Produto::find($itensPedidos[$i]->produto_id)->foto;
+            $aux["fotoProduto"] = Produto::find($itensPedidos[$i]->produto_id)->foto1;
             $aux["nomeProduto"] = Produto::find($itensPedidos[$i]->produto_id)->nome;
             $aux["idProduto"] = Produto::find($itensPedidos[$i]->produto_id)->id;
             $aux["descricaoProduto"] = Produto::find($itensPedidos[$i]->produto_id)->descricao;
