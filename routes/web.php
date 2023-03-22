@@ -27,11 +27,12 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/', [ProdutoController::class, 'welcome'])->name('home');
-Route::get('/categorias/{id}', [ProdutoController::class, 'categoriaHome'])->middleware('auth')->name('home.categoria');
-Route::post('/entrar', [LoginController::class, 'entrar'])->middleware('auth')->name('login.entrar');
-Route::get('/registrar', [UserController::class, 'create'])->middleware('auth')->name('registrar');
-Route::post('/registrar', [UserController::class, 'store'])->middleware('auth')->name('user.store');
-Route::get('/sair', [LoginController::class, 'sair'])->middleware('auth')->name('user.sair');
+Route::get('/categorias/{id}', [ProdutoController::class, 'categoriaHome'])->name('home.categoria');
+Route::post('/entrar', [LoginController::class, 'entrar'])->name('login.entrar');
+Route::get('/registrar', [UserController::class, 'create'])->name('registrar');
+Route::post('/registrar', [UserController::class, 'store'])->name('user.store');
+Route::get('/sair', [LoginController::class, 'sair'])->name('user.sair');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
