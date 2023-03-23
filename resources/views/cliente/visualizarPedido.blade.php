@@ -5,103 +5,119 @@
 @section('conteudo')
     <div class="span9">
         <ul class="breadcrumb">
-            <li><a href="{{ route('home')}}">Home</a> <span class="divider">/</span> Carrinho <span class="divider">/</span></li>
+            <li><a href="{{ route('home') }}">Home</a> <span class="divider">/</span> Carrinho <span class="divider">/</span>
+            </li>
             <li class="active"> Histórico</li>
         </ul>
-        <h3> Pedido Nº {{$pedido->id}}<a href="{{ route('pedido.historico')}}" class="btn btn-large pull-right">
-             Histórico de pedidos </a>
+        <h3> Resumo do Pedido Nº {{ $pedido->id }}
+            {{-- <a href="{{ route('pedido.historico')}}" class="btn btn-large pull-right">
+             Histórico de pedidos </a> --}}
         </h3>
         <hr class="soft" />
-        {{-- <table class="table table-bordered">
-        <tr>
-            <th> I AM ALREADY REGISTERED </th>
-        </tr>
-        <tr>
-            <td>
-                <form class="form-horizontal">
-                    <div class="control-group">
-                        <label class="control-label" for="inputUsername">Username</label>
-                        <div class="controls">
-                            <input type="text" id="inputUsername" placeholder="Username">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="inputPassword1">Password</label>
-                        <div class="controls">
-                            <input type="password" id="inputPassword1" placeholder="Password">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="controls">
-                            <button type="submit" class="btn">Sign in</button> OR <a href="register.html"
-                                class="btn">Register Now!</a>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="controls">
-                            <a href="forgetpass.html" style="text-decoration:underline">Forgot
-                                password ?</a>
-                        </div>
-                    </div>
-                </form>
-            </td>
-        </tr>
-    </table> --}}
 
-    {{-- 
-        @foreach ($produtos as $produto)
-                    
-                        <div class="card cartao">
-                          <img class="card-img-top" src=""  alt="Card image cap">
-                          <div class="card-body">
-                            <h5 class="card-title"></h5>
-                            <p class="card-text"></p>
-                            <p class="card-text">Quantidade:  | Valor: </p>
-                            <p class="card-text"><small class="text-muted"><a class="btn btn-success"
-                                href="{{ route('produto.show', $produto['idProduto']) }}">Visualizar</a></small></p>
-                          </div>
-                        </div>
-                    
-                    @endforeach --}}
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Produto</th>
-                    <th>Nome</th>
-                    <th>Descricao</th>
-                    <th>Quantidade</th>
-                    <th>Preço</th>
-                    <th>Desconto</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($produtosPedidos as $produto)
+        <div style="display: flex; flex-direction: column; ">
+            <h4 style="font-weight: bold">Dados do cliente</h4>
+            <table class="table table-bordered" style="">
+                <tbody>
                     <tr>
-                        <td> <img width="60" src="{{ asset($produto['fotoProduto']) }}" alt="" /></td>
-                        <td> {{ $produto['nomeProduto'] }} </td>
-                        <td>{{ $produto['descricaoProduto'] }}</td>
-                        <td> {{ $produto['quantidadeProduto'] }}</td>
-                        <td> {{ $produto['precoProduto']}}</td>
-                        <td> {{ $produto['descontoProduto']}} </td>
-                        <td>{{ $produto['precoTotalProduto']}}</td>
+                        <th width="15%">Nome</th>
+                        <td> {{ $cliente->nome }} </td>
                     </tr>
-                @endforeach
-               
+                    <tr>
+                        <th>CPF</th>
+                        <td>{{ $cliente->cpf }}</td>
+                    </tr>
+                    <tr>
+                        <th>Telefone</th>
+                        <td> {{ $cliente->telefone }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Email</th>
+                        <td> {{ $cliente->email }}</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <div style="display: flex; flex-direction: column;  ">
+            <h4 style="font-weight: bold">Endereço</h4>
+        <table class="table table-bordered" style="">
+            <tbody>
                 <tr>
-                    <td colspan="6" style="text-align:right">Desconto total: </td>
-                    
-                    <td> {{$totalDesconto}}</td>
+                    <th width="15%">Rua</th>
+                    <td> {{ $endereco->rua }} </td>
                 </tr>
                 <tr>
-                    <td colspan="6" style="text-align:right"><strong>Total </strong></td>
-                    <td class="label label-important" style="display:block"> <strong> R${{$totalPreco}} </strong>
-                    </td>
+                    <th>Bairro</th>
+                    <td>{{ $endereco->bairro }}</td>
                 </tr>
+                <tr>
+                    <th>Número</th>
+                    <td> {{ $endereco->numero }}</td>
+                </tr>
+
+                <tr>
+                    <th>Cidade</th>
+                    <td> {{ $endereco->cidade }}</td>
+                </tr>
+                <tr>
+                    <th>Estado</th>
+                    <td> {{ $endereco->estado }}</td>
+                </tr>
+
             </tbody>
         </table>
+    </div>
+            
+            
 
-        <a href="#" class="btn btn-large" onclick="location.href = document.referrer;">Voltar</a>
+            <table class="table table-bordered" style="">
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Nome</th>
+                        <th>Descricao</th>
+                        <th>Quantidade</th>
+                        <th>Preço</th>
+                        <th>Desconto</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($produtosPedidos as $produto)
+                        <tr>
+                            <td> <img width="60" src="{{ 'data:image/jpeg;base64,'.$produto['fotoProduto'] }}" alt="" /></td>
+                            <td> {{ $produto['nomeProduto'] }} </td>
+                            <td>{{ $produto['descricaoProduto'] }}</td>
+                            <td> {{ $produto['quantidadeProduto'] }}</td>
+                            <td> {{ $produto['precoProduto'] }}</td>
+                            <td> {{ $produto['descontoProduto'] }} </td>
+                            <td>{{ $produto['precoTotalProduto'] }}</td>
+                        </tr>
+                    @endforeach
+
+                    <tr>
+                        <td colspan="6" style="text-align:right">Desconto total: </td>
+
+                        <td> {{ $totalDesconto }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" style="text-align:right"><strong>Total: </strong></td>
+                        <td class="label label-important" style="display:block"> <strong> R${{ $totalPreco }} </strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" style="text-align:right;"><strong>Forma de pagamento: </strong></td>
+                        <td>{{$pedido->forma_pagamento}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        
+
+        <a href="#" class="btn btn-success" onclick="location.href = document.referrer;">Voltar</a>
+        <button class="btn btn-success pull-right" type="submit"><a href="{{route('carrinho.concluir', $pedido->id)}}"> <i class="icon-arrow-right"></i>Finalizar compra</a></button>
         {{-- <a href="{{route('carrinho.concluir',$pedido->id)}}" class="btn btn-large pull-right">Concluir <i class="icon-arrow-right"></i></a> --}}
 
     </div>

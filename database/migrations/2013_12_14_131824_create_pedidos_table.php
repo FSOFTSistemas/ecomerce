@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('data')->nullable();
             $table->enum('status',['pendente','aberto','finalizado'])->nullable();
             $table->foreignId('user_id')->constrained('users')->nullable();
+            $table->string('forma_pagamento')->nullable();
             $table->decimal('total')->nullable();
             $table->decimal('subtotal')->nullable();
             $table->decimal('desconto')->nullable();
