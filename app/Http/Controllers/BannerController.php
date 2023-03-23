@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
+use App\Services\BannerServices;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,22 @@ class BannerController extends Controller
      */
     public function index()
     {
-        return view('empresa.banners');
+        $banners = Banner::all();
+
+        if ($banners->count() > 0) {
+
+            $img1 = 'data:image/jpeg;base64,' . $banners[0]->foto1;
+            $img2 = 'data:image/jpeg;base64,' . $banners[0]->foto2;
+            $img3 = 'data:image/jpeg;base64,' . $banners[0]->foto3;
+
+            return view('empresa.banners', ['banner1' => $img1, 'banner2' => $img2, 'banner3' => $img3]);
+
+        } else {
+
+            return view('empresa.banners');
+
+        }
+
     }
 
     /**
@@ -25,7 +41,7 @@ class BannerController extends Controller
      */
     public function create()
     {
-        return view('empresa.banners');
+        //
     }
 
     /**
@@ -36,55 +52,65 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        $res = 0;
 
-        $dados = $request->all();
+        // $request->validate([
+        //     'BannerMain' => 'required',
+        //     'Banner2' => 'required',
+        //     'Banner3' => 'required'
+        // ]);
 
-        try {
-            if ($request->hasFile('BannerMain') && $request->hasFile('Banner2') && $request->hasFile('Banner3')) {
+        $banners = Banner::all();
 
-                                                        // FOTO 1
-                $imagem = $request->file('BannerMain');
-                $num = rand(1111, 9999);
-                $dir = "img/banner_main";
-                $ext = $imagem->guessClientExtension();
-                $nomeImagem = "imagem_" . $num . "." . $ext;
-                $imagem->move($dir, $nomeImagem);
-                $dados['BannerMain'] = $dir . "/" . $nomeImagem;
+        if ($banners->count() == 1) {
 
-                                                        // FOTO 2
-                $imagem = $request->file('Banner2');
-                $num = rand(1111, 9999);
-                $dir = "img/banner_2";
-                $ext = $imagem->guessClientExtension();
-                $nomeImagem = "imagem_" . $num . "." . $ext;
-                $imagem->move($dir, $nomeImagem);
-                $dados['Banner2'] = $dir . "/" . $nomeImagem;
+            if (empty($request->BannerMain) && empty($request->Banner) && empty($request->Banner3)) {
+                $imagem1 = $request->BannerMain;
+                $imagem2 = $request->Banner2;
+                $imagem3 = $request->Banner3;
+            } else {
+                $imgcode1 = $request->BannerMain;
+                $imgcode2 = $request->Banner2;
+                $imgcode3 = $request->Banner3;
 
-                                                        // FOTO 3
+                $imagem1 = $this->encode($imgcode1);
+                $imagem2 = $this->encode($imgcode2);
+                $imagem3 = $this->encode($imgcode3);
+            }
 
-                $imagem = $request->file('Banner3');
-                $num = rand(1111, 9999);
-                $dir = "img/banner_3";
-                $ext = $imagem->guessClientExtension();
-                $nomeImagem = "imagem_" . $num . "." . $ext;
-                $imagem->move($dir, $nomeImagem);
-                $dados['Banner3'] = $dir . "/" . $nomeImagem;
+            $servico = new BannerServices();
+            $result = $servico->atualizar(
+                $imagem1,
+                $imagem2,
+                $imagem3,
+                $banners[0]->id
+            );
 
-            Banner::create($dados);
-
-            $banner = Banner::all();
-            return view('empresa.banners', ['banner' => $banner]);
+            return redirect()->route('banner.main');
 
         } else {
-            return view('empresa.banners');
-        }
-        } catch (Exception $e) {
-            return $res;
+
+            $imgcode1 = $request->BannerMain;
+            $imgcode2 = $request->Banner2;
+            $imgcode3 = $request->Banner3;
+
+            $imagem1 = $this->encode($imgcode1);
+            $imagem2 = $this->encode($imgcode2);
+            $imagem3 = $this->encode($imgcode3);
+
+            $servico = new BannerServices();
+            $result = $servico->inserir(
+                $imagem1,
+                $imagem2,
+                $imagem3
+            );
+
+            return redirect()->route('banner.main');
+
         }
 
 
     }
+
 
     /**
      * Display the specified resource.
@@ -129,5 +155,10 @@ class BannerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function encode($imag)
+    {
+        return base64_encode(file_get_contents($imag));
     }
 }

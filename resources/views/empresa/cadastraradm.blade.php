@@ -20,17 +20,19 @@
 
                 <div class="form-group">
                     <label for="">Nome</label>
-                    <input type="text" class="form-control" name="nome" id="nome" style="text-transform: uppercase;">
+                    <input type="text" class="form-control" name="nome" id="nome"
+                        style="text-transform: uppercase;">
                 </div>
 
                 <div class="form-group">
                     <label for="">Telefone</label>
-                    <input type="number" class="form-control" name="telefone" id="telefone">
+                    <input type="tel" maxlength="15" onkeyup="handlePhone(event)" class="form-control" id="telefone"
+                    name="telefone" placeholder="(DD) 99999-9999">
                 </div>
 
                 <div class="form-group">
                     <label for="">CPF</label>
-                    <input type="number" class="form-control" name="cpf" id="cpf">
+                    <input type="text" onblur="this.value = formatarCpf(this.value);" maxlength="11" class="form-control" name="cpf" id="cpf" placeholder="000.000.000-00">
                 </div>
 
                 <div class="form-group">
@@ -96,4 +98,32 @@
         </div>
 
     </form>
+
+    <script>
+        const handlePhone = (event) => {
+            let input = event.target
+            input.value = phoneMask(input.value)
+        }
+        const phoneMask = (value) => {
+            if (!value) return ""
+            value = value.replace(/\D/g, '')
+            value = value.replace(/(\d{2})(\d)/, "($1) $2")
+            value = value.replace(/(\d)(\d{4})$/, "$1-$2")
+            return value
+        }
+        function formatarCpf(valor) {
+            // Remove qualquer caracter que não seja número
+            valor = valor.replace(/\D/g, '');
+            // Verifica se é CPF (11 dígitos)
+            if (valor.length === 11) {
+                // Formata o CPF ###.###.###-##
+                return valor.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+            }
+            // Não é CPF
+            else {
+                return valor;
+            }
+        }
+    </script>
+
 @endsection
