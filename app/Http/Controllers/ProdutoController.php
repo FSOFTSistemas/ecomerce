@@ -80,14 +80,20 @@ class ProdutoController extends Controller
                 $dados['item_destaque'] = 'nao';
             }
 
-            if ($request->hasFile('foto')) {
-                $imagem = $request->file('foto');
-                $num = rand(1111, 9999);
-                $dir = "img/produtos";
-                $ext = $imagem->guessClientExtension();
-                $nomeImagem = "imagem_" . $num . "." . $ext;
-                $imagem->move($dir, $nomeImagem);
-                $dados['foto'] = $dir . "/" . $nomeImagem;
+            if ($request->hasFile('foto1')) {
+                $imagemcode = $request->file('foto1');
+                $imagem = $this->encode($imagemcode);
+                $dados['foto1'] = $imagem;
+            }
+            if ($request->hasFile('foto2')) {
+                $imagemcode = $request->file('foto2');
+                $imagem = $this->encode($imagemcode);
+                $dados['foto2'] = $imagem;
+            }
+            if ($request->hasFile('foto3')) {
+                $imagemcode = $request->file('foto3');
+                $imagem = $this->encode($imagemcode);
+                $dados['foto3'] = $imagem;
             }
 
             Produto::create($dados);
@@ -126,8 +132,14 @@ class ProdutoController extends Controller
     {
         $usuario = Auth::user();
         $produto = Produto::find($id);
+
+        $foto1 = 'data:image/jpeg;base64,' . $produto->foto1;
+        $foto2 = 'data:image/jpeg;base64,' . $produto->foto2;
+        $foto3 = 'data:image/jpeg;base64,' . $produto->foto3;
+        
+
         // $categorias = Categoria::where('status', '=', 'ativo')->get();
-        return view('cliente.visualizarProduto', ['produto' => $produto]);
+        return view('cliente.visualizarProduto', ['produto' => $produto, 'foto1' => $foto1, 'foto2' => $foto2, 'foto3' => $foto3]);
     }
 
     /**
@@ -173,14 +185,20 @@ class ProdutoController extends Controller
             $dados['item_destaque'] = 'nao';
         }
 
-        if ($request->hasFile('foto')) {
-            $imagem = $request->file('foto');
-            $num = rand(1111, 9999);
-            $dir = "img/produtos";
-            $ext = $imagem->guessClientExtension();
-            $nomeImagem = "imagem_" . $num . "." . $ext;
-            $imagem->move($dir, $nomeImagem);
-            $dados['foto'] = $dir . "/" . $nomeImagem;
+        if ($request->hasFile('foto1')) {
+            $imagemcode = $request->file('foto1');
+            $imagem = $this->encode($imagemcode);
+            $dados['foto1'] = $imagem;
+        }
+        if ($request->hasFile('foto2')) {
+            $imagemcode = $request->file('foto2');
+            $imagem = $this->encode($imagemcode);
+            $dados['foto2'] = $imagem;
+        }
+        if ($request->hasFile('foto3')) {
+            $imagemcode = $request->file('foto3');
+            $imagem = $this->encode($imagemcode);
+            $dados['foto3'] = $imagem;
         }
 
         Produto::find($id)->update($dados);
@@ -220,5 +238,10 @@ class ProdutoController extends Controller
         $registosDestaque = Produto::where('item_destaque', '=', 'sim')->where('item_ativo', '=', 'sim')->get();
         $categorias = Categoria::all();
         return view('cliente/index', ['produtos' => $registros, 'produtosDestaques' => $registosDestaque, 'categorias' => $categorias]);
+    }
+
+    public function encode($imag)
+    {
+        return base64_encode(file_get_contents($imag));
     }
 }

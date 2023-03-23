@@ -164,7 +164,28 @@
                 <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
             </div>
             <div class="custom-file">
-                <input type="file" class="custom-file-input" name="foto"
+                <input type="file" class="custom-file-input" name="foto1"
+                    aria-describedby="inputGroupFileAddon01">
+                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        @if (isset($produto->foto1))
+            <img src="{{ asset($produto->foto1) }}" class="rounded float-left" width="150">
+        @endif
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" name="foto2"
                     aria-describedby="inputGroupFileAddon01">
                 <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
             </div>
@@ -174,7 +195,28 @@
 <div class="row">
     <div class="col-12">
         @if (isset($produto->foto))
-            <img src="{{ asset($produto->foto) }}" class="rounded float-left" width="150">
+            <img src="{{ asset($produto->foto2) }}" class="rounded float-left" width="150">
+        @endif
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" name="foto3"
+                    aria-describedby="inputGroupFileAddon01">
+                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        @if (isset($produto->foto))
+            <img src="{{ asset($produto->foto3) }}" class="rounded float-left" width="150">
         @endif
     </div>
 </div>

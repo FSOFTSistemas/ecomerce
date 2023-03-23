@@ -27,7 +27,7 @@ class HomeController extends Controller
     {
         $servico = new HomeController();
         $produtos = $servico->BuscaEstoque();
-
+    
         // dd($estoques);
         return view('home', ['produtos' => $produtos]);
     }
