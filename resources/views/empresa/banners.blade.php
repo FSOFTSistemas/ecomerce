@@ -8,7 +8,7 @@
 @stop
 @section('content')
 
-    <form action="{{ route('salvar.banner') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('salvar.banner') }}" method="POST" enctype="multipart/form-data" style="border: 0" >
         @csrf
 
         {{-- FOTO 1 --}}
