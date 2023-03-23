@@ -89,7 +89,7 @@
     <div class="container">
 
         <div class="header">
-            <h3>Relatório de vendas por data</h3>
+            <h3>Relatório de pedidos por data</h3>
 
         </div>
         <div class="cab1">
@@ -120,17 +120,17 @@
                 </thead>
 
                 <tbody>
-                    @foreach ($vendas as $vnds)
+                    @foreach ($pedidos as $pdds)
                         <tr>
-                            <td>{{ $vnds->id }}</td>
-                            <td>{{ date('d-m-Y', strtotime($vnds->data)) }}</td>
-                            <td>{{ $vnds->forma_pagamento }}</td>
-                            <td>R$ {{ number_format($vnds->subtotal, 2) }}</td>
-                            <td>R$ {{ number_format($vnds->desconto, 2) }}</td>
-                            <td>R$ {{ number_format($vnds->total, 2) }}</td>
+                            <td>{{ $pdds->id }}</td>
+                            <td>{{ date('d-m-Y', strtotime($pdds->data)) }}</td>
+                            <td>{{ $pdds->forma_pagamento }}</td>
+                            <td>R$ {{ number_format($pdds->subtotal, 2) }}</td>
+                            <td>R$ {{ number_format($pdds->desconto, 2) }}</td>
+                            <td>R$ {{ number_format($pdds->total, 2) }}</td>
                         </tr>
 
-                        {{ $totalt += $vnds->total }}
+                        {{ $totalt += $pdds->total }}
                     @endforeach
                 </tbody>
 

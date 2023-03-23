@@ -36,7 +36,7 @@
                     </div>
                 </form>
 
-                <form class="" action="{{ route('imprime.venda') }}" method="POST">
+                <form class="" action="{{ route('imprime.pedido') }}" method="POST">
                     @csrf
                     <div class="col">
 
