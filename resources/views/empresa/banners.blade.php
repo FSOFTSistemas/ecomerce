@@ -20,6 +20,7 @@
                     <div class="form-group">
                         <label for="imagem">IMAGEM</label>
                         <input type="file" class="form-group" name="BannerMain" id="BannerMain">
+                        <h5 style="color:red">Dimensões da imagem devem ser 1920x500</h5>
                     </div>
 
                     <div class="col-12">
@@ -45,6 +46,7 @@
                     <div class="form-group">
                         <label for="imagem">IMAGEM 2</label>
                         <input type="file" class="form-group" name="Banner2" id="Banner2">
+                        <h5 style="color:red">Dimensões da imagem devem ser 1920x500</h5>
                     </div>
 
                     <div class="col-12">
@@ -70,6 +72,7 @@
                     <div class="form-group">
                         <label for="imagem">IMAGEM 3</label>
                         <input type="file" class="form-group" name="Banner3" id="Banner3">
+                        <h5 style="color:red">Dimensões da imagem devem ser 1920x500</h5>
                     </div>
 
                     <div class="col-12">
