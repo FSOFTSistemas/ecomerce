@@ -15,7 +15,6 @@
 
                 <form class="" action="{{ route('filter.pedido') }}" method="POST" >
                     @csrf
-
                     <div class="col">
                         <div class="row">
 
@@ -41,8 +40,10 @@
                     @csrf
                     <div class="col">
 
-                        <div class="row" style="text-align: right">
-                                <input class="btn btn-secondary" type="submit" value="Imprimir">
+                        <input type="hidden" name="dti" id="dti" value="">
+                        <input type="hidden" name="dtf" id="dtf" value="">
+                        <div class="row">
+                            <button onclick="imprimir()" class="btn btn-secondary" type="submit" >Imprimir</button>
                         </div>
 
                     </div>
@@ -87,4 +88,12 @@
 
     </div>
 
+    <script>
+        function imprimir(){
+            var dti = document.getElementById('inicial').value;
+            var dtf = document.getElementById('final').value;
+            document.getElementById('dti').value= dti;
+            document.getElementById('dtf').value = dtf;
+        }
+    </script>
 @endsection

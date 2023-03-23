@@ -8,6 +8,7 @@ use App\Models\Endereco;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Yoeunes\Toastr\Facades\Toastr;
 
 class ConfiguracoesController extends Controller
 {
@@ -64,6 +65,7 @@ class ConfiguracoesController extends Controller
             ]);
 
         }
+        Toastr()->success('Configuração cadastrada', 'Sucesso');
         return redirect()->route('home.auth');
     }
 

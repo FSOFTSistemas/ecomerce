@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use Yoeunes\Toastr\Facades\Toastr;
 
 class CategoriaController extends Controller
 {
@@ -38,7 +39,7 @@ class CategoriaController extends Controller
     {
         $dados = $request->all();
         Categoria::create($dados);
-
+        Toastr()->success('Categoria cadastrada', 'Sucesso');
         return redirect()->route('categoria.index');
     }
 
