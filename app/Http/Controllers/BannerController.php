@@ -20,11 +20,11 @@ class BannerController extends Controller
 
         if ($banners->count() > 0) {
 
-            $img1 = 'data:image/jpeg;base64,' . $banners[0]->foto1;
+            $img = 'data:image/jpeg;base64,' . $banners[0]->foto1;
             $img2 = 'data:image/jpeg;base64,' . $banners[0]->foto2;
             $img3 = 'data:image/jpeg;base64,' . $banners[0]->foto3;
 
-            return view('empresa.banners', ['banner1' => $img1, 'banner2' => $img2, 'banner3' => $img3]);
+            return view('empresa.banners', ['banner1' => $img, 'banner2' => $img2, 'banner3' => $img3]);
 
         } else {
 
@@ -52,7 +52,7 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-
+        dd($request);
         // $request->validate([
         //     'BannerMain' => 'required',
         //     'Banner2' => 'required',

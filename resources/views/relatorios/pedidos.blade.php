@@ -13,7 +13,7 @@
         <div class="card-body">
             <div class="row">
 
-                <form class="" action="{{ route('filter.pedido') }}" method="POST">
+                <form class="" action="{{ route('filter.pedido') }}" method="POST" >
                     @csrf
 
                     <div class="col">
@@ -36,7 +36,8 @@
                     </div>
                 </form>
 
-                <form class="" action="{{ route('imprime.pedido') }}" method="POST">
+                <form class="" action="{{ route('imprime.venda') }}" method="POST" target="_blank">
+
                     @csrf
                     <div class="col">
 
