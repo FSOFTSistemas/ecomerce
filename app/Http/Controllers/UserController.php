@@ -7,6 +7,7 @@ use App\Models\Pedido;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -21,6 +22,12 @@ class UserController extends Controller
         $servico = new UserController();
         $clientes = $servico->cliente();
         return view('usuarios.usercliente', ['cliente' => $clientes]);
+    }
+
+    public function visualizarPerfil(){
+        $cliente = Auth::user();
+        $endereco = Endereco::find($cliente->endereco_id);
+        return view('cliente.perfil', ['cliente'=>$cliente, 'endereco'=>$endereco]);
     }
 
     /**
@@ -95,6 +102,7 @@ class UserController extends Controller
             $pedido = new Pedido();
             $pedido->status = "pendente";
             $pedido->user_id = $user->id;
+            $pedido->forma_pagamento = "";
             $pedido->save();
             // $arrayUser = array();
             // $arrayUser['endereco_id'] = $endereco->id;
@@ -157,6 +165,16 @@ class UserController extends Controller
         Endereco::find($id)->update($dados);
 
         return redirect()->route('home.auth');
+    }
+
+    public function updateCliente(Request $request, $id)
+    {
+        $dados = $request->all();
+        $cliente = User::find($id);
+        $cliente->update($dados);
+        Endereco::find($cliente->endereco_id)->update($dados);
+
+        return redirect()->route('perfil');
     }
 
 

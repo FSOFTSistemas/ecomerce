@@ -8,45 +8,12 @@
             <li><a href="{{ route('home')}}">Home</a> <span class="divider">/</span></li>
             <li class="active"> Carrinho</li>
         </ul>
-        <h3> Carrinho<a href="{{ route('pedido.historico')}}" class="btn btn-large pull-right">
-             Histórico de pedidos </a>
+        <h3> Carrinho
+            {{-- <a href="{{ route('pedido.historico')}}" class="btn btn-large pull-right">
+             Histórico de pedidos </a> --}}
         </h3>
         <hr class="soft" />
-        {{-- <table class="table table-bordered">
-        <tr>
-            <th> I AM ALREADY REGISTERED </th>
-        </tr>
-        <tr>
-            <td>
-                <form class="form-horizontal">
-                    <div class="control-group">
-                        <label class="control-label" for="inputUsername">Username</label>
-                        <div class="controls">
-                            <input type="text" id="inputUsername" placeholder="Username">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="inputPassword1">Password</label>
-                        <div class="controls">
-                            <input type="password" id="inputPassword1" placeholder="Password">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="controls">
-                            <button type="submit" class="btn">Sign in</button> OR <a href="register.html"
-                                class="btn">Register Now!</a>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="controls">
-                            <a href="forgetpass.html" style="text-decoration:underline">Forgot
-                                password ?</a>
-                        </div>
-                    </div>
-                </form>
-            </td>
-        </tr>
-    </table> --}}
+       
 
         <table class="table table-bordered">
             <thead>
@@ -62,7 +29,7 @@
             <tbody>
                 @foreach ($itens as $item)
                     <tr>
-                        <td> <img width="60" src="{{ $item['foto'] }}" alt="" /></td>
+                        <td> <img width="60" src="{{ 'data:image/jpeg;base64,'.$item['foto1'] }}" alt="" /></td>
                         <td>{{ $item['descricao'] }}</td>
                         <td>
                             <div class="input-append">
@@ -132,19 +99,34 @@
                 <tr>
                     <td colspan="6" style="text-align:right">Desconto total: </td>
                     
-                    <td> {{$totalDesconto}}</td>
+                    <td> {{number_format($totalDesconto,2)}}</td>
                 </tr>
                 <tr>
                     <td colspan="6" style="text-align:right"><strong>Total </strong></td>
-                    <td class="label label-important" style="display:block"> <strong> R${{$totalPreco}} </strong>
+                    <td class="label label-important" style="display:block"> <strong> R${{number_format($totalPreco,2)}} </strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6" style="text-align:right">Selecione a forma de pagamento:</td>
+                    <td>
+                        <form action="{{ route('pedido.cliente.visualizar', $pedido->id) }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="id" value="{{$pedido->id}}">
+                            <select name="forma_pagamento" id="">
+                                <option value="">Selecione</option>
+                                <option value="dinheiro">Dinheiro</option>
+                                <option value="pix">Pix</option>
+                                <option value="cartao">Cartão</option>
+                            </select>
+                        
                     </td>
                 </tr>
             </tbody>
         </table>
 
-        <a href="{{route('home')}}" class="btn btn-large"><i class="icon-arrow-left"></i> Continue comprando
+        <a href="{{route('home')}}" class="btn btn-success"><i class="icon-arrow-left"></i> Continue comprando
         </a>
-        <a href="{{route('carrinho.concluir',$pedido->id)}}" class="btn btn-large pull-right"> <i class="icon-arrow-right"></i></a>
-
+        <button class="btn btn-success pull-right" type="submit"> <i class="icon-arrow-right"></i>Concluir pedido</button>
+    </form>
     </div>
 @endsection

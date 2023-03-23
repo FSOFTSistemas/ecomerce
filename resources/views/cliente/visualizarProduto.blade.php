@@ -6,18 +6,18 @@
     <div class="row" style="padding: 30px; display:flex; justify-content: center; text-align: center">
         <div class="ecommerce-gallery col-lg-5 col-md-6" data-mdb-zoom-effect="true" data-mdb-auto-height="true">
 
-            <img src="{{ asset($produto->foto1) }}" id="mainImg" alt="Gallery image 1"
-                class="img-fluid w-100 pb-1"width="300px" />
+            <img src="{{ $foto1}}" id="mainImg" alt="Gallery image 1"
+                class="img-fluid w-100 pb-1"width="250px" />
 
             <div class="small-img-group" style="display: flex; justify-content: center; ">
                 <div class="small-img-col" style="flex-basis: 24%; cursor: pointer;">
-                    <img src="{{ asset($produto->foto1) }}" alt="Gallery image 1" id="small-img1" class="small-img" />
+                    <img src="{{ $foto1 }}" alt="Gallery image 1" id="small-img1" class="small-img" width="150px"/>
                 </div>
                 <div class="small-img-col" style="flex-basis: 24%; cursor: pointer">
-                    <img src="{{ asset($produto->foto2) }}" alt="Gallery image 1" id="small-img2" class="small-img" />
+                    <img src="{{ $foto2}}" alt="Gallery image 1" id="small-img2" class="small-img" width="150px"/>
                 </div>
                 <div class="small-img-col" style="flex-basis: 24%; cursor: pointer">
-                    <img src="{{ asset($produto->foto3) }}" alt="Gallery image 1" id="small-img3" class="small-img" />
+                    <img src="{{ $foto3 }}"  alt="Gallery image 1" id="small-img3" class="small-img" width="150px"/>
                 </div>
             </div>
 
@@ -26,17 +26,22 @@
             <form action="{{ route('carrinho.adicionar', [$produto->id]) }}"
                 style="display:flex; flex-direction: column; text-align: center; align-items: center; justify-content: space-between">
                 <div style="display: flex; ">
-                    <p style="font-weight: bold">Produto:</p>
+                    <p style="font-weight: bold">Produto: </p>
                     <p>{{ $produto->nome }}</p>
                 </div>
-                <div style="display: flex;">
-                    <p  style="font-weight: bold">Preço:</p>
-                    <p>R${{ $produto->preco_venda }}</p>
+                
+                <div style="display: flex; flex-direction: column" >
+                    <p style="font-weight: bold" >Descrição do produto</p>
+                    <p style="width: 300px">{{ $produto->descricao }}</p>
+                </div>
+                
+                <div style="display: flex; font-weight: bold; color: green; font-size: 18px; margin: 12px 0%">
+                    <p style="">Preço: </p>
+                    <p > R${{ number_format($produto->preco_venda, 2) }}</p>
                 </div>
                 <input type="number" placeholder="Quantidade" name="qtde" id="qtde">
-                <p  style="font-weight: bold">Descrição do produto</p>
-                <p>{{ $produto->descricao }}</p>
-                <button type="submit" style="padding: 10px">Adicionar ao carrinho</button>
+                
+                <button class="btn btn-success" type="submit" style="padding: 10px">Adicionar ao carrinho</button>
             </form>
 
         </div>

@@ -8,8 +8,8 @@
             <li><a href="{{ route('home')}}">Home</a> <span class="divider">/</span> Carrinho <span class="divider">/</span></li>
             <li class="active"> Histórico</li>
         </ul>
-        <h3> Histórico de pedidos <a href="#" class="btn btn-large pull-right" onclick="location.href = document.referrer;">
-            Voltar</a>
+        <h3> Histórico de pedidos <a href="#" class="btn btn-success pull-right" onclick="location.href = document.referrer;">
+            <i class="icon-arrow-left"></i>Voltar</a>
         </h3>
         <hr class="soft" />
         {{-- <table class="table table-bordered">
@@ -108,7 +108,7 @@
             </tbody>
         </table>
 
-        <a href="{{route('home')}}" class="btn btn-large"><i class="icon-arrow-left"></i> Continue comprando
+        <a href="{{route('home')}}" class="btn btn-success"><i class="icon-arrow-left"></i> Continue comprando
         </a>
 
     </div>

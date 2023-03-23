@@ -24,7 +24,8 @@ class User extends Authenticatable
         'cpf',
         'rg',
         'email',
-        'senha'
+        'senha',
+        'endereco_id'
     ];
 
     /**

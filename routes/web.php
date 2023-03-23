@@ -106,8 +106,10 @@ Route::middleware('cliente')->group(function () {
     Route::get('/carrinho/remover/{id}', [PedidoController::class, 'remover'])->middleware('auth')->name('carrinho.remover');
     Route::get('/carrinho/concluir/{id}', [PedidoController::class, 'concluir'])->middleware('auth')->name('carrinho.concluir');
     Route::get('/pedidos/visualizar/{id}', [PedidoController::class, 'visualizarItensCliente'])->middleware('auth')->name('pedido.cliente.visualizar');
+    Route::post('/pedidos/visualizar/{id}', [PedidoController::class, 'visualizarItensCliente'])->middleware('auth')->name('pedido.cliente.visualizar');
     Route::get('/pedido/historico', [PedidoController::class, 'historico'])->middleware('auth')->name('pedido.historico');
-
+    Route::get('/perfil', [UserController::class, 'visualizarPerfil'])->middleware('auth')->name('perfil');
+    Route::put('/perfil/editar/{idu}/{ide}', [UserController::class, 'updateCliente'])->middleware('auth')->name('perfil.editar');
     
 
 });
