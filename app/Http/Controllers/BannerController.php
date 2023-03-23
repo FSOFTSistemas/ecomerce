@@ -63,7 +63,7 @@ class BannerController extends Controller
 
         if ($banners->count() == 1) {
 
-            if (empty($request->BannerMain) && empty($request->Banner) && empty($request->Banner3)) {
+            if (empty($request->BannerMain) && empty($request->Banner2) && empty($request->Banner3)) {
                 $imagem1 = $request->BannerMain;
                 $imagem2 = $request->Banner2;
                 $imagem3 = $request->Banner3;
