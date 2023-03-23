@@ -52,7 +52,6 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
         // $request->validate([
         //     'BannerMain' => 'required',
         //     'Banner2' => 'required',
