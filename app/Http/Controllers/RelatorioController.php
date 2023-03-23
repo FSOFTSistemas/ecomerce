@@ -17,9 +17,11 @@ class RelatorioController extends Controller
      */
     public function index()
     {
+    
+
         $servico = new RelatorioController();
         $vendas = $servico->vendas();
-
+        
         return view('relatorios.vendas', ['vendas' => $vendas]);
     }
 
@@ -127,8 +129,8 @@ class RelatorioController extends Controller
     }
 
     public function filterpedidos(Request $request){
-
-        $inicial = Carbon::parse($request->inicial);
+    
+            $inicial = Carbon::parse($request->inicial);
         $final = Carbon::parse($request->final);
 
         $pedidos = DB::table('pedidos')
@@ -136,13 +138,14 @@ class RelatorioController extends Controller
             ->where('data', '<=', $final->format('Y-m-d'))
             ->where('data','>=', $inicial->format('Y-m-d'))
             ->get();
+      
 
-        return view('relatorios.pedidos', ['pedidos' => $pedidos]);
+        return view('relatorios.pedidos', ['pedidos' => $pedidos, 'inicial' => $inicial, 'final' => $final]);
     }
 
     public function imprimevendas(Request $request) {
-        $inicial = Carbon::parse($request->inicial);
-        $final = Carbon::parse($request->final);
+        $inicial = Carbon::parse($request->dti);
+        $final = Carbon::parse($request->dtf);
 
         $vendas = DB::table('pedidos')
             ->where('pedidos.status', '=', 'finalizado')
@@ -155,8 +158,8 @@ class RelatorioController extends Controller
     }
 
     public function imprimepedidos(Request $request) {
-        $inicial = Carbon::parse($request->inicial);
-        $final = Carbon::parse($request->final);
+        $inicial = Carbon::parse($request->dti);
+        $final = Carbon::parse($request->dtf);
 
         $pedidos = DB::table('pedidos')
             ->where('pedidos.status', '=', 'pendente')

@@ -8,6 +8,7 @@ use App\Models\Produto;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CategoriaController;
 use Illuminate\Support\Facades\Auth;
+use Yoeunes\Toastr\Facades\Toastr;
 
 class ProdutoController extends Controller
 {
@@ -97,7 +98,7 @@ class ProdutoController extends Controller
             }
 
             Produto::create($dados);
-
+            Toastr()->success('Produto cadastrado', 'Sucesso');
             return redirect()->route('produto.index');
         }else{
             $categorias = Categoria::where('status', '=', 'ativo')->get();
