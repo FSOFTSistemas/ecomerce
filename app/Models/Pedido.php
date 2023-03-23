@@ -15,6 +15,7 @@ class Pedido extends Model
         'total',
         'subtotal',
         'desconto',
-        'user_id'
+        'user_id',
+        'forma_pagamento'
     ];
 }
