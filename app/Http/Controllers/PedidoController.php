@@ -22,6 +22,7 @@ class PedidoController extends Controller
      */
     public function index()
     {
+        $x = 0;
         $usuario = Auth::user();
         $pedido = Pedido::where('user_id','=',$usuario->id)->where('status','=','aberto')->first();
         if($pedido){
@@ -38,7 +39,7 @@ class PedidoController extends Controller
             $itens[$i]['foto1'] = $produto['foto1'];
             if($produto['promocao_ativa'] == 'sim'){
                 $itens[$i]['preco'] = $produto['preco_promocao'];
-            }else{
+            }else if($produto['promocao_ativa'] == 'nao'){
                 $itens[$i]['preco'] = $produto['preco_venda'];
             }
             $itens[$i]['total'] = $itemPedidos[$i]['total'];
@@ -46,8 +47,17 @@ class PedidoController extends Controller
             $itens[$i]['quantidade'] = $itemPedidos[$i]['quatidade'];
             $totalPreco = $totalPreco + $itemPedidos[$i]['total'];
             $totalDesconto = $totalDesconto + $itemPedidos[$i]['desconto'];
+            $x = $itens[$i]['quantidade'] - $produto['estoque'];
+
         }
-        return view('cliente/product_summary',['itens' => $itens,'pedido' => $pedido,'totalPreco' => $totalPreco, 'totalDesconto' => $totalDesconto]);
+
+        if ($x > 0){
+            // Toastr()->success('Item adicionado com sucesso', "Success");
+            return redirect()->route('vizualizar',['itens' => $itens,'pedido' => $pedido,'totalPreco' => $totalPreco, 'totalDesconto' => $totalDesconto]);
+        } else {
+            // Toastr()->error('Erro ao adicionar item', "Error");
+            return redirect()->route('home');
+        }
 
         }
         else{
@@ -84,7 +94,7 @@ class PedidoController extends Controller
      */
     public function show(Pedido $pedido)
     {
-        //
+        return view('cliente/product_summary');
     }
 
     /**
