@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Endereco;
 use App\Models\ItemPedido;
 use App\Models\Pedido;
 use App\Models\Produto;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -146,7 +148,8 @@ class PedidoController extends Controller
             $pedidoNovo = Pedido::create([
                 'user_id' => $usuario->id,
                 'status' => 'aberto',
-                'data' => date('Y-m-d')
+                'data' => date('Y-m-d'),
+                'forma_pagamento' => ''
             ]);
             $itemProduto = ItemPedido::create([
                 'pedido_id' => $pedidoNovo->id,
@@ -177,6 +180,7 @@ class PedidoController extends Controller
 
         return redirect()->route('carrinho');
     }
+
 
     public function diminuir($id)
     {
@@ -276,9 +280,13 @@ class PedidoController extends Controller
         return view('cliente/pedido_historico',['pedidos' => $pedidos]);
     }
 
-    public function visualizarItensCliente($id)
+    public function visualizarItensCliente(Request $request)
     {
-        $pedido = Pedido::find($id);
+        
+        $pedido = Pedido::find($request->id);
+        $pedido->forma_pagamento = $request->forma_pagamento;
+        $cliente = User::find($pedido->user_id);
+        $endereco = Endereco::find($cliente->endereco_id);
         $itensPedidos = ItemPedido::where('pedido_id','=',$pedido->id)->get();
         $aux = array();
         $produtos = array();
@@ -299,7 +307,34 @@ class PedidoController extends Controller
             
             $produtos[] = $aux;
         }
-        return view('cliente/visualizarPedido',['produtosPedidos'=>$produtos,'pedido'=>$pedido,'totalPreco' => $totalPreco, 'totalDesconto' => $totalDesconto]);
+        return view('cliente/visualizarPedido',['cliente'=>$cliente, 'endereco'=>$endereco,'produtosPedidos'=>$produtos,'pedido'=>$pedido,'totalPreco' => $totalPreco, 'totalDesconto' => $totalDesconto]);
+    }
+    public function visualizarItensClienteGet($id)
+    {
+        $pedido = Pedido::find($id);
+        $cliente = User::find($pedido->user_id);
+        $endereco = Endereco::find($cliente->endereco_id);
+        $itensPedidos = ItemPedido::where('pedido_id','=',$pedido->id)->get();
+        $aux = array();
+        $produtos = array();
+        $totalPreco = 0;
+        $totalDesconto = 0;
+        for ($i=0; $i < count($itensPedidos); $i++) { 
+            $aux["fotoProduto"] = Produto::find($itensPedidos[$i]->produto_id)->foto1;
+            $aux["nomeProduto"] = Produto::find($itensPedidos[$i]->produto_id)->nome;
+            $aux["idProduto"] = Produto::find($itensPedidos[$i]->produto_id)->id;
+            $aux["descricaoProduto"] = Produto::find($itensPedidos[$i]->produto_id)->descricao;
+            $aux["precoProduto"] = Produto::find($itensPedidos[$i]->produto_id)->preco_venda;
+            $aux["quantidadeProduto"] = $itensPedidos[$i]->quatidade;
+            $aux["precoTotalProduto"] = $itensPedidos[$i]->total;
+            $aux["descontoProduto"] = $itensPedidos[$i]->desconto;
+
+            $totalPreco = $totalPreco + $itensPedidos[$i]->total;
+            $totalDesconto = $totalDesconto + $itensPedidos[$i]->desconto;
+            
+            $produtos[] = $aux;
+        }
+        return view('cliente/visualizarPedido',['cliente'=>$cliente, 'endereco'=>$endereco,'produtosPedidos'=>$produtos,'pedido'=>$pedido,'totalPreco' => $totalPreco, 'totalDesconto' => $totalDesconto]);
     }
 
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Produto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -27,7 +28,6 @@ class HomeController extends Controller
     {
         $servico = new HomeController();
         $produtos = $servico->BuscaEstoque();
-    
         // dd($estoques);
         return view('home', ['produtos' => $produtos]);
     }
@@ -40,5 +40,7 @@ class HomeController extends Controller
 
         return $estoque;
     }
+
+    
 
 }

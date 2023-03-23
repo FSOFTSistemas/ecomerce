@@ -17,13 +17,13 @@
  <script src="themes/js/less.js" type="text/javascript"></script> -->
 
     <!-- Bootstrap style -->
-    <link href="{{URL::asset('themes/bootshop/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{URL::asset('themes/css/base.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ URL::asset('themes/bootshop/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ URL::asset('themes/css/base.css') }}" rel="stylesheet" type="text/css">
     {{-- <link id="callCss" rel="stylesheet" href="themes/bootshop/bootstrap.min.css" media="screen" />
     <link href="themes/css/base.css" rel="stylesheet" media="screen" /> --}}
     <!-- Bootstrap style responsive -->
-    <link href="{{URL::asset('themes/css/bootstrap-responsive.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{URL::asset('themes/css/font-awesome.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ URL::asset('themes/css/bootstrap-responsive.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ URL::asset('themes/css/font-awesome.css') }}" rel="stylesheet" type="text/css">
     {{-- <link href="themes/css/bootstrap-responsive.min.css" rel="stylesheet" />
     <link href="themes/css/font-awesome.css" rel="stylesheet" type="text/css"> --}}
     <!-- Google-code-prettify -->
@@ -67,19 +67,9 @@
                     <span class="icon-bar"></span>
                 </a>
                 <div class="navbar-inner" style="height: 100%">
-                    <a class="brand" href="{{route('home')}}"><img src="{{ asset('themes/images/logo.png') }}" alt="Bootsshop" /></a>
-                    {{-- <form class="form-inline navbar-search" method="post" action="products.html" >
-		<input id="srchFld" class="srchTxt" type="text" />
-		  <select class="srchTxt">
-			<option>All</option>
-			<option>CLOTHES </option>
-			<option>FOOD AND BEVERAGES </option>
-			<option>HEALTH & BEAUTY </option>
-			<option>SPORTS & LEISURE </option>
-			<option>BOOKS & ENTERTAINMENTS </option>
-		</select> 
-		  <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
-    </form> --}}
+                    <a class="brand" href="{{ route('home') }}"><img src="{{ asset('themes/images/logo.png') }}"
+                            alt="Bootsshop" /></a>
+                    
                     <ul class="nav pull-left">
                         <li class=""><a href="{{ route('home') }}">Home</a></li>
                         <li class=""><a href="#destaque">Destaques</a></li>
@@ -88,60 +78,70 @@
                     <ul id="topMenu" class="nav pull-right">
                         {{-- <li class=""><a href="special_offer.html">Specials Offer</a></li>
 	 <li class=""><a href="normal.html">Delivery</a></li> --}}
-                @if (Auth::check())
-                        <li class="">
-                            <a id="myCart" href="{{route('carrinho')}}">
-                                <i class="fa-thin fa-cart-shopping"></i>
-                                <p style="font-size: 20px">🛒</p>
-                            </a>
-                        </li>
-                            
-                        
-                    @else
-                        <li>
-                            <a id="myCart" href="" onclick="avisoParaLogar()">
-                                <i class="fa-regular fa-cart-shopping"></i>
-                            </a>
-                        </li>
-                            
-                      
-                    @endif
-                        @if(Auth::check())
-                        <li class=""><a href="{{ route('user.sair') }}">Sair</a></li>
+                        @if (Auth::check())
+                            <li class="">
+                                <a href="{{ route('perfil') }}">Perfil
+                                </a>
+                            </li>
+
+                            <li class="">
+                                <a href="{{ route('pedido.historico') }}">Histórico de pedidos
+                                </a>
+                            </li>
+
+                            <li class="">
+                                <a id="myCart" href="{{ route('carrinho') }}">
+                                    <i class="fa-thin fa-cart-shopping"></i>
+                                    <p style="font-size: 20px">🛒</p>
+                                </a>
+                            </li>
                         @else
-                        <li class=""><a href="{{ route('registrar') }}">Registrar</a></li>                       
-                        <li class="">
-                            <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span
-                                    class="btn btn-large btn-primary">Entrar</span></a>
-                            <div id="login" class="modal hide fade in" tabindex="-1" role="dialog"
-                                aria-labelledby="login" aria-hidden="false">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal"
-                                        aria-hidden="true">×</button>
-                                    <h3>Login</h3>
+                            <li>
+                                <a href="" onclick="avisoParaLogar()">
+                                    <i class="fa-regular fa-cart-shopping"></i>
+                                </a>
+                            </li>
+                        @endif
+                        @if (Auth::check())
+                            <li class=""><a href="{{ route('user.sair') }}">Sair</a></li>
+                        @else
+                            <li class=""><a href="{{ route('registrar') }}">Registrar</a></li>
+                            <li class="">
+                                <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span
+                                        class="btn btn-large btn-primary">Entrar</span></a>
+                                <div id="login" class="modal hide fade in" tabindex="-1" role="dialog"
+                                    aria-labelledby="login" aria-hidden="false">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"
+                                            aria-hidden="true">×</button>
+                                        <h3>Login</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="form-horizontal loginFrm" action="{{ route('login.entrar') }}"
+                                            method="POST">
+                                            @csrf
+                                            <div class="control-group">
+                                                <input type="text" name="email" id="inputEmail"
+                                                    placeholder="Email">
+                                            </div>
+                                            <div class="control-group">
+                                                <input type="password" name="password" id="inputPassword"
+                                                    placeholder="Password">
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="checkbox">
+                                                    <input type="checkbox"> Remember me
+                                                </label>
+                                            </div>
+                                            <button type="submit" class="btn btn-success">Sign in</button>
+                                            <button class="btn" data-dismiss="modal"
+                                                aria-hidden="true">Close</button>
+                                        </form>
+
+
+                                    </div>
                                 </div>
-                                <div class="modal-body">
-                                    <form class="form-horizontal loginFrm" action="{{ route('login.entrar') }}" method="POST">
-                                        @csrf
-                                        <div class="control-group">
-                                            <input type="text" name="email" id="inputEmail" placeholder="Email">
-                                        </div>
-                                        <div class="control-group">
-                                            <input type="password" name="password" id="inputPassword" placeholder="Password">
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="checkbox">
-                                                <input type="checkbox"> Remember me
-                                            </label>
-                                        </div>
-                                        <button type="submit" class="btn btn-success">Sign in</button>
-                                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                                    </form>
-                                    
-                                    
-                                </div>
-                            </div>
-                        </li>
+                            </li>
                         @endif
                     </ul>
                 </div>
