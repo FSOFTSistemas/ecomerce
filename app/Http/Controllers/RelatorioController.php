@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pedido;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -105,7 +106,7 @@ class RelatorioController extends Controller
 
         $pedidos = DB::table('pedidos')
         ->select('pedidos.*')
-        ->where('pedidos.status', '=', 'aberto')
+        ->where('pedidos.status', '=', 'pendente')
         ->get();
 
         return $pedidos;
@@ -131,7 +132,7 @@ class RelatorioController extends Controller
         $final = Carbon::parse($request->final);
 
         $pedidos = DB::table('pedidos')
-            ->where('pedidos.status', '=', 'aberto')
+            ->where('pedidos.status', '=', 'pendente')
             ->where('data', '<=', $final->format('Y-m-d'))
             ->where('data','>=', $inicial->format('Y-m-d'))
             ->get();
@@ -144,12 +145,26 @@ class RelatorioController extends Controller
         $final = Carbon::parse($request->final);
 
         $vendas = DB::table('pedidos')
-            ->where('pedidos.status', '=', 'aberto')
+            ->where('pedidos.status', '=', 'finalizado')
             ->where('data', '<=', $final->format('Y-m-d'))
             ->where('data','>=', $inicial->format('Y-m-d'))
             ->get();
 
         $pdf = Pdf::loadView('relatorios.venda_data', ['vendas' => $vendas, 'dt1' => $inicial, 'dt2' => $final])->setpaper('A4');
+        return $pdf->stream(date('Y-m-d_H-i-s').'_vendas.pdf');
+    }
+
+    public function imprimepedidos(Request $request) {
+        $inicial = Carbon::parse($request->inicial);
+        $final = Carbon::parse($request->final);
+
+        $pedidos = DB::table('pedidos')
+            ->where('pedidos.status', '=', 'pendente')
+            ->where('data', '<=', $final->format('Y-m-d'))
+            ->where('data','>=', $inicial->format('Y-m-d'))
+            ->get();
+
+        $pdf = Pdf::loadView('relatorios.pedido_data', ['pedidos' => $pedidos, 'dt1' => $inicial, 'dt2' => $final])->setpaper('A4');
         return $pdf->stream(date('Y-m-d_H-i-s').'_vendas.pdf');
     }
 
