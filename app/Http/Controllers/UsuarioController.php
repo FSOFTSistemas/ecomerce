@@ -6,6 +6,7 @@ use App\Models\Endereco;
 use App\Models\Pedido;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Yoeunes\Toastr\Facades\Toastr;
 
 class UsuarioController extends Controller
 {
@@ -85,6 +86,7 @@ class UsuarioController extends Controller
             dd("FEITO");
         
         dd("caiu fora");
+        Toastr()->success('Usuário cadastrado', 'Sucesso');
         return redirect()->route('home');
         dd($request);
     }

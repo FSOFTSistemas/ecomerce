@@ -6,6 +6,7 @@ use App\Models\Banner;
 use App\Services\BannerServices;
 use Exception;
 use Illuminate\Http\Request;
+use Yoeunes\Toastr\Facades\Toastr;
 
 class BannerController extends Controller
 {
@@ -78,7 +79,7 @@ class BannerController extends Controller
                 $imagem3,
                 $banners[0]->id
             );
-
+            Toastr()->success('Banner atualizado', 'Sucesso');
             return redirect()->route('banner.main');
 
         } else {
@@ -97,7 +98,7 @@ class BannerController extends Controller
                 $imagem2,
                 $imagem3
             );
-
+            Toastr()->success('Banner cadastrado', 'Sucesso');
             return redirect()->route('banner.main');
 
         }

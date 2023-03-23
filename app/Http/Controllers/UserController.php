@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Yoeunes\Toastr\Facades\Toastr;
 
 class UserController extends Controller
 {
@@ -120,6 +121,7 @@ class UserController extends Controller
             //User::create($arrayUser);
             //$user =  new User;
         }
+        Toastr()->success('Usuário cadastrado', 'Sucesso');
         return redirect()->route('home');
         //
     }
