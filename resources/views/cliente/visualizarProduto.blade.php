@@ -6,18 +6,18 @@
     <div class="row" style="padding: 30px; display:flex; justify-content: center; text-align: center">
         <div class="ecommerce-gallery col-lg-5 col-md-6" data-mdb-zoom-effect="true" data-mdb-auto-height="true">
 
-            <img src="{{ asset($produto->foto) }}" id="mainImg" alt="Gallery image 1"
+            <img src="{{ asset($produto->foto1) }}" id="mainImg" alt="Gallery image 1"
                 class="img-fluid w-100 pb-1"width="300px" />
 
             <div class="small-img-group" style="display: flex; justify-content: center; ">
                 <div class="small-img-col" style="flex-basis: 24%; cursor: pointer;">
-                    <img src="{{ asset('img/imagem_3467.jpg') }}" alt="Gallery image 1" id="small-img1" class="small-img" />
+                    <img src="{{ asset($produto->foto1) }}" alt="Gallery image 1" id="small-img1" class="small-img" />
                 </div>
                 <div class="small-img-col" style="flex-basis: 24%; cursor: pointer">
-                    <img src="{{ asset($produto->foto) }}" alt="Gallery image 1" id="small-img2" class="small-img" />
+                    <img src="{{ asset($produto->foto2) }}" alt="Gallery image 1" id="small-img2" class="small-img" />
                 </div>
                 <div class="small-img-col" style="flex-basis: 24%; cursor: pointer">
-                    <img src="{{ asset($produto->foto) }}" alt="Gallery image 1" id="small-img3" class="small-img" />
+                    <img src="{{ asset($produto->foto3) }}" alt="Gallery image 1" id="small-img3" class="small-img" />
                 </div>
             </div>
 
