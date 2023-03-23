@@ -37,6 +37,7 @@
                 </form>
 
                 <form class="" action="{{ route('imprime.venda') }}" method="POST" target="_blank">
+
                     @csrf
                     <div class="col">
 

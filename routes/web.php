@@ -117,7 +117,7 @@ Route::middleware('cliente')->group(function () {
     Route::get('/pedido/historico', [PedidoController::class, 'historico'])->middleware('auth')->name('pedido.historico');
     Route::get('/perfil', [UserController::class, 'visualizarPerfil'])->middleware('auth')->name('perfil');
     Route::put('/perfil/editar/{idu}/{ide}', [UserController::class, 'updateCliente'])->middleware('auth')->name('perfil.editar');
-    
+
 
 });
 // Route::get('/teste',[LoginController::class, 'testeC'])->name('testec')->middleware('cliente');
