@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pedido;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RelatorioController extends Controller
 {
@@ -13,7 +16,10 @@ class RelatorioController extends Controller
      */
     public function index()
     {
-        return view('banner');
+        $servico = new RelatorioController();
+        $vendas = $servico->vendas();
+
+        return view('relatorios.vendas', ['vendas' => $vendas]);
     }
 
     /**
@@ -43,9 +49,12 @@ class RelatorioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $servico = new RelatorioController();
+        $pedidos = $servico->pedidos();
+
+        return view('relatorios.pedidos', ['pedidos' => $pedidos]);
     }
 
     /**
@@ -81,4 +90,67 @@ class RelatorioController extends Controller
     {
         //
     }
+
+    public function vendas() {
+
+        $vendas = DB::table('pedidos')
+        ->select('pedidos.*')
+        ->where('pedidos.status', '=', 'finalizado')
+        ->get();
+
+        return $vendas;
+    }
+
+    public function pedidos() {
+
+        $pedidos = DB::table('pedidos')
+        ->select('pedidos.*')
+        ->where('pedidos.status', '=', 'aberto')
+        ->get();
+
+        return $pedidos;
+    }
+
+    public function filtervendas(Request $request){
+
+        $inicial = Carbon::parse($request->inicial);
+        $final = Carbon::parse($request->final);
+
+        $vendas = DB::table('pedidos')
+            ->where('pedidos.status', '=', 'finalizado')
+            ->where('data', '<=', $final->format('Y-m-d'))
+            ->where('data','>=', $inicial->format('Y-m-d'))
+            ->get();
+
+        return view('relatorios.vendas', ['vendas' => $vendas]);
+    }
+
+    public function filterpedidos(Request $request){
+
+        $inicial = Carbon::parse($request->inicial);
+        $final = Carbon::parse($request->final);
+
+        $pedidos = DB::table('pedidos')
+            ->where('pedidos.status', '=', 'aberto')
+            ->where('data', '<=', $final->format('Y-m-d'))
+            ->where('data','>=', $inicial->format('Y-m-d'))
+            ->get();
+
+        return view('relatorios.pedidos', ['pedidos' => $pedidos]);
+    }
+
+    public function imprimevendas(Request $request) {
+        $inicial = Carbon::parse($request->inicial);
+        $final = Carbon::parse($request->final);
+
+        $vendas = DB::table('pedidos')
+            ->where('pedidos.status', '=', 'aberto')
+            ->where('data', '<=', $final->format('Y-m-d'))
+            ->where('data','>=', $inicial->format('Y-m-d'))
+            ->get();
+
+        $pdf = Pdf::loadView('relatorios.venda_data', ['vendas' => $vendas, 'dt1' => $inicial, 'dt2' => $final])->setpaper('A4');
+        return $pdf->stream(date('Y-m-d_H-i-s').'_vendas.pdf');
+    }
+
 }

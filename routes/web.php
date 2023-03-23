@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ConfiguracoesController;
+use App\Http\Controllers\RelatorioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -77,7 +78,13 @@ Route::middleware('admin')->group(function () {
     Route::get('/pedido/finalizar/{id}', [PedidoController::class, 'finalizar'])->middleware('auth')->name('pedido.finalizar');
 
     //Relatorios
-    Route::get('/relatorio/venda', [RelatorioController::class, 'index'])->middleware('auth')->name('relatorio.venda');
+    Route::get('/relatorio/vendas', [RelatorioController::class, 'index'])->middleware('auth')->name('relatorio.venda');
+    Route::get('/relatorio/pedidos', [RelatorioController::class, 'show'])->middleware('auth')->name('relatorio.pedido');
+    Route::post('/relatorio/filter/vendas', [RelatorioController::class, 'filtervendas'])->middleware('auth')->name('filter.venda');
+    Route::post('/relatorio/filter/pedidos', [RelatorioController::class, 'filterpedidos'])->middleware('auth')->name('filter.pedido');
+    Route::post('/relatorio/imprime/vendas', [RelatorioController::class, 'imprimevendas'])->middleware('auth')->name('imprime.venda');
+    Route::post('/relatorio/imprime/pedidos', [RelatorioController::class, 'imprimepedidos'])->middleware('auth')->name('imprime.pedido');
+
     //Usuários
     Route::get('/usuarios/cliente', [UserController::class, 'index'])->middleware('auth')->name('user.cliente');
     Route::get('/usuarios/admin', [UserController::class, 'show'])->middleware('auth')->name('user.admin');

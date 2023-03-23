@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('banners', function (Blueprint $table) {
             $table->id();
-            $table->string("foto1");
-            $table->string("foto2");
-            $table->string("foto3");
+            $table->binary("foto1");
+            $table->binary("foto2");
+            $table->binary("foto3");
             $table->timestamps();
         });
     }

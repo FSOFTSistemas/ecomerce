@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -23,6 +24,11 @@ return new class extends Migration
             $table->string('pais')->nullable();
             $table->timestamps();
         });
+
+        DB::table('enderecos')->insert([
+            ['created_at' => date('y-m-d h:m:s'), 'updated_at' => date('y-m-d h:m:s')],
+        ]);
+
     }
 
     /**
