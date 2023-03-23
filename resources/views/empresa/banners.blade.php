@@ -11,95 +11,87 @@
     <form action="{{ route('salvar.banner') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
-                                                                        {{-- FOTO 1 --}}
+        {{-- FOTO 1 --}}
 
-    <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-12">
-                    <label for=""><h4>Banner principal</h4></label>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                        </div>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="BannerMain" aria-describedby="inputGroupFileAddon01">
-                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="form-group">
+                        <label for="imagem">IMAGEM</label>
+                        <input type="file" class="form-group" name="BannerMain" id="BannerMain">
                     </div>
-                    <label for=""><p>OBS: A imagem deve ter dimensões 500x500.</p></label>
+
+                    <div class="col-12">
+                        @if (isset($banner1))
+                        <div class="form-group">
+                        <label for="">Banner Main atual</label>
+                            <img width="100" height="100" name="img" id="img" src="{{ $banner1 }}">
+                        </div>
+                        @endif
+                    </div>
+
                 </div>
-                <div class="col-12">
-                    @if (isset($banner->foto))
-                    <label for="">Banner Pricipal atual</label>
-                        <img src="{{ asset($banner[0]->foto) }}" class="rounded float-left" width="150">
-                    @endif
-                </div>
+
             </div>
-
         </div>
-    </div>
 
-                                                                        {{-- FOTO 2 --}}
+        {{-- FOTO 2 --}}
 
-    <div class="card">
-        <div class="card-body">
-    <div class="row">
-        <div class="col-12">
-            <label for=""><h4>Banner 2</h4></label>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="form-group">
+                        <label for="imagem">IMAGEM 2</label>
+                        <input type="file" class="form-group" name="Banner2" id="Banner2">
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            @if (isset($banner2))
+                                <label for="">Banner 2 atual</label>
+                                <img width="100" height="100" name="img2" id="img2" src="{{ $banner2 }}">
+                        </div>
+                        @endif
+                    </div>
+
                 </div>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="Banner2" aria-describedby="inputGroupFileAddon01">
-                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                </div>
+
             </div>
-            <label for=""><p>OBS: A imagem deve ter dimensões 500x500.</p></label>
         </div>
-        <div class="col-12">
-            @if (isset($banner->foto))
-            <label for="">Banner 2 atual</label>
-                <img src="{{ asset($banner->foto) }}" class="rounded float-left" width="150">
-            @endif
-        </div>
-    </div>
 
-        </div>
-    </div>
+        {{-- FOTO 3 --}}
 
-                                                                        {{-- FOTO 3 --}}
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
 
-    <div class="card">
-        <div class="card-body">
-    <div class="row">
-        <div class="col-12">
-            <label for=""><h4>Banner 3</h4></label>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                    <div class="form-group">
+                        <label for="imagem">IMAGEM 3</label>
+                        <input type="file" class="form-group" name="Banner3" id="Banner3">
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            @if (isset($banner3))
+                                <label for="">Banner 3 atual</label>
+                                <img width="100" height="100" name="img3" id="img3" src="{{ $banner3 }}">
+                        </div>
+                        @endif
+                    </div>
+
                 </div>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="Banner3" aria-describedby="inputGroupFileAddon01">
-                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                </div>
+
             </div>
-            <label for=""><p>OBS: A imagem deve ter dimensões 500x500.</p></label>
         </div>
-        <div class="col-12">
-            @if (isset($banner->foto))
-            <label for="">Banner 3 atual</label>
-                <img src="{{ asset($banner->foto) }}" class="rounded float-left" width="150">
-            @endif
-        </div>
-    </div>
 
+        <div class="text-center">
+            <button type="submit" style="width: 50%;" class="btn btn-success">SALVAR</button>
         </div>
-    </div>
 
-        <button type="submit" class="btn btn-primary"> Salvar </button>
     </form>
     <br>
 
 @endsection
+
