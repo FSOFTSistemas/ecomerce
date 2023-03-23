@@ -3,7 +3,7 @@
 @section('titulo', 'Loja de produtos')
 
 @section('conteudo')
-    <div class="span9">
+    <div class="span9" style="width: 100%">
         <ul class="breadcrumb">
             <li><a href="{{ route('home')}}">Home</a> <span class="divider">/</span></li>
             <li class="active"> Carrinho</li>
@@ -13,9 +13,9 @@
              Histórico de pedidos </a> --}}
         </h3>
         <hr class="soft" />
-       
 
-        <table class="table table-bordered">
+
+        <table class="table table-bordered" style="width: 100%">
             <thead>
                 <tr>
                     <th>Produto</th>
@@ -52,9 +52,9 @@
                                 </a>
                             </div>
                         </td>
-                        <td>{{ $item['preco'] }}</td>
-                        <td>{{ $item['desconto'] }}</td>
-                        <td colspan="2">{{ $item['total'] }}</td>
+                        <td>R$ {{ number_format($item['preco'], 2) }}</td>
+                        <td>R$ {{ number_format($item['desconto'], 2) }}</td>
+                        <td colspan="2">R$ {{ number_format(($item['total']), 2) }}</td>
                     </tr>
                 @endforeach
                 {{-- <tr>
@@ -98,8 +98,8 @@
                 </tr> --}}
                 <tr>
                     <td colspan="6" style="text-align:right">Desconto total: </td>
-                    
-                    <td> {{number_format($totalDesconto,2)}}</td>
+
+                    <td>R$ {{number_format($totalDesconto,2)}}</td>
                 </tr>
                 <tr>
                     <td colspan="6" style="text-align:right"><strong>Total </strong></td>
@@ -118,7 +118,7 @@
                                 <option value="pix">Pix</option>
                                 <option value="cartao">Cartão</option>
                             </select>
-                        
+
                     </td>
                 </tr>
             </tbody>

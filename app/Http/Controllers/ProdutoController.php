@@ -7,6 +7,7 @@ use App\Models\Pedido;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CategoriaController;
+use App\Models\Banner;
 use Illuminate\Support\Facades\Auth;
 use Yoeunes\Toastr\Facades\Toastr;
 
@@ -32,12 +33,24 @@ class ProdutoController extends Controller
 
     public function welcome()
     {
+        $banners = Banner::all();
         $registros = Produto::where('item_ativo', '=', 'sim')->get();
         $registosDestaque = Produto::where('item_destaque', '=', 'sim')->where('item_ativo', '=', 'sim')->get();
         $categorias = Categoria::all();
-        // dd($registosDestaque);
-        return view('cliente/index', ['produtos' => $registros, 'produtosDestaques' => $registosDestaque, 'categorias' => $categorias]);
-        // return view('cliente/welcome',['produtos' => $registros]);
+
+        if ($banners->count() > 0) {
+
+            $img = 'data:image/jpeg;base64,' . $banners[0]->foto1;
+            $img2 = 'data:image/jpeg;base64,' . $banners[0]->foto2;
+            $img3 = 'data:image/jpeg;base64,' . $banners[0]->foto3;
+
+            return view('cliente/index', ['produtos' => $registros, 'produtosDestaques' => $registosDestaque, 'categorias' => $categorias, 'banners1' => $img, 'banners2' => $img2, 'banners3' => $img3]);
+        } else {
+            return view('cliente/index', ['produtos' => $registros, 'produtosDestaques' => $registosDestaque, 'categorias' => $categorias]);
+        }
+
+
+
     }
 
     /**
@@ -137,7 +150,7 @@ class ProdutoController extends Controller
         $foto1 = 'data:image/jpeg;base64,' . $produto->foto1;
         $foto2 = 'data:image/jpeg;base64,' . $produto->foto2;
         $foto3 = 'data:image/jpeg;base64,' . $produto->foto3;
-        
+
 
         // $categorias = Categoria::where('status', '=', 'ativo')->get();
         return view('cliente.visualizarProduto', ['produto' => $produto, 'foto1' => $foto1, 'foto2' => $foto2, 'foto3' => $foto3]);

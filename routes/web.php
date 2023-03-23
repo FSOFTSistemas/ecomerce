@@ -108,6 +108,7 @@ Route::middleware('admin')->group(function () {
 Route::middleware('cliente')->group(function () {
 
     Route::get('/carrinho', [PedidoController::class, 'index'])->middleware('auth')->name('carrinho');
+    Route::get('/carrinho/vizualizar', [UserController::class, 'show'])->middleware('auth')->name('vizualizar');
     Route::get('/carrinho/adicionar/{id}', [PedidoController::class, 'adicionar'])->middleware('auth')->name('carrinho.adicionar');
     Route::get('/carrinho/diminuir/{id}', [PedidoController::class, 'diminuir'])->middleware('auth')->name('carrinho.diminuir');
     Route::get('/carrinho/remover/{id}', [PedidoController::class, 'remover'])->middleware('auth')->name('carrinho.remover');

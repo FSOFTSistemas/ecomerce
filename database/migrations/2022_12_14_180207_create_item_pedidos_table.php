@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -23,6 +24,27 @@ return new class extends Migration
             $table->decimal('desconto');
             $table->timestamps();
         });
+
+        DB::unprepared('
+        CREATE TRIGGER incrementar_estoque BEFORE DELETE ON `item_pedidos` FOR EACH ROW
+            BEGIN
+                UPDATE produtos
+                SET estoque = estoque + (SELECT quatidade FROM `item_pedidos`
+                WHERE item_pedidos.produto_id = produtos.id);
+            END
+        ');
+
+        DB::unprepared('
+        CREATE TRIGGER decrementar_estoque BEFORE INSERT ON `item_pedidos` FOR EACH ROW
+            BEGIN
+                UPDATE produtos
+                SET estoque = estoque - (CASE WHEN estoque > 0 AND estoque >= new.quatidade THEN new.quatidade
+                WHEN estoque <= 0 THEN 0
+                ELSE 0 END)
+                WHERE (produtos.id = new.produto_id);
+            END
+        ');
+
     }
 
     /**
@@ -33,5 +55,7 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('item_pedidos');
+        DB::unprepared('DROP TRIGGER `incrementar_estoque`');
+        DB::unprepared('DROP TRIGGER `decrementar_estoque`');
     }
 };

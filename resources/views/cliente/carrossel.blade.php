@@ -3,22 +3,39 @@
 		<div class="carousel-inner">
 		  <div class="item active">
 		  <div class="">
-			<a href="#"><img src="img/produtos/imagem_4523.jpg" width="100%" height="500px" style="display: inline-block" alt="special offers"/></a>
+			@if (isset($banners1))
+			<a href="#"><img src="{{ $banners1 }}" width="100%" height="500px" style="display: inline-block" alt="special offers"/></a>
+			@endif
 			<div class="carousel-caption">
 				  <h4>Second Thumbnail label</h4>
 				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 				</div>
 		  </div>
 		  </div>
+
 		  <div class="item">
 			<div class="">
-			  <a href="#"><img src="img/produtos/imagem_4523.jpg" width="100%" height="500px" alt="special offers"/></a>
+			@if (isset($banners2))
+			  <a href="#"><img src="{{ $banners2 }}" width="100%" height="500px" alt="special offers"/></a>
+			@endif
 			  <div class="carousel-caption">
 					<h4>Second Thumbnail label</h4>
 					<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 				  </div>
 			</div>
 			</div>
+
+			<div class="item">
+				<div class="">
+				@if (isset($banners3))
+				  <a href="#"><img src="{{ $banners3 }}" width="100%" height="500px" alt="special offers"/></a>
+				@endif
+				  <div class="carousel-caption">
+						<h4>Second Thumbnail label</h4>
+						<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+					  </div>
+				</div>
+				</div>
 		  {{-- <div class="item">
 		  <div class="container">
 			<a href="register.html"><img style="width:100%" src="themes/images/carousel/2.png" alt=""/></a>
@@ -26,7 +43,7 @@
 				  <h4>Second Thumbnail label</h4>
 				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 				</div>
-		  </div> 
+		  </div>
 		  </div>--}}
 		  {{-- <div class="item">
 		  <div class="container">
@@ -35,7 +52,7 @@
 				  <h4>Second Thumbnail label</h4>
 				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 				</div>
-			
+
 		  </div>
 		  </div> --}}
 		   {{-- <div class="item">
@@ -45,7 +62,7 @@
 				  <h4>Second Thumbnail label</h4>
 				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 				</div>
-		   
+
 		  </div>
 		  </div> --}}
 		   {{-- <div class="item">
@@ -69,5 +86,5 @@
 		</div>
 		<a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
 		<a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
-	  </div> 
+	  </div>
 </div>

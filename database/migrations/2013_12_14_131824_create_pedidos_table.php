@@ -26,11 +26,6 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::table('pedidos')->insert([
-            ['data' =>date('y-m-d h:m:s'), 'status' => 'pendente', 'total' => 200, 'subtotal' => 233, 'desconto' => 33, 'user_id' => 1, 'created_at' => date('y-m-d h:m:s'), 'updated_at' => date('y-m-d h:m:s')],
-            ['data' =>date('y-m-d h:m:s'), 'status' => 'finalizado', 'total' => 550, 'subtotal' => 580, 'desconto' => 30, 'user_id' => 1, 'created_at' => date('y-m-d h:m:s'), 'updated_at' => date('y-m-d h:m:s')],
-
-         ]);
     }
 
     /**
