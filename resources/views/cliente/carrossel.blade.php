@@ -3,7 +3,9 @@
 		<div class="carousel-inner">
 		  <div class="item active">
 		  <div class="">
+			@if (isset($banners1))
 			<a href="#"><img src="{{ $banners1 }}" width="100%" height="500px" style="display: inline-block" alt="special offers"/></a>
+			@endif
 			<div class="carousel-caption">
 				  <h4>Second Thumbnail label</h4>
 				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
@@ -13,7 +15,9 @@
 
 		  <div class="item">
 			<div class="">
+			@if (isset($banners2))
 			  <a href="#"><img src="{{ $banners2 }}" width="100%" height="500px" alt="special offers"/></a>
+			@endif
 			  <div class="carousel-caption">
 					<h4>Second Thumbnail label</h4>
 					<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
@@ -23,7 +27,9 @@
 
 			<div class="item">
 				<div class="">
+				@if (isset($banners3))
 				  <a href="#"><img src="{{ $banners3 }}" width="100%" height="500px" alt="special offers"/></a>
+				@endif
 				  <div class="carousel-caption">
 						<h4>Second Thumbnail label</h4>
 						<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
