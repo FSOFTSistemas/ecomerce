@@ -45,6 +45,13 @@ return new class extends Migration
             END
         ');
 
+        DB::unprepared('
+        CREATE TRIGGER incrementar_estoque2 BEFORE DELETE ON `item_pedidos` FOR EACH ROW
+            BEGIN
+                UPDATE produtos
+                SET estoque = estoque + 1;
+            END
+        ');
     }
 
     /**
@@ -57,5 +64,6 @@ return new class extends Migration
         Schema::dropIfExists('item_pedidos');
         DB::unprepared('DROP TRIGGER `incrementar_estoque`');
         DB::unprepared('DROP TRIGGER `decrementar_estoque`');
+        DB::unprepared('DROP TRIGGER `incrementar_estoque2`');
     }
 };

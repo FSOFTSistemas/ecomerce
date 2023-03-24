@@ -80,7 +80,7 @@ class BannerController extends Controller
                 $banners[0]->id
             );
             Toastr()->success('Banner atualizado', 'Sucesso');
-            return redirect()->route('banner.main');
+            return redirect()->route('banner.main', ['banner1' => $imagem1, 'banner2' => $imagem2, 'banner3' => $imagem3]);
 
         } else {
 

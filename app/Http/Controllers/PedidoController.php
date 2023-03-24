@@ -22,7 +22,6 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        $x = 0;
         $usuario = Auth::user();
         $pedido = Pedido::where('user_id','=',$usuario->id)->where('status','=','aberto')->first();
         if($pedido){
@@ -47,16 +46,9 @@ class PedidoController extends Controller
             $itens[$i]['quantidade'] = $itemPedidos[$i]['quatidade'];
             $totalPreco = $totalPreco + $itemPedidos[$i]['total'];
             $totalDesconto = $totalDesconto + $itemPedidos[$i]['desconto'];
-            $x = $itens[$i]['quantidade'] - $produto['estoque'];
 
-        }
+            return view('cliente/product_summary',['itens' => $itens,'pedido' => $pedido,'totalPreco' => $totalPreco, 'totalDesconto' => $totalDesconto]);
 
-        if ($x > 0){
-            // Toastr()->success('Item adicionado com sucesso', "Success");
-            return redirect()->route('vizualizar',['itens' => $itens,'pedido' => $pedido,'totalPreco' => $totalPreco, 'totalDesconto' => $totalDesconto]);
-        } else {
-            // Toastr()->error('Erro ao adicionar item', "Error");
-            return redirect()->route('home');
         }
 
         }
@@ -144,7 +136,10 @@ class PedidoController extends Controller
 
         $pedidoAberto = Pedido::where('status','=','aberto')->get();
         $pedido = '';
+        // dd(intval($request->qtde));
+        // dd(count($pedidoAberto));
         if(count($pedidoAberto)>0){
+            if (intval($request->qtde) <= $produto->estoque) {
             $itemProduto = ItemPedido::create([
                 'pedido_id' => $pedidoAberto[0]->id,
                 'produto_id' => $produto->id,
@@ -154,6 +149,10 @@ class PedidoController extends Controller
                 'total' => ($produto->preco_venda * $request->qtde)
             ]);
             $pedido = $pedidoAberto[0];
+            } else {
+                Toastr()->error('Quantidade requirada maior que estoque!', "Error");
+                return redirect()->route('home');
+            }
         }
         else{
             $pedidoNovo = Pedido::create([
@@ -162,6 +161,7 @@ class PedidoController extends Controller
                 'data' => date('Y-m-d'),
                 'forma_pagamento' => ''
             ]);
+            if (intval($request->qtde) <= $produto->estoque) {
             $itemProduto = ItemPedido::create([
                 'pedido_id' => $pedidoNovo->id,
                 'produto_id' => $produto->id,
@@ -171,6 +171,10 @@ class PedidoController extends Controller
                 'total' => ($produto->preco_venda * $request->qtde)
             ]);
             $pedido = $pedidoNovo;
+            } else {
+                Toastr()->error('Quantidade requirada maior que estoque!', "Error");
+                return redirect()->route('home');
+            }
         }
         return redirect()->route('carrinho');
     }

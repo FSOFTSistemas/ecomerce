@@ -29,18 +29,18 @@
                     <p style="font-weight: bold">Produto: </p>
                     <p>{{ $produto->nome }}</p>
                 </div>
-                
+
                 <div style="display: flex; flex-direction: column" >
                     <p style="font-weight: bold" >Descrição do produto</p>
                     <p style="width: 300px">{{ $produto->descricao }}</p>
                 </div>
-                
+
                 <div style="display: flex; font-weight: bold; color: green; font-size: 18px; margin: 12px 0%">
                     <p style="">Preço: </p>
-                    <p > R${{ number_format($produto->preco_venda, 2) }}</p>
+                    <p > R${{ number_format($preco, 2) }}</p>
                 </div>
                 <input type="number" placeholder="Quantidade" name="qtde" id="qtde">
-                
+
                 <button class="btn btn-success" type="submit" style="padding: 10px">Adicionar ao carrinho</button>
             </form>
 
