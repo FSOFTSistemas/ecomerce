@@ -7,25 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!--Less styles -->
-    <!-- Other Less css file //different less files has different color scheam
- <link rel="stylesheet/less" type="text/css" href="themes/less/simplex.less">
- <link rel="stylesheet/less" type="text/css" href="themes/less/classified.less">
- <link rel="stylesheet/less" type="text/css" href="themes/less/amelia.less">  MOVE DOWN TO activate
- -->
-    <!--<link rel="stylesheet/less" type="text/css" href="themes/less/bootshop.less">
- <script src="themes/js/less.js" type="text/javascript"></script> -->
 
-    <!-- Bootstrap style -->
     <link href="{{ URL::asset('themes/bootshop/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ URL::asset('themes/css/base.css') }}" rel="stylesheet" type="text/css">
-    {{-- <link id="callCss" rel="stylesheet" href="themes/bootshop/bootstrap.min.css" media="screen" />
-    <link href="themes/css/base.css" rel="stylesheet" media="screen" /> --}}
-    <!-- Bootstrap style responsive -->
     <link href="{{ URL::asset('themes/css/bootstrap-responsive.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ URL::asset('themes/css/font-awesome.css') }}" rel="stylesheet" type="text/css">
-    {{-- <link href="themes/css/bootstrap-responsive.min.css" rel="stylesheet" />
-    <link href="themes/css/font-awesome.css" rel="stylesheet" type="text/css"> --}}
     <!-- Google-code-prettify -->
     <link href="themes/js/google-code-prettify/prettify.css" rel="stylesheet" />
     <!-- fav and touch icons -->
@@ -43,21 +29,6 @@
 <body>
     <div id="header" style="height: 100%">
         <div class="container" style="width: 100%;">
-            {{-- <div id="welcomeLine" class="row">
-	<div class="span6">Welcome!<strong> User</strong></div>
-	<div class="span6">
-	<div class="pull-right">
-		<a href="product_summary.html"><span class="">Fr</span></a>
-		<a href="product_summary.html"><span class="">Es</span></a>
-		<span class="btn btn-mini">En</span>
-		<a href="product_summary.html"><span>&pound;</span></a>
-		<span class="btn btn-mini">$155.00</span>
-		<a href="product_summary.html"><span class="">$</span></a>
-		<a href="product_summary.html"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i> [ 3 ] Itemes in your cart </span> </a> 
-	</div>
-	</div>
-</div> --}}
-
 
             <!-- Navbar ================================================== -->
             <div id="logoArea" class="navbar" style="margin: 0">
@@ -69,7 +40,7 @@
                 <div class="navbar-inner" style="height: 100%">
                     <a class="brand" href="{{ route('home') }}"><img src="{{ asset('themes/images/logo.png') }}"
                             alt="Bootsshop" /></a>
-                    
+
                     <ul class="nav pull-left">
                         <li class=""><a href="{{ route('home') }}">Home</a></li>
                         <li class=""><a href="#destaque">Destaques</a></li>

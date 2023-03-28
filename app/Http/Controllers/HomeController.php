@@ -26,10 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $servico = new HomeController();
-        $produtos = $servico->BuscaEstoque();
-        // dd($estoques);
-        return view('home', ['produtos' => $produtos]);
+        $produtos = $this->BuscaEstoque();
+        $vendas = $this->BuscaVendas();
+        return view('home', ['produtos' => $produtos, 'vendas' => $vendas]);
     }
 
     public function BuscaEstoque(){
@@ -41,6 +40,17 @@ class HomeController extends Controller
         return $estoque;
     }
 
-    
+    public function BuscaVendas(){
+        $mes = date('m');
+
+        $vendas = DB::table('pedidos')
+        ->whereMonth("data",$mes)
+        ->where('pedidos.status', '=', 'finalizado')
+        ->selectRaw('count(id) as cnt')->pluck('cnt');
+
+        return $vendas;
+    }
+
+
 
 }
